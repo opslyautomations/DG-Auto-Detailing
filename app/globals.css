@@ -1,26 +1,105 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --brand-primary: #00B8E6;
+  --brand-primary-dark: #0096C7;
+  --brand-accent: #48D1F0;
+  --brand-black: #0A0A0A;
+  --brand-charcoal: #161616;
+  --brand-gray-900: #1F2937;
+  --brand-gray-100: #F3F4F6;
+  --brand-white: #FFFFFF;
+  --background: #0A0A0A;
+  --foreground: #F3F4F6;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-brand-primary: var(--brand-primary);
+  --color-brand-primary-dark: var(--brand-primary-dark);
+  --color-brand-accent: var(--brand-accent);
+  --color-brand-black: var(--brand-black);
+  --color-brand-charcoal: var(--brand-charcoal);
+  --color-brand-gray-900: var(--brand-gray-900);
+  --color-brand-gray-100: var(--brand-gray-100);
+  --color-brand-white: var(--brand-white);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--brand-black);
+  color: var(--brand-gray-100);
+  font-family: var(--font-inter, Arial, Helvetica, sans-serif);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--brand-charcoal);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--brand-primary);
+  border-radius: 3px;
+}
+
+.glow-blue {
+  box-shadow: 0 0 20px rgba(0, 184, 230, 0.4);
+}
+.glow-blue:hover {
+  box-shadow: 0 0 32px rgba(0, 184, 230, 0.65);
+}
+
+/* Skip-to-content */
+.skip-to-content {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.skip-to-content:focus {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: auto;
+  height: auto;
+  padding: 0.75rem 1.5rem;
+  background: #00B8E6;
+  color: #0A0A0A;
+  font-weight: 700;
+  font-size: 0.875rem;
+  outline: none;
+}
+
+/* Focus visible ring */
+:focus-visible {
+  outline: 2px solid #00B8E6;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in-up {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
 }
