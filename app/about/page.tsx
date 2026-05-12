@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { CheckCircle, ExternalLink } from "lucide-react";
 import SchemaJsonLd from "@/components/SchemaJsonLd";
 import CTASection from "@/components/CTASection";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import PlaceholderImage from "@/components/PlaceholderImage";
 import { organizationSchema, breadcrumbSchema } from "@/lib/schema";
 import { buildMetadata } from "@/lib/seo";
 
@@ -123,16 +123,16 @@ export default function AboutPage() {
                 </div>
               </div>
 
-              {/* Diego's portrait placeholder */}
-              <div>
-                <PlaceholderImage
-                  width={500}
-                  height={600}
+              {/* Diego's portrait */}
+              <div className="max-w-sm mx-auto">
+                <Image
+                  src="/images/about/diego-portrait.jpg"
                   alt="Diego — Owner of DG Detailing, mobile auto detailing Los Angeles"
-                  label="Diego — Founder, DG Detailing"
-                  className="aspect-[5/6] max-w-sm mx-auto"
+                  width={1024}
+                  height={1536}
+                  className="rounded-2xl w-full h-auto object-cover"
+                  priority
                 />
-                {/* TODO: Replace with Diego's actual portrait per §22B */}
               </div>
             </div>
           </div>
