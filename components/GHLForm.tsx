@@ -9,12 +9,12 @@ export default function GHLForm({ className = "" }: GHLFormProps) {
       style={{ minHeight: "720px" }}
     >
       <iframe
-        src="https://api.opslyautomations.com/widget/service-menu/69f11b25a3cc5ec62ba49c5c"
+        src="https://api.opslyautomations.com/booking/dg-car-detailing-zerhza1hzz9?heightMode=fixed&showHeader=false"
         style={{ width: "100%", border: "none", overflow: "hidden", minHeight: "720px" }}
         scrolling="no"
-        id="69f11b25a3cc5ec62ba49c5c_1777419493246"
+        id="Z48P3v4VaWrAZifhwqd9_1783720246857"
         title="Book a Mobile Auto Detail with DG Detailing"
-        aria-label="Booking form for DG Detailing mobile auto detail services"
+        aria-label="Booking calendar for DG Detailing mobile auto detail services"
       />
     </div>
   );
