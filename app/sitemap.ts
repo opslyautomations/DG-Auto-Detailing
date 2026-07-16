@@ -25,6 +25,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   }));
 
+  const ceramicCoatingPage: MetadataRoute.Sitemap = [
+    {
+      url: `${BASE_URL}/services/ceramic-coating`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+  ];
+
   const locationPages: MetadataRoute.Sitemap = locations.map((l) => ({
     url: `${BASE_URL}/locations/${l.slug}`,
     lastModified: new Date(),
@@ -39,5 +48,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticPages, ...servicePages, ...locationPages, ...blogPages];
+  return [...staticPages, ...servicePages, ...ceramicCoatingPage, ...locationPages, ...blogPages];
 }

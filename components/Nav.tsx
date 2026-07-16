@@ -84,6 +84,18 @@ export default function Nav() {
                         ))}
                       </div>
                     ))}
+                    <div className="mb-3 last:mb-0">
+                      <p className="text-xs font-semibold text-[#00B8E6] uppercase tracking-widest mb-1 px-2">
+                        Protection
+                      </p>
+                      <Link
+                        href="/services/ceramic-coating"
+                        className="block px-2 py-1.5 text-sm text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
+                        onClick={() => setServicesOpen(false)}
+                      >
+                        Ceramic Coating
+                      </Link>
+                    </div>
                     <div className="border-t border-white/10 mt-3 pt-3">
                       <Link
                         href="/services"
@@ -210,6 +222,7 @@ export default function Nav() {
               { href: "/", label: "Home" },
               { href: "/services", label: "All Services" },
               ...services.map((s) => ({ href: `/services/${s.slug}`, label: `  ${s.name}` })),
+              { href: "/services/ceramic-coating", label: "  Ceramic Coating" },
               { href: "/locations", label: "All Service Areas" },
               ...locations.map((l) => ({ href: `/locations/${l.slug}`, label: `  ${l.city}` })),
               { href: "/about", label: "About" },

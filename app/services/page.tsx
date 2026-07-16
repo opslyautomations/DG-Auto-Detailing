@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { DollarSign, Clock, ArrowRight } from "lucide-react";
 import ServiceCard from "@/components/ServiceCard";
 import CTASection from "@/components/CTASection";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -27,12 +28,20 @@ export default function ServicesPage() {
           name: "DG Detailing Services",
           description: "Mobile auto detailing packages for Los Angeles drivers",
           url: "https://www.dgautodetailing.com/services",
-          itemListElement: services.map((s, i) => ({
-            "@type": "ListItem",
-            position: i + 1,
-            url: `https://www.dgautodetailing.com/services/${s.slug}`,
-            name: s.name,
-          })),
+          itemListElement: [
+            ...services.map((s, i) => ({
+              "@type": "ListItem",
+              position: i + 1,
+              url: `https://www.dgautodetailing.com/services/${s.slug}`,
+              name: s.name,
+            })),
+            {
+              "@type": "ListItem",
+              position: services.length + 1,
+              url: "https://www.dgautodetailing.com/services/ceramic-coating",
+              name: "Ceramic Coating",
+            },
+          ],
         }}
       />
 
@@ -78,6 +87,51 @@ export default function ServicesPage() {
             </section>
           );
         })}
+
+        {/* Ceramic Coating */}
+        <section className="py-16 bg-[#0A0A0A]" aria-label="Paint protection services">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="mb-10">
+              <h2 className="text-2xl sm:text-3xl font-black text-white mb-2">Paint Protection</h2>
+              <p className="text-gray-400">Multi-year ceramic coating protection, mobile across the LA Westside.</p>
+            </div>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <article className="group relative rounded-2xl overflow-hidden border border-white/10 hover:border-[#00B8E6]/40 transition-all duration-300 hover:shadow-xl hover:shadow-[#00B8E6]/5">
+                <div className="bg-gradient-to-br from-sky-900/60 to-cyan-950 p-6 h-full flex flex-col">
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="inline-block px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider bg-cyan-700/80 text-cyan-100">
+                      paint protection
+                    </span>
+                    <div className="flex items-center gap-3 text-gray-400 text-xs">
+                      <span className="flex items-center gap-1">
+                        <DollarSign size={11} />
+                        From $750
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <Clock size={11} />
+                        4–6 hrs
+                      </span>
+                    </div>
+                  </div>
+                  <h3 className="text-lg font-bold text-white mb-2 leading-tight">Ceramic Coating</h3>
+                  <p className="text-sm text-gray-400 leading-relaxed mb-4 flex-1">
+                    Multi-year paint protection, applied at your driveway. Deeper gloss, easier washes, real UV and
+                    contamination defense — choose a 5-year or 7-year coating, mobile across the LA Westside.
+                  </p>
+                  <Link
+                    href="/services/ceramic-coating"
+                    className="inline-flex items-center gap-2 text-sm font-semibold transition-colors group-hover:gap-3 mt-auto"
+                    style={{ color: "#00B8E6" }}
+                    aria-label="View Ceramic Coating details and pricing"
+                  >
+                    View Details
+                    <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+                  </Link>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
 
         {/* Comparison note */}
         <section className="py-16 bg-[#161616] border-t border-white/10">
