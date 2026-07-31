@@ -1,74 +1,115 @@
 export interface GalleryImage {
   src: string;
   alt: string;
-  category: "exterior" | "interior" | "engine" | "before-after";
-  service?: string;
-  city?: string;
+  caption: string;
+  category: "exterior" | "interior";
+  width: number;
+  height: number;
 }
 
 export const galleryImages: GalleryImage[] = [
   {
-    src: "/images/work/dg-gold-exterior-range-rover-brentwood-2024.jpg",
-    alt: "DG Detailing Gold Exterior Detail — Range Rover, Brentwood Los Angeles",
+    src: "/images/work/IMG_7338.jpg",
+    alt: "Finished mobile detail on a Lexus with a deep, swirl-free gloss finish",
+    caption: "Lexus — Finished Detail",
     category: "exterior",
-    service: "gold-exterior-suv-truck",
-    city: "brentwood",
+    width: 4284,
+    height: 5712,
   },
   {
-    src: "/images/work/dg-silver-exterior-bmw-marina-del-rey-2024.jpg",
-    alt: "DG Detailing Silver Exterior Detail — BMW, Marina Del Rey Los Angeles",
+    src: "/images/work/IMG_4779.jpg",
+    alt: "Finished mobile detail on an orange Dodge Challenger in a residential driveway",
+    caption: "Dodge Challenger — Finished Detail",
     category: "exterior",
-    service: "silver-exterior-sedan",
-    city: "marina-del-rey",
+    width: 3024,
+    height: 4032,
   },
   {
-    src: "/images/work/dg-interior-detail-mercedes-santa-monica-2024.jpg",
-    alt: "DG Detailing Interior Deep Clean — Mercedes, Santa Monica Los Angeles",
+    src: "/images/work/IMG_7552.jpg",
+    alt: "Finished mobile detail on a blue Mercedes-AMG GT with a glossy, freshly washed finish",
+    caption: "Mercedes-AMG GT — Finished Detail",
+    category: "exterior",
+    width: 4284,
+    height: 5712,
+  },
+  {
+    src: "/images/work/IMG_4818.jpg",
+    alt: "Interior detail on a McLaren showing clean tan leather seats and dashboard",
+    caption: "McLaren — Interior Detail",
     category: "interior",
-    service: "gold-interior-sedan",
-    city: "santa-monica",
+    width: 3024,
+    height: 4032,
   },
   {
-    src: "/images/work/dg-gold-exterior-porsche-playa-vista-2024.jpg",
-    alt: "DG Detailing Gold Exterior Detail — Porsche, Playa Vista Los Angeles",
+    src: "/images/work/IMG_4810.jpg",
+    alt: "McLaren covered in thick foam during the pre-wash decontamination stage",
+    caption: "McLaren — Foam Pre-Wash",
     category: "exterior",
-    service: "gold-exterior-coupe",
-    city: "playa-vista",
+    width: 3024,
+    height: 4032,
   },
   {
-    src: "/images/work/dg-basic-exterior-honda-culver-city-2024.jpg",
-    alt: "DG Detailing Basic Exterior Detail — Honda, Culver City Los Angeles",
+    src: "/images/work/IMG_6016.jpg",
+    alt: "Ford Raptor truck covered in foam during the pre-wash stage in a driveway",
+    caption: "Ford Raptor — Foam Pre-Wash",
     category: "exterior",
-    service: "basic-exterior-sedan",
-    city: "culver-city",
+    width: 3024,
+    height: 4032,
   },
   {
-    src: "/images/work/dg-interior-tesla-venice-beach-2024.jpg",
-    alt: "DG Detailing Interior Detail — Tesla, Venice Beach Los Angeles",
-    category: "interior",
-    service: "silver-interior-sedan",
-    city: "venice-beach",
+    src: "/images/work/IMG_7597.jpg",
+    alt: "Dodge Charger covered in foam during the pre-wash stage next to a hedge",
+    caption: "Dodge Charger — Foam Pre-Wash",
+    category: "exterior",
+    width: 4284,
+    height: 5712,
   },
   {
-    src: "/images/work/dg-before-after-paint-correction-la-2024.jpg",
-    alt: "DG Detailing before and after paint correction — Los Angeles",
-    category: "before-after",
+    src: "/images/work/IMG_5991.jpg",
+    alt: "Toyota Camry covered in foam during the pre-wash stage on a residential street",
+    caption: "Toyota Camry — Foam Pre-Wash",
+    category: "exterior",
+    width: 3024,
+    height: 4032,
   },
   {
-    src: "/images/work/dg-engine-bay-detail-suv-la-2024.jpg",
-    alt: "DG Detailing engine bay detail — SUV, Los Angeles",
-    category: "engine",
+    src: "/images/work/IMG_7705.jpg",
+    alt: "Close-up of a foam-covered wheel and fender during the pre-wash stage",
+    caption: "Wheel & Fender Detail — Foam Pre-Wash",
+    category: "exterior",
+    width: 4284,
+    height: 5712,
+  },
+];
+
+export interface BeforeAfterPair {
+  before: GalleryImage;
+  after: GalleryImage;
+  label: string;
+}
+
+export const beforeAfterPairs: BeforeAfterPair[] = [
+  {
+    label: "Mercedes-AMG GT",
+    before: {
+      src: "/images/work/IMG_7551.jpg",
+      alt: "Mercedes-AMG GT covered in foam during the pre-wash decontamination stage",
+      caption: "Before — Foam Pre-Wash",
+      category: "exterior",
+      width: 4284,
+      height: 5712,
+    },
+    after: {
+      src: "/images/work/IMG_7552.jpg",
+      alt: "The same Mercedes-AMG GT finished, with a deep glossy exterior shine",
+      caption: "After — Finished Detail",
+      category: "exterior",
+      width: 4284,
+      height: 5712,
+    },
   },
 ];
 
 export function getGalleryByCategory(category: GalleryImage["category"]): GalleryImage[] {
   return galleryImages.filter((img) => img.category === category);
-}
-
-export function getGalleryByCity(city: string): GalleryImage[] {
-  return galleryImages.filter((img) => img.city === city);
-}
-
-export function getGalleryByService(service: string): GalleryImage[] {
-  return galleryImages.filter((img) => img.service === service);
 }

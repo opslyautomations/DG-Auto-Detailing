@@ -1,36 +1,20 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import CTASection from "@/components/CTASection";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import PlaceholderImage from "@/components/PlaceholderImage";
 import SchemaJsonLd from "@/components/SchemaJsonLd";
 import { breadcrumbSchema } from "@/lib/schema";
 import { buildMetadata } from "@/lib/seo";
+import { galleryImages, beforeAfterPairs } from "@/lib/gallery";
 
 export const metadata: Metadata = buildMetadata({
   title: "Gallery — Before & After Detail Work | DG Detailing Los Angeles",
   description:
-    "View before-and-after photos from DG Detailing's mobile auto detailing work across Los Angeles, Marina Del Rey, Santa Monica, Culver City, Venice Beach, Playa Vista, and Brentwood.",
+    "View real before-and-after photos from DG Detailing's mobile auto detailing work across Los Angeles, Marina Del Rey, Santa Monica, Culver City, Venice Beach, Playa Vista, and Brentwood.",
   canonical: "/gallery",
 });
 
-// TODO: Replace placeholder images with real photos from Diego's library.
-// Add entries to /lib/gallery.ts when photos are ready (see README for instructions).
-const galleryItems = [
-  { label: "Gold Exterior — Range Rover, Brentwood", category: "Exterior", alt: "DG Detailing gold exterior detail on Range Rover in Brentwood" },
-  { label: "Gold Interior — Tesla Model S, Playa Vista", category: "Interior", alt: "DG Detailing gold interior deep clean on Tesla in Playa Vista" },
-  { label: "Paint Correction — BMW 5 Series, Santa Monica", category: "Paint Correction", alt: "DG Detailing paint correction on BMW in Santa Monica" },
-  { label: "Ceramic Coating — Porsche, Brentwood", category: "Ceramic Coating", alt: "DG Detailing ceramic coating application on Porsche in Brentwood" },
-  { label: "Silver Exterior — Honda Accord, Culver City", category: "Exterior", alt: "DG Detailing silver detail exterior on Honda in Culver City" },
-  { label: "Gold Interior — Ford F-150, Marina Del Rey", category: "Interior", alt: "DG Detailing gold interior detail on F-150 truck in Marina Del Rey" },
-  { label: "Paint Correction — Mercedes GLE, Los Angeles", category: "Paint Correction", alt: "DG Detailing paint correction on Mercedes in Los Angeles" },
-  { label: "Gold Exterior — Jeep Wrangler, Venice Beach", category: "Exterior", alt: "DG Detailing gold detail exterior on Jeep in Venice Beach" },
-  { label: "Basic Detail — Hyundai Tucson, Culver City", category: "Exterior", alt: "DG Detailing basic hand wash exterior on Hyundai in Culver City" },
-  { label: "Gold Interior — Chevrolet Suburban, Brentwood", category: "Interior", alt: "DG Detailing gold interior shampoo on Chevrolet SUV in Brentwood" },
-  { label: "Silver Detail — Toyota Camry, Venice Beach", category: "Exterior", alt: "DG Detailing silver detail on Toyota Camry in Venice Beach" },
-  { label: "Ceramic Coating — Audi A7, Santa Monica", category: "Ceramic Coating", alt: "DG Detailing ceramic coating on Audi A7 in Santa Monica" },
-];
-
-const filterCategories = ["All", "Exterior", "Interior", "Paint Correction", "Ceramic Coating"];
+const filterCategories = ["All", "Exterior", "Interior"];
 
 export default function GalleryPage() {
   return (
@@ -84,23 +68,55 @@ export default function GalleryPage() {
           </div>
         </section>
 
+        {/* Before & After */}
+        <section className="py-16 bg-[#0A0A0A] border-b border-white/10" aria-label="Before and after">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-2xl sm:text-3xl font-black text-white mb-8 text-center">Before &amp; After</h2>
+            {beforeAfterPairs.map((pair) => (
+              <div key={pair.label} className="grid sm:grid-cols-2 gap-4">
+                {[pair.before, pair.after].map((img) => (
+                  <div key={img.src} className="rounded-2xl overflow-hidden border border-white/10">
+                    <div className="relative w-full aspect-[3/4]">
+                      <Image
+                        src={img.src}
+                        alt={img.alt}
+                        fill
+                        sizes="(max-width: 640px) 100vw, 50vw"
+                        className="object-cover"
+                      />
+                    </div>
+                    <p className="text-center text-sm font-semibold text-white py-3 bg-[#161616]">
+                      {img.caption}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+        </section>
+
         {/* Masonry Grid */}
         <section className="py-16 bg-[#0A0A0A]" aria-label="Gallery photos">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4">
-              {galleryItems.map((item, i) => (
-                <div key={i} className="break-inside-avoid">
-                  <PlaceholderImage
-                    width={600}
-                    height={i % 3 === 0 ? 500 : 400}
-                    alt={item.alt}
-                    label={item.label}
-                    className={`w-full ${i % 3 === 0 ? "aspect-[4/5]" : "aspect-[3/2]"}`}
-                  />
+              {galleryImages.map((item) => (
+                <div key={item.src} className="break-inside-avoid">
+                  <div
+                    className="relative w-full rounded-2xl overflow-hidden border border-white/10"
+                    style={{ aspectRatio: `${item.width} / ${item.height}` }}
+                  >
+                    <Image
+                      src={item.src}
+                      alt={item.alt}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="object-cover"
+                    />
+                  </div>
                   <div className="mt-1.5 flex items-center justify-between px-1">
-                    <p className="text-xs text-gray-500">{item.label}</p>
+                    <p className="text-xs text-gray-500">{item.caption}</p>
                     <span
-                      className="text-xs px-2 py-0.5 rounded-full"
+                      className="text-xs px-2 py-0.5 rounded-full capitalize"
                       style={{ backgroundColor: "rgba(0,184,230,0.12)", color: "#00B8E6" }}
                     >
                       {item.category}

@@ -1,15 +1,25 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Phone, Star, CheckCircle } from "lucide-react";
 import GHLForm from "@/components/GHLForm";
 import TrustBar from "@/components/TrustBar";
 import LocationCard from "@/components/LocationCard";
 import ReviewCard from "@/components/ReviewCard";
 import CTASection from "@/components/CTASection";
-import PlaceholderImage from "@/components/PlaceholderImage";
 import { services, tierLabels, tierDescriptions } from "@/lib/services";
 import { locations } from "@/lib/locations";
 import { getFeaturedReviews } from "@/lib/reviews";
+import { galleryImages } from "@/lib/gallery";
 import type { ServiceTier } from "@/lib/services";
+
+const homeGalleryPreview = [
+  "/images/work/IMG_7338.jpg",
+  "/images/work/IMG_4779.jpg",
+  "/images/work/IMG_7552.jpg",
+  "/images/work/IMG_4818.jpg",
+  "/images/work/IMG_7597.jpg",
+  "/images/work/IMG_6016.jpg",
+].map((src) => galleryImages.find((img) => img.src === src)!);
 
 export default function HomePage() {
   const featuredReviews = getFeaturedReviews();
@@ -235,22 +245,19 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">
-            {[
-              "Exterior Detail — Marina Del Rey",
-              "Gold Interior — Brentwood",
-              "Paint Correction — Santa Monica",
-              "Ceramic Coating — Playa Vista",
-              "Silver Detail — Venice Beach",
-              "Gold Exterior — Culver City",
-            ].map((label, i) => (
-              <PlaceholderImage
-                key={i}
-                width={600}
-                height={400}
-                alt={`DG Detailing — ${label}`}
-                label={label}
-                className="aspect-[3/2]"
-              />
+            {homeGalleryPreview.map((item) => (
+              <div
+                key={item.src}
+                className="relative w-full aspect-[3/2] rounded-2xl overflow-hidden border border-white/10"
+              >
+                <Image
+                  src={item.src}
+                  alt={item.alt}
+                  fill
+                  sizes="(max-width: 768px) 50vw, 33vw"
+                  className="object-cover"
+                />
+              </div>
             ))}
           </div>
 
