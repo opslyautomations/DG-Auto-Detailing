@@ -9,17 +9,6 @@ interface BlogCardProps {
 export default function BlogCard({ post }: BlogCardProps) {
   return (
     <article className="group rounded-2xl bg-[#161616] border border-white/10 hover:border-[#00B8E6]/40 transition-all duration-300 overflow-hidden hover:shadow-xl hover:shadow-[#00B8E6]/5">
-      {/* Placeholder image area */}
-      <div
-        className="h-44 flex items-center justify-center border-b border-white/10"
-        style={{ backgroundColor: "rgba(0,184,230,0.04)" }}
-        aria-hidden="true"
-      >
-        <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: "rgba(0,184,230,0.12)" }}>
-          <span className="text-xs font-bold" style={{ color: "#00B8E6" }}>{post.category[0]}</span>
-        </div>
-      </div>
-
       <div className="p-5">
         {/* Meta */}
         <div className="flex items-center gap-3 mb-3 text-xs text-gray-500">

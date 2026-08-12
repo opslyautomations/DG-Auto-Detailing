@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { Menu, X, Phone, ChevronDown, ChevronRight, ChevronLeft } from "lucide-react";
 import { services, vehicleClassLabels } from "@/lib/services";
@@ -27,6 +27,32 @@ export default function Nav() {
     setActiveTier(null);
   };
 
+  const servicesCloseTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const locationsCloseTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const openServices = () => {
+    if (servicesCloseTimer.current) clearTimeout(servicesCloseTimer.current);
+    setServicesOpen(true);
+  };
+  const scheduleCloseServices = () => {
+    servicesCloseTimer.current = setTimeout(closeServices, 200);
+  };
+
+  const openLocations = () => {
+    if (locationsCloseTimer.current) clearTimeout(locationsCloseTimer.current);
+    setLocationsOpen(true);
+  };
+  const scheduleCloseLocations = () => {
+    locationsCloseTimer.current = setTimeout(() => setLocationsOpen(false), 200);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (servicesCloseTimer.current) clearTimeout(servicesCloseTimer.current);
+      if (locationsCloseTimer.current) clearTimeout(locationsCloseTimer.current);
+    };
+  }, []);
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -34,13 +60,14 @@ export default function Nav() {
   }, []);
 
   useEffect(() => {
-    if (mobileOpen) document.body.style.overflow = "hidden";
-    else {
-      document.body.style.overflow = "";
-      setMobileExpandedTier(null);
-    }
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
   }, [mobileOpen]);
+
+  const openMobileMenu = () => {
+    setMobileOpen(true);
+    setMobileExpandedTier(null);
+  };
 
   return (
     <>
@@ -54,7 +81,11 @@ export default function Nav() {
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 lg:h-20">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2" aria-label="DG Detailing Home">
+            <Link
+              href="/"
+              className="flex items-center gap-2 px-2 py-1 -mx-2 rounded-md hover:bg-white/5 transition-colors"
+              aria-label="DG Detailing Home"
+            >
               <span className="text-xl lg:text-2xl font-black tracking-tight">
                 <span style={{ color: "#00B8E6" }}>DG</span>
                 <span className="text-white"> Detailing</span>
@@ -63,14 +94,12 @@ export default function Nav() {
 
             {/* Desktop Nav */}
             <div className="hidden lg:flex items-center gap-1">
-              <NavLink href="/">Home</NavLink>
-
               {/* Services Dropdown */}
               <div className="relative group">
                 <button
                   className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-gray-300 hover:text-white transition-colors rounded-md hover:bg-white/5"
-                  onMouseEnter={() => setServicesOpen(true)}
-                  onMouseLeave={closeServices}
+                  onMouseEnter={openServices}
+                  onMouseLeave={scheduleCloseServices}
                   aria-haspopup="true"
                 >
                   Services <ChevronDown size={14} />
@@ -78,8 +107,8 @@ export default function Nav() {
                 {servicesOpen && (
                   <div
                     className="absolute top-full left-0 mt-1 w-72 bg-[#161616] border border-white/10 rounded-2xl shadow-2xl p-4"
-                    onMouseEnter={() => setServicesOpen(true)}
-                    onMouseLeave={closeServices}
+                    onMouseEnter={openServices}
+                    onMouseLeave={scheduleCloseServices}
                   >
                     {activeTier === null ? (
                       <>
@@ -143,8 +172,8 @@ export default function Nav() {
               <div className="relative group">
                 <button
                   className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-gray-300 hover:text-white transition-colors rounded-md hover:bg-white/5"
-                  onMouseEnter={() => setLocationsOpen(true)}
-                  onMouseLeave={() => setLocationsOpen(false)}
+                  onMouseEnter={openLocations}
+                  onMouseLeave={scheduleCloseLocations}
                   aria-haspopup="true"
                 >
                   Locations <ChevronDown size={14} />
@@ -152,8 +181,8 @@ export default function Nav() {
                 {locationsOpen && (
                   <div
                     className="absolute top-full left-0 mt-1 w-56 bg-[#161616] border border-white/10 rounded-2xl shadow-2xl p-3"
-                    onMouseEnter={() => setLocationsOpen(true)}
-                    onMouseLeave={() => setLocationsOpen(false)}
+                    onMouseEnter={openLocations}
+                    onMouseLeave={scheduleCloseLocations}
                   >
                     {locations.map((loc) => (
                       <Link
@@ -207,7 +236,7 @@ export default function Nav() {
             {/* Mobile menu button */}
             <button
               className="lg:hidden p-2 text-gray-300 hover:text-white"
-              onClick={() => setMobileOpen(true)}
+              onClick={openMobileMenu}
               aria-label="Open menu"
             >
               <Menu size={24} />
@@ -220,10 +249,15 @@ export default function Nav() {
       {mobileOpen && (
         <div className="fixed inset-0 z-50 bg-[#0A0A0A] flex flex-col overflow-y-auto">
           <div className="flex items-center justify-between px-4 py-4 border-b border-white/10">
-            <span className="text-xl font-black">
+            <Link
+              href="/"
+              className="text-xl font-black rounded-md hover:bg-white/5 transition-colors px-1 -mx-1 py-1"
+              onClick={() => setMobileOpen(false)}
+              aria-label="DG Detailing Home"
+            >
               <span style={{ color: "#00B8E6" }}>DG</span>
               <span className="text-white"> Detailing</span>
-            </span>
+            </Link>
             <button
               onClick={() => setMobileOpen(false)}
               className="p-2 text-gray-400 hover:text-white"
@@ -248,13 +282,6 @@ export default function Nav() {
 
           {/* Nav Links */}
           <nav className="flex-1 px-4 py-4 space-y-1">
-            <Link
-              href="/"
-              className="block px-3 py-2 rounded-lg transition-colors text-white font-semibold hover:text-[#00B8E6]"
-              onClick={() => setMobileOpen(false)}
-            >
-              Home
-            </Link>
             <Link
               href="/services"
               className="block px-3 py-2 rounded-lg transition-colors text-white font-semibold hover:text-[#00B8E6]"
