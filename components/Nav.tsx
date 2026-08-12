@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Menu, X, Phone, ChevronDown } from "lucide-react";
-import { services } from "@/lib/services";
+import { Menu, X, Phone, ChevronDown, ChevronRight, ChevronLeft } from "lucide-react";
+import { services, vehicleClassLabels } from "@/lib/services";
 import { locations } from "@/lib/locations";
 
 const serviceGroups = {
@@ -12,11 +12,20 @@ const serviceGroups = {
   Gold: services.filter((s) => s.tier === "gold"),
 };
 
+type ServiceTierGroup = keyof typeof serviceGroups;
+
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const [activeTier, setActiveTier] = useState<ServiceTierGroup | null>(null);
   const [locationsOpen, setLocationsOpen] = useState(false);
+  const [mobileExpandedTier, setMobileExpandedTier] = useState<ServiceTierGroup | null>(null);
+
+  const closeServices = () => {
+    setServicesOpen(false);
+    setActiveTier(null);
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -26,7 +35,10 @@ export default function Nav() {
 
   useEffect(() => {
     if (mobileOpen) document.body.style.overflow = "hidden";
-    else document.body.style.overflow = "";
+    else {
+      document.body.style.overflow = "";
+      setMobileExpandedTier(null);
+    }
     return () => { document.body.style.overflow = ""; };
   }, [mobileOpen]);
 
@@ -58,7 +70,7 @@ export default function Nav() {
                 <button
                   className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-gray-300 hover:text-white transition-colors rounded-md hover:bg-white/5"
                   onMouseEnter={() => setServicesOpen(true)}
-                  onMouseLeave={() => setServicesOpen(false)}
+                  onMouseLeave={closeServices}
                   aria-haspopup="true"
                 >
                   Services <ChevronDown size={14} />
@@ -67,44 +79,62 @@ export default function Nav() {
                   <div
                     className="absolute top-full left-0 mt-1 w-72 bg-[#161616] border border-white/10 rounded-2xl shadow-2xl p-4"
                     onMouseEnter={() => setServicesOpen(true)}
-                    onMouseLeave={() => setServicesOpen(false)}
+                    onMouseLeave={closeServices}
                   >
-                    {Object.entries(serviceGroups).map(([tier, svcs]) => (
-                      <div key={tier} className="mb-3 last:mb-0">
-                        <p className="text-xs font-semibold text-[#00B8E6] uppercase tracking-widest mb-1 px-2">{tier}</p>
-                        {svcs.map((s) => (
+                    {activeTier === null ? (
+                      <>
+                        {(Object.keys(serviceGroups) as ServiceTierGroup[]).map((tier) => (
+                          <button
+                            key={tier}
+                            onClick={() => setActiveTier(tier)}
+                            className="flex items-center justify-between w-full px-2 py-2 text-sm font-semibold text-[#00B8E6] uppercase tracking-widest hover:text-[#48D1F0] hover:bg-white/5 rounded-lg transition-colors"
+                          >
+                            {tier}
+                            <ChevronRight size={14} />
+                          </button>
+                        ))}
+                        <div className="mt-2">
+                          <p className="text-xs font-semibold text-[#00B8E6] uppercase tracking-widest mb-1 px-2">
+                            Protection
+                          </p>
+                          <Link
+                            href="/services/ceramic-coating"
+                            className="block px-2 py-1.5 text-sm text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
+                            onClick={closeServices}
+                          >
+                            Ceramic Coating
+                          </Link>
+                        </div>
+                        <div className="border-t border-white/10 mt-3 pt-3">
+                          <Link
+                            href="/services"
+                            className="block px-2 py-1.5 text-sm font-semibold text-[#00B8E6] hover:text-[#48D1F0] transition-colors"
+                            onClick={closeServices}
+                          >
+                            All Services →
+                          </Link>
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        <button
+                          onClick={() => setActiveTier(null)}
+                          className="flex items-center gap-1 text-xs font-semibold text-[#00B8E6] uppercase tracking-widest mb-2 px-2 py-1 hover:text-[#48D1F0] transition-colors"
+                        >
+                          <ChevronLeft size={14} /> {activeTier}
+                        </button>
+                        {serviceGroups[activeTier].map((s) => (
                           <Link
                             key={s.slug}
                             href={`/services/${s.slug}`}
                             className="block px-2 py-1.5 text-sm text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
-                            onClick={() => setServicesOpen(false)}
+                            onClick={closeServices}
                           >
-                            {s.name}
+                            {vehicleClassLabels[s.vehicleClass]} Detail
                           </Link>
                         ))}
-                      </div>
-                    ))}
-                    <div className="mb-3 last:mb-0">
-                      <p className="text-xs font-semibold text-[#00B8E6] uppercase tracking-widest mb-1 px-2">
-                        Protection
-                      </p>
-                      <Link
-                        href="/services/ceramic-coating"
-                        className="block px-2 py-1.5 text-sm text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
-                        onClick={() => setServicesOpen(false)}
-                      >
-                        Ceramic Coating
-                      </Link>
-                    </div>
-                    <div className="border-t border-white/10 mt-3 pt-3">
-                      <Link
-                        href="/services"
-                        className="block px-2 py-1.5 text-sm font-semibold text-[#00B8E6] hover:text-[#48D1F0] transition-colors"
-                        onClick={() => setServicesOpen(false)}
-                      >
-                        All Services →
-                      </Link>
-                    </div>
+                      </>
+                    )}
                   </div>
                 )}
               </div>
@@ -218,11 +248,60 @@ export default function Nav() {
 
           {/* Nav Links */}
           <nav className="flex-1 px-4 py-4 space-y-1">
+            <Link
+              href="/"
+              className="block px-3 py-2 rounded-lg transition-colors text-white font-semibold hover:text-[#00B8E6]"
+              onClick={() => setMobileOpen(false)}
+            >
+              Home
+            </Link>
+            <Link
+              href="/services"
+              className="block px-3 py-2 rounded-lg transition-colors text-white font-semibold hover:text-[#00B8E6]"
+              onClick={() => setMobileOpen(false)}
+            >
+              All Services
+            </Link>
+
+            {/* Services tier accordion */}
+            {(Object.keys(serviceGroups) as ServiceTierGroup[]).map((tier) => (
+              <div key={tier}>
+                <button
+                  onClick={() => setMobileExpandedTier(mobileExpandedTier === tier ? null : tier)}
+                  className="flex items-center justify-between w-full px-3 py-2 rounded-lg text-sm font-semibold text-gray-300 hover:text-[#00B8E6] transition-colors"
+                  aria-expanded={mobileExpandedTier === tier}
+                >
+                  {tier}
+                  <ChevronDown
+                    size={16}
+                    className={`transition-transform ${mobileExpandedTier === tier ? "rotate-180" : ""}`}
+                  />
+                </button>
+                {mobileExpandedTier === tier && (
+                  <div className="pl-4">
+                    {serviceGroups[tier].map((s) => (
+                      <Link
+                        key={s.slug}
+                        href={`/services/${s.slug}`}
+                        className="block px-3 py-2 rounded-lg text-sm text-gray-400 hover:text-[#00B8E6] transition-colors"
+                        onClick={() => setMobileOpen(false)}
+                      >
+                        {vehicleClassLabels[s.vehicleClass]} Detail
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+            <Link
+              href="/services/ceramic-coating"
+              className="block px-3 py-2 rounded-lg transition-colors text-sm text-gray-400 hover:text-[#00B8E6]"
+              onClick={() => setMobileOpen(false)}
+            >
+              Ceramic Coating
+            </Link>
+
             {[
-              { href: "/", label: "Home" },
-              { href: "/services", label: "All Services" },
-              ...services.map((s) => ({ href: `/services/${s.slug}`, label: `  ${s.name}` })),
-              { href: "/services/ceramic-coating", label: "  Ceramic Coating" },
               { href: "/locations", label: "All Service Areas" },
               ...locations.map((l) => ({ href: `/locations/${l.slug}`, label: `  ${l.city}` })),
               { href: "/about", label: "About" },

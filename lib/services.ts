@@ -287,3 +287,9 @@ export const tierColors: Record<ServiceTier, string> = {
   silver: "from-slate-500 to-slate-700",
   gold: "from-yellow-600 to-amber-800",
 };
+
+export const vehicleClassLabels: Record<VehicleClass, string> = {
+  coupe: "Coupe",
+  sedan: "Sedan",
+  "suv-truck": "SUV / Truck",
+};
