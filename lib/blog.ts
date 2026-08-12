@@ -88,7 +88,7 @@ It's also an excellent starting point for clients who've never had a professiona
 
 Every 4–6 weeks for most LA drivers. Los Angeles's combination of UV, coastal salt air, and freeway grime means contamination builds up faster here than in most cities. Monthly maintenance prevents that buildup from bonding into the paint.
 
-Ready to book? [Call (310) 855-4277](/contact) or book online. We come to your home, office, or condo lot anywhere in Greater LA.
+Ready to book? [Call (310) 692-4495](/contact) or book online. We come to your home, office, or condo lot anywhere in Greater LA.
 
 ## Related Services
 
@@ -183,7 +183,7 @@ Many of our clients run a combination: **Silver every 6–8 weeks, Basic in betw
 
 If you want protection that lasts 6 months rather than 3, our [Gold Detail packages](/services/gold-coupe-detail) add clay bar decontamination before a professional-grade sealant application — creating a more durable, deeper-bonded protection layer. Gold also includes a full interior deep clean with carpet and seat shampoo.
 
-Ready to choose? [Call (310) 855-4277](/contact) and we'll help you decide based on your car's current condition. We serve all of Greater LA.`,
+Ready to choose? [Call (310) 692-4495](/contact) and we'll help you decide based on your car's current condition. We serve all of Greater LA.`,
   },
 
   {
@@ -283,7 +283,7 @@ Interior: genuinely fresh smell, clean carpets and seats, sanitized hard surface
 
 For most LA drivers, twice a year — every 5–6 months. The 6-month sealant drives this schedule naturally. Between Gold visits, monthly Basic or Silver details maintain the result.
 
-[Book your Gold Detail](/contact) or call [(310) 855-4277](tel:+13108554277). We serve all of Greater Los Angeles.`,
+[Book your Gold Detail](/contact) or call [(310) 692-4495](tel:+13106924495). We serve all of Greater Los Angeles.`,
   },
 
   {
@@ -361,7 +361,7 @@ When in doubt about where your vehicle falls:
 - **Sedan/Wagon:** Four doors, standard size
 - **SUV/Crossover/Truck:** Any vehicle with three rows, significant cargo area, or truck bed
 
-[Call us at (310) 855-4277](/contact) if you want to confirm your vehicle class before booking. We're happy to confirm pricing before you commit.`,
+[Call us at (310) 692-4495](/contact) if you want to confirm your vehicle class before booking. We're happy to confirm pricing before you commit.`,
   },
 
   {
@@ -434,7 +434,7 @@ For a vehicle worth $30,000–$100,000+, this is maintenance spending in proport
 
 Most maintenance clients see us on the same day and approximate time each month. Your car is always clean before your week starts, before the weekend, or before whatever matters to you.
 
-[Call (310) 855-4277](/contact) to set up your plan. We serve [Los Angeles](/locations/los-angeles), [Marina Del Rey](/locations/marina-del-rey), [Santa Monica](/locations/santa-monica), [Culver City](/locations/culver-city), [Venice Beach](/locations/venice-beach), [Playa Vista](/locations/playa-vista), and [Brentwood](/locations/brentwood).`,
+[Call (310) 692-4495](/contact) to set up your plan. We serve [Los Angeles](/locations/los-angeles), [Marina Del Rey](/locations/marina-del-rey), [Santa Monica](/locations/santa-monica), [Culver City](/locations/culver-city), [Venice Beach](/locations/venice-beach), [Playa Vista](/locations/playa-vista), and [Brentwood](/locations/brentwood).`,
   },
 
   {
@@ -513,7 +513,7 @@ After clay bar treatment, the paint looks and feels genuinely different. More de
 
 It's one of those steps that, once you've experienced it, you can't imagine a proper detail without.
 
-[Book a Gold Detail](/contact) that includes clay bar treatment. Call [(310) 855-4277](tel:+13108554277). We serve all of Greater LA.`,
+[Book a Gold Detail](/contact) that includes clay bar treatment. Call [(310) 692-4495](tel:+13106924495). We serve all of Greater LA.`,
   },
 
   {
@@ -613,7 +613,7 @@ A ceramic coating (also called nano-ceramic coating or glass coating) is a liqui
 
 For the majority of DG Detailing clients: start with the [Gold Detail](/services/gold-coupe-detail), maintain monthly with Basic or Silver, and evaluate ceramic coating when you're ready for a longer-term investment. The Gold sealant provides excellent protection for LA conditions, and we'll tell you honestly when your vehicle would benefit from ceramic.
 
-[Call (310) 855-4277](/contact) to discuss what's right for your vehicle.`,
+[Call (310) 692-4495](/contact) to discuss what's right for your vehicle.`,
   },
 
   {
@@ -724,7 +724,7 @@ After a full interior deep clean:
 2. The visual difference in carpet and seats. Even carpets that looked "fine" look noticeably cleaner after extraction.
 3. The tactile difference on hard surfaces. Steam-cleaned plastic has a different quality to the touch — grime-free texture rather than the subtle film that builds up over time.
 
-[Book a Gold Detail](/contact) with full interior deep clean. Call [(310) 855-4277](tel:+13108554277). We come to your location across Greater LA.`,
+[Book a Gold Detail](/contact) with full interior deep clean. Call [(310) 692-4495](tel:+13106924495). We come to your location across Greater LA.`,
   },
 
   {
@@ -816,7 +816,7 @@ For drivers who are serious about their vehicle's condition and value, the calcu
 
 In the interest of balance: an automated touchless wash (no brushes, high-pressure water only) is a reasonable choice for a quick rinse between professional details if you're dealing with light contamination. Touchless washes don't scratch paint the way brush washes do. Just don't expect them to remove bonded contamination, and be aware that repeated chemical exposure still strips protection over time.
 
-The bottom line: [call (310) 855-4277](/contact) or book online to schedule your first professional hand detail. We'll show you the difference.`,
+The bottom line: [call (310) 692-4495](/contact) or book online to schedule your first professional hand detail. We'll show you the difference.`,
   },
 
   // ─── LOCATION GUIDES (7) ─────────────────────────────────────────────
@@ -910,7 +910,7 @@ A Gold Detail on a sedan takes 5 hours when done properly. A detailer offering a
 - Consistent arrival and completion times
 - Service across [Marina Del Rey](/locations/marina-del-rey), [Santa Monica](/locations/santa-monica), [Culver City](/locations/culver-city), [Venice Beach](/locations/venice-beach), [Playa Vista](/locations/playa-vista), and [Brentwood](/locations/brentwood)
 
-[Book your Los Angeles mobile detail](/contact) or call [(310) 855-4277](tel:+13108554277).`,
+[Book your Los Angeles mobile detail](/contact) or call [(310) 692-4495](tel:+13106924495).`,
   },
 
   {
@@ -982,7 +982,7 @@ The most common feedback from our Marina Del Rey clients who switch from automat
 
 That's the sealant doing its job in a marine environment.
 
-[Book mobile detailing in Marina Del Rey](/contact) or call [(310) 855-4277](tel:+13108554277). We'll come to your residence, marina slip parking, or boat yard lot.`,
+[Book mobile detailing in Marina Del Rey](/contact) or call [(310) 692-4495](tel:+13106924495). We'll come to your residence, marina slip parking, or boat yard lot.`,
   },
 
   {
@@ -1037,7 +1037,7 @@ Don't wipe it dry. Use a waterless detail spray with a microfiber cloth to softe
 - **Gold Detail every 5–6 months** for clay bar decontamination and sealant refresh
 - **Windshield shade** for mid-day parking — reduces interior temperature and UV load significantly
 
-[Book Santa Monica mobile detailing](/contact) or call [(310) 855-4277](tel:+13108554277). We come to your home, condo parking garage, or office lot throughout Santa Monica.`,
+[Book Santa Monica mobile detailing](/contact) or call [(310) 692-4495](tel:+13106924495). We come to your home, condo parking garage, or office lot throughout Santa Monica.`,
   },
 
   {
@@ -1091,7 +1091,7 @@ We come to wherever your car is:
 
 **Studio/creative professionals on a budget:** Monthly Basic Detail to keep the surface clean and the interior presentable. A tidy, clean car makes a difference when you're driving clients or arriving at meetings.
 
-[Book Culver City mobile detailing](/contact) or call [(310) 855-4277](tel:+13108554277). We'll confirm your parking situation and set up accordingly.`,
+[Book Culver City mobile detailing](/contact) or call [(310) 692-4495](tel:+13106924495). We'll confirm your parking situation and set up accordingly.`,
   },
 
   {
@@ -1144,7 +1144,7 @@ I've detailed many cars in Venice Beach over 6 years, and the pattern is consist
 - **Bird droppings:** Remove immediately — bird waste is highly acidic and etches much faster in beach UV conditions
 - **Sand on roof:** Before using a sunroof, brush sand off the perimeter — the rubber seal grinds sand against the opening edge with every use
 
-[Book Venice Beach mobile detailing](/contact) or call [(310) 855-4277](tel:+13108554277). We come to your home, alley parking, or street spot throughout Venice.`,
+[Book Venice Beach mobile detailing](/contact) or call [(310) 692-4495](tel:+13106924495). We come to your home, alley parking, or street spot throughout Venice.`,
   },
 
   {
@@ -1207,7 +1207,7 @@ Most Playa Vista clients schedule on:
 - **Friday:** Weekend-ready before plans
 - **Mid-week (work hours):** Detail runs while you work, car is ready at end of day
 
-We're flexible. Text or call [(310) 855-4277](tel:+13108554277) to confirm availability.
+We're flexible. Text or call [(310) 692-4495](tel:+13106924495) to confirm availability.
 
 ## Also Serving Nearby
 
@@ -1275,7 +1275,7 @@ If you're out during the detail — which most clients prefer — we send a comp
 
 I don't post client names or vehicle details without permission. But I'm happy to provide references from existing Brentwood clients for clients who want them before booking a first appointment with us.
 
-[Call (310) 855-4277](tel:+13108554277) or [book your Brentwood detail](/contact) online. We accommodate same-week scheduling for most clients.`,
+[Call (310) 692-4495](tel:+13106924495) or [book your Brentwood detail](/contact) online. We accommodate same-week scheduling for most clients.`,
   },
 
   // ─── EDUCATIONAL EVERGREEN (6) ───────────────────────────────────────
@@ -1356,7 +1356,7 @@ The work required to restore a neglected vehicle is always more expensive than t
 
 **Never let your car go more than 6 weeks without a professional hand wash.** If you're on any kind of protection package (Silver or Gold), don't let it lapse past the product's stated protection window.
 
-[Call (310) 855-4277](/contact) to set up your detailing schedule. We'll recommend the right interval based on your specific parking situation and vehicle.`,
+[Call (310) 692-4495](/contact) to set up your detailing schedule. We'll recommend the right interval based on your specific parking situation and vehicle.`,
   },
 
   {
@@ -1420,7 +1420,7 @@ If your car was in an area with wildfire ash fall — even minor ash events — 
 
 If you're checking off multiple items from this list, a [Gold Detail](/services/gold-sedan-detail) is the right starting point — clay bar, sealant, full interior extraction, and steam clean. Then establish a maintenance plan to prevent the buildup from returning.
 
-[Call (310) 855-4277](/contact) or book online. We serve all of Greater Los Angeles.`,
+[Call (310) 692-4495](/contact) or book online. We serve all of Greater Los Angeles.`,
   },
 
   {
@@ -1498,7 +1498,7 @@ Regular [Silver or Gold detail service](/services) creates a protection layer th
 
 No single product eliminates all these threats permanently, but consistent professional care manages them all effectively.
 
-[Call (310) 855-4277](/contact) to establish your protection plan.`,
+[Call (310) 692-4495](/contact) to establish your protection plan.`,
   },
 
   {
@@ -1579,7 +1579,7 @@ If you're conditioning between professional visits:
 - Avoid products with strong fragrance (often indicates alcohol content that can dry leather)
 - Apply with a soft applicator pad, not a cloth — applicator pads deposit product more evenly
 
-[Book a detail with leather conditioning included](/services/silver-sedan-detail) or call [(310) 855-4277](tel:+13108554277) to schedule across Greater LA.`,
+[Book a detail with leather conditioning included](/services/silver-sedan-detail) or call [(310) 692-4495](tel:+13106924495) to schedule across Greater LA.`,
   },
 
   {
@@ -1658,7 +1658,7 @@ Your photos are the first sales tool. For maximum photo appeal:
 
 **Timeline:** Book the detail 1–2 days before your listing goes live. This gives any dampness from extraction cleaning time to fully dry, and the sealant time to fully cure. Photos taken 24–48 hours after the detail will capture the paint at its peak gloss.
 
-[Book your pre-sale Gold Detail](/services/gold-sedan-detail) or call [(310) 855-4277](tel:+13108554277). We serve all of Greater Los Angeles.`,
+[Book your pre-sale Gold Detail](/services/gold-sedan-detail) or call [(310) 692-4495](tel:+13106924495). We serve all of Greater Los Angeles.`,
   },
 
   {
@@ -1742,7 +1742,7 @@ In Los Angeles, the time cost of shop detailing is significant. Drop-off, ridesh
 
 For the LA professional or resident whose time has real value, mobile pays for itself before accounting for any price difference.
 
-[Book your mobile detail](/contact) or call [(310) 855-4277](tel:+13108554277). We serve [all of Greater LA](/locations).`,
+[Book your mobile detail](/contact) or call [(310) 692-4495](tel:+13106924495). We serve [all of Greater LA](/locations).`,
   },
 ];
 

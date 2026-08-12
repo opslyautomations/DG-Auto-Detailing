@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!service) return {};
   return buildMetadata({
     title: `${service.name} in Los Angeles | DG Detailing`,
-    description: `${service.name} starting at $${service.priceFrom}. ${service.shortDescription} Mobile service across LA. Call (310) 855-4277.`,
+    description: `${service.name} starting at $${service.priceFrom}. ${service.shortDescription} Mobile service across LA. Call (310) 692-4495.`,
     canonical: `/services/${slug}`,
     keywords: [
       `${service.name} Los Angeles`,

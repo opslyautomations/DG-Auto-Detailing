@@ -3,7 +3,7 @@
 Production-ready Next.js 16 website for **DG Detailing**, a premium mobile auto detailing service in Los Angeles.
 
 **Live domain:** `www.dgautodetailing.com`
-**Phone:** (310) 855-4277
+**Phone:** (310) 692-4495
 **Owner:** Diego
 
 ---

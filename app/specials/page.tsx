@@ -111,10 +111,10 @@ export default function SpecialsPage() {
                     Claim This Offer
                   </a>
                   <a
-                    href="tel:+13108554277"
+                    href="tel:+13106924495"
                     className="inline-flex items-center justify-center px-8 py-4 rounded-full font-bold border border-white/20 text-white hover:bg-white/10 transition-colors"
                   >
-                    Call (310) 855-4277
+                    Call (310) 692-4495
                   </a>
                 </div>
               </div>

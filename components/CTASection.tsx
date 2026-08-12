@@ -56,7 +56,7 @@ export default function CTASection({
           </Link>
           {showPhone && (
             <a
-              href="tel:+13108554277"
+              href="tel:+13106924495"
               className={`inline-flex items-center gap-2 px-8 py-4 rounded-full text-base font-bold border transition-colors ${
                 variant === "blue"
                   ? "border-black/20 text-black hover:bg-black/10"
@@ -64,7 +64,7 @@ export default function CTASection({
               }`}
             >
               <Phone size={18} />
-              (310) 855-4277
+              (310) 692-4495
             </a>
           )}
         </div>

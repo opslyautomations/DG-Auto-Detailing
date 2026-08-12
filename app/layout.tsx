@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     template: "%s | DG Detailing",
   },
   description:
-    "Premium mobile auto detailing across LA, Marina Del Rey, Santa Monica, Culver City, Venice Beach, Playa Vista, and Brentwood. Hand-wash only. We come to you. Call (310) 855-4277.",
+    "Premium mobile auto detailing across LA, Marina Del Rey, Santa Monica, Culver City, Venice Beach, Playa Vista, and Brentwood. Hand-wash only. We come to you. Call (310) 692-4495.",
   applicationName: "DG Detailing",
   authors: [{ name: "DG Detailing" }],
   generator: "Next.js",
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Mobile Auto Detailing in Los Angeles | DG Detailing",
     description:
-      "Premium mobile auto detailing across LA. Hand-wash only. We come to you. Call (310) 855-4277.",
+      "Premium mobile auto detailing across LA. Hand-wash only. We come to you. Call (310) 692-4495.",
     images: ["/og-default.jpg"],
   },
   robots: {

@@ -166,7 +166,7 @@ const serviceJsonLd = {
   provider: {
     "@type": "AutoDetailing",
     name: "DG Detailing",
-    telephone: "+13108554277",
+    telephone: "+13106924495",
     email: "diego@dgautodetailing.com",
     url: "https://www.dgautodetailing.com/",
     areaServed: [

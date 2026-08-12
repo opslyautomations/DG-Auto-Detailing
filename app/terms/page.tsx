@@ -22,7 +22,7 @@ export default function TermsPage() {
           <h2 className="text-xl font-bold text-white mt-8 mb-3">Liability</h2>
           <p>DG Detailing is fully insured. Any damage claims must be reported within 24 hours of service completion.</p>
           <h2 className="text-xl font-bold text-white mt-8 mb-3">Contact</h2>
-          <p>Questions about these terms: <a href="mailto:diego@dgautodetailing.com" className="text-[#00B8E6]">diego@dgautodetailing.com</a> or <a href="tel:+13108554277" className="text-[#00B8E6]">(310) 855-4277</a>.</p>
+          <p>Questions about these terms: <a href="mailto:diego@dgautodetailing.com" className="text-[#00B8E6]">diego@dgautodetailing.com</a> or <a href="tel:+13106924495" className="text-[#00B8E6]">(310) 692-4495</a>.</p>
         </div>
       </div>
     </div>

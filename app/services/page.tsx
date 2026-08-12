@@ -139,8 +139,8 @@ export default function ServicesPage() {
             <h2 className="text-2xl font-black text-white mb-4">Not Sure Which Package?</h2>
             <p className="text-gray-400 mb-6">
               Call us at{" "}
-              <a href="tel:+13108554277" className="font-semibold" style={{ color: "#00B8E6" }}>
-                (310) 855-4277
+              <a href="tel:+13106924495" className="font-semibold" style={{ color: "#00B8E6" }}>
+                (310) 692-4495
               </a>{" "}
               and we&apos;ll help you choose based on your vehicle&apos;s condition and your goals. Most first-time clients
               start with Silver or Gold to reset their vehicle, then switch to Basic for monthly maintenance.
@@ -154,10 +154,10 @@ export default function ServicesPage() {
                 Get a Free Quote
               </Link>
               <a
-                href="tel:+13108554277"
+                href="tel:+13106924495"
                 className="inline-flex items-center justify-center px-8 py-3.5 rounded-full font-bold border border-white/20 text-white hover:bg-white/10 transition-colors"
               >
-                Call (310) 855-4277
+                Call (310) 692-4495
               </a>
             </div>
           </div>

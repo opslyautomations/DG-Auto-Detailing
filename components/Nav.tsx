@@ -189,12 +189,12 @@ export default function Nav() {
             {/* Right CTAs */}
             <div className="hidden lg:flex items-center gap-3">
               <a
-                href="tel:+13108554277"
+                href="tel:+13106924495"
                 className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold text-black glow-blue transition-all duration-200"
                 style={{ backgroundColor: "#00B8E6" }}
               >
                 <Phone size={14} />
-                (310) 855-4277
+                (310) 692-4495
               </a>
               <Link
                 href="/contact"
@@ -236,13 +236,13 @@ export default function Nav() {
           {/* Phone CTA */}
           <div className="px-4 py-4 border-b border-white/10">
             <a
-              href="tel:+13108554277"
+              href="tel:+13106924495"
               className="flex items-center justify-center gap-2 w-full py-3 rounded-xl font-bold text-black text-lg"
               style={{ backgroundColor: "#00B8E6" }}
               onClick={() => setMobileOpen(false)}
             >
               <Phone size={18} />
-              (310) 855-4277
+              (310) 692-4495
             </a>
           </div>
 

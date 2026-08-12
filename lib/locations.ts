@@ -21,7 +21,7 @@ export const locations: Location[] = [
     nearbyAreas: ["Marina Del Rey", "Santa Monica", "Culver City", "Venice Beach", "Playa Vista", "Brentwood"],
     metaTitle: "Mobile Auto Detailing Los Angeles | DG Detailing",
     metaDescription:
-      "Premium mobile auto detailing in Los Angeles. Hand-wash only, 6+ years experience, 1,500+ vehicles detailed. We come to your home or office. Call (310) 855-4277.",
+      "Premium mobile auto detailing in Los Angeles. Hand-wash only, 6+ years experience, 1,500+ vehicles detailed. We come to your home or office. Call (310) 692-4495.",
   },
   {
     slug: "marina-del-rey",
@@ -34,7 +34,7 @@ export const locations: Location[] = [
     nearbyAreas: ["Venice Beach", "Playa Vista", "Santa Monica", "Culver City"],
     metaTitle: "Mobile Car Detailing Marina Del Rey | DG Detailing",
     metaDescription:
-      "Mobile auto detailing in Marina Del Rey, CA. Coastal salt-air protection with hand-wash, decontamination & sealant. We come to you. Call (310) 855-4277.",
+      "Mobile auto detailing in Marina Del Rey, CA. Coastal salt-air protection with hand-wash, decontamination & sealant. We come to you. Call (310) 692-4495.",
   },
   {
     slug: "santa-monica",
@@ -47,7 +47,7 @@ export const locations: Location[] = [
     nearbyAreas: ["Marina Del Rey", "Venice Beach", "Brentwood", "Playa Vista"],
     metaTitle: "Mobile Car Detailing Santa Monica | DG Detailing",
     metaDescription:
-      "Mobile car detailing in Santa Monica, CA. Hand wash, interior detail & protective sealants for coastal driving. We come to you. Call (310) 855-4277.",
+      "Mobile car detailing in Santa Monica, CA. Hand wash, interior detail & protective sealants for coastal driving. We come to you. Call (310) 692-4495.",
   },
   {
     slug: "culver-city",
@@ -60,7 +60,7 @@ export const locations: Location[] = [
     nearbyAreas: ["Los Angeles", "Marina Del Rey", "Venice Beach", "Playa Vista"],
     metaTitle: "Mobile Car Detailing Culver City | DG Detailing",
     metaDescription:
-      "Mobile auto detailing in Culver City, CA. Remove freeway brake dust, tar & grime with professional hand-wash & clay bar. We come to you. Call (310) 855-4277.",
+      "Mobile auto detailing in Culver City, CA. Remove freeway brake dust, tar & grime with professional hand-wash & clay bar. We come to you. Call (310) 692-4495.",
   },
   {
     slug: "venice-beach",
@@ -73,7 +73,7 @@ export const locations: Location[] = [
     nearbyAreas: ["Marina Del Rey", "Santa Monica", "Playa Vista", "Culver City"],
     metaTitle: "Mobile Car Detailing Venice Beach | DG Detailing",
     metaDescription:
-      "Mobile auto detailing in Venice Beach, CA. Coastal-grade decontamination, clay bar & sealant protection. We come to you. Call (310) 855-4277.",
+      "Mobile auto detailing in Venice Beach, CA. Coastal-grade decontamination, clay bar & sealant protection. We come to you. Call (310) 692-4495.",
   },
   {
     slug: "playa-vista",
@@ -86,7 +86,7 @@ export const locations: Location[] = [
     nearbyAreas: ["Marina Del Rey", "Venice Beach", "Culver City", "Los Angeles"],
     metaTitle: "Mobile Car Detailing Playa Vista | DG Detailing",
     metaDescription:
-      "Mobile auto detailing in Playa Vista, CA. On-site detailing for tech professionals & residents. Gold package specialists. Call (310) 855-4277.",
+      "Mobile auto detailing in Playa Vista, CA. On-site detailing for tech professionals & residents. Gold package specialists. Call (310) 692-4495.",
   },
   {
     slug: "brentwood",
@@ -99,7 +99,7 @@ export const locations: Location[] = [
     nearbyAreas: ["Santa Monica", "Los Angeles", "Culver City", "Playa Vista"],
     metaTitle: "Luxury Mobile Car Detailing Brentwood | DG Detailing",
     metaDescription:
-      "Luxury mobile auto detailing in Brentwood, CA. Clay bar, sealant & ceramic-grade finishes for premium vehicles. We come to you. Call (310) 855-4277.",
+      "Luxury mobile auto detailing in Brentwood, CA. Clay bar, sealant & ceramic-grade finishes for premium vehicles. We come to you. Call (310) 692-4495.",
   },
 ];
 

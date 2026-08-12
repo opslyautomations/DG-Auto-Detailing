@@ -11,7 +11,7 @@ import Link from "next/link";
 export const metadata: Metadata = buildMetadata({
   title: "Get a Free Quote — Mobile Auto Detailing Los Angeles | DG Detailing",
   description:
-    "Book your mobile auto detail in Los Angeles. Call (310) 855-4277 or fill out our quick form. We serve LA, Marina Del Rey, Santa Monica, Culver City, Venice Beach, Playa Vista, and Brentwood.",
+    "Book your mobile auto detail in Los Angeles. Call (310) 692-4495 or fill out our quick form. We serve LA, Marina Del Rey, Santa Monica, Culver City, Venice Beach, Playa Vista, and Brentwood.",
   canonical: "/contact",
 });
 
@@ -66,10 +66,10 @@ export default function ContactPage() {
                     <div>
                       <p className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-0.5">Phone</p>
                       <a
-                        href="tel:+13108554277"
+                        href="tel:+13106924495"
                         className="text-xl font-bold text-white hover:text-[#00B8E6] transition-colors"
                       >
-                        (310) 855-4277
+                        (310) 692-4495
                       </a>
                       <p className="text-xs text-gray-500 mt-0.5">Call or text anytime during business hours</p>
                     </div>

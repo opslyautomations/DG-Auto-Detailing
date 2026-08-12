@@ -20,7 +20,7 @@ export default function PrivacyPage() {
           <h2 className="text-xl font-bold text-white mt-8 mb-3">How We Use Your Information</h2>
           <p>We use collected information to confirm appointments, communicate about services, and improve our offerings. We do not sell or share your personal information with third parties except as required to fulfill services.</p>
           <h2 className="text-xl font-bold text-white mt-8 mb-3">Contact</h2>
-          <p>For privacy-related questions, contact us at <a href="mailto:diego@dgautodetailing.com" className="text-[#00B8E6]">diego@dgautodetailing.com</a> or call <a href="tel:+13108554277" className="text-[#00B8E6]">(310) 855-4277</a>.</p>
+          <p>For privacy-related questions, contact us at <a href="mailto:diego@dgautodetailing.com" className="text-[#00B8E6]">diego@dgautodetailing.com</a> or call <a href="tel:+13106924495" className="text-[#00B8E6]">(310) 692-4495</a>.</p>
         </div>
       </div>
     </div>

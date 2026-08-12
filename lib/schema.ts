@@ -6,7 +6,7 @@ export const organizationSchema = {
   url: "https://www.dgautodetailing.com",
   logo: "https://www.dgautodetailing.com/logo.svg",
   image: "https://www.dgautodetailing.com/og-default.jpg",
-  telephone: "+13108554277",
+  telephone: "+13106924495",
   email: "diego@dgautodetailing.com",
   priceRange: "$$-$$$",
   founder: { "@type": "Person", name: "Diego" },
@@ -174,7 +174,7 @@ export function locationSchema(city: string, description: string) {
     name: `DG Detailing — ${city}`,
     description,
     url: `https://www.dgautodetailing.com/locations/${city.toLowerCase().replace(/\s+/g, "-")}`,
-    telephone: "+13108554277",
+    telephone: "+13106924495",
     email: "diego@dgautodetailing.com",
     areaServed: { "@type": "City", name: city },
     address: {

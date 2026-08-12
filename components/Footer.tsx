@@ -20,12 +20,12 @@ export default function Footer() {
               Premium mobile auto detailing in Los Angeles. We come to you.
             </p>
             <a
-              href="tel:+13108554277"
+              href="tel:+13106924495"
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold text-black mb-4 glow-blue transition-all"
               style={{ backgroundColor: "#00B8E6" }}
             >
               <Phone size={14} />
-              (310) 855-4277
+              (310) 692-4495
             </a>
             <div className="mt-2">
               <a
@@ -137,11 +137,11 @@ export default function Footer() {
             <ul className="space-y-3">
               <li>
                 <a
-                  href="tel:+13108554277"
+                  href="tel:+13106924495"
                   className="flex items-start gap-2 text-sm text-gray-400 hover:text-[#00B8E6] transition-colors"
                 >
                   <Phone size={14} className="mt-0.5 shrink-0" />
-                  (310) 855-4277
+                  (310) 692-4495
                 </a>
               </li>
               <li>

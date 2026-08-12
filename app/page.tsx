@@ -72,11 +72,11 @@ export default function HomePage() {
                   Get a Free Quote
                 </Link>
                 <a
-                  href="tel:+13108554277"
+                  href="tel:+13106924495"
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-base font-bold border border-white/20 text-white hover:bg-white/10 transition-colors"
                 >
                   <Phone size={18} />
-                  Call (310) 855-4277
+                  Call (310) 692-4495
                 </a>
               </div>
 

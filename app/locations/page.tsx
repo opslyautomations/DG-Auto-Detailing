@@ -9,7 +9,7 @@ import { buildMetadata } from "@/lib/seo";
 export const metadata: Metadata = buildMetadata({
   title: "Mobile Auto Detailing Service Areas | Greater Los Angeles | DG Detailing",
   description:
-    "DG Detailing serves Los Angeles, Marina Del Rey, Santa Monica, Culver City, Venice Beach, Playa Vista, and Brentwood. Mobile — we come to you. Call (310) 855-4277.",
+    "DG Detailing serves Los Angeles, Marina Del Rey, Santa Monica, Culver City, Venice Beach, Playa Vista, and Brentwood. Mobile — we come to you. Call (310) 692-4495.",
   canonical: "/locations",
 });
 
