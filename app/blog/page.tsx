@@ -42,12 +42,12 @@ export default function BlogPage() {
 
         {/* Hero */}
         <section
-          className="py-16 border-b border-white/10"
+          className="py-10 sm:py-16 border-b border-white/10"
           style={{ background: "linear-gradient(135deg, #0A0A0A 0%, #161616 100%)" }}
           aria-label="Blog hero"
         >
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-4xl sm:text-5xl font-black text-white mb-4">
+            <h1 className="text-[2rem] leading-[1.15] sm:text-5xl sm:leading-tight font-black text-white mb-4">
               Detailing Tips, Guides &{" "}
               <span style={{ color: "#00B8E6" }}>LA Insights</span>
             </h1>
@@ -80,7 +80,7 @@ export default function BlogPage() {
         </section>
 
         {/* Blog Grid */}
-        <section className="py-16 bg-[#0A0A0A]" aria-label="Blog posts">
+        <section className="py-10 sm:py-16 bg-[#0A0A0A]" aria-label="Blog posts">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {blogPosts.map((post) => (

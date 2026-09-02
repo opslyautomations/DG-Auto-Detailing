@@ -29,7 +29,7 @@ export default function HomePage() {
     <>
       {/* ── Section 1: Hero ── */}
       <section
-        className="relative min-h-screen flex items-center pt-20"
+        className="relative lg:min-h-screen flex items-center pt-24 lg:pt-20"
         style={{ background: "linear-gradient(135deg, #0A0A0A 0%, #161616 50%, #0A0A0A 100%)" }}
         aria-label="Hero"
       >
@@ -42,7 +42,7 @@ export default function HomePage() {
           }}
         />
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-24">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Left: Copy */}
             <div>
@@ -53,7 +53,7 @@ export default function HomePage() {
                 Mobile Auto Detailing • Los Angeles & Surrounding Areas
               </p>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight mb-6">
+              <h1 className="text-[2rem] leading-[1.15] sm:text-5xl sm:leading-tight lg:text-6xl font-black text-white leading-tight mb-6">
                 Premium Mobile Detailing{" "}
                 <span style={{ color: "#00B8E6" }}>That Comes to You</span>
               </h1>
@@ -94,8 +94,10 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Right: GHL Form */}
-            <div className="w-full">
+            {/* Right: GHL Form — desktop only.
+                On mobile the hero CTAs above cover this intent without a
+                1100px cross-origin iframe sitting above the fold. */}
+            <div className="hidden lg:block w-full">
               <div className="mb-3">
                 <p className="text-sm font-semibold text-white">Book Your Detail</p>
                 <p className="text-xs text-gray-500">Takes less than 60 seconds</p>
@@ -110,7 +112,7 @@ export default function HomePage() {
       <TrustBar />
 
       {/* ── Section 3: Services Preview ── */}
-      <section className="py-20 bg-[#0A0A0A]" aria-label="Services overview">
+      <section className="py-12 sm:py-20 bg-[#0A0A0A]" aria-label="Services overview">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-black text-white mb-3">
@@ -167,7 +169,7 @@ export default function HomePage() {
       </section>
 
       {/* ── Section 4: Why DG Detailing ── */}
-      <section className="py-20 bg-[#161616]" aria-label="Why choose DG Detailing">
+      <section className="py-12 sm:py-20 bg-[#161616]" aria-label="Why choose DG Detailing">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-black text-white mb-3">
@@ -216,7 +218,7 @@ export default function HomePage() {
       </section>
 
       {/* ── Section 5: Service Areas ── */}
-      <section className="py-20 bg-[#0A0A0A]" aria-label="Service areas">
+      <section className="py-12 sm:py-20 bg-[#0A0A0A]" aria-label="Service areas">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-black text-white mb-3">
@@ -235,7 +237,7 @@ export default function HomePage() {
       </section>
 
       {/* ── Section 6: Gallery Preview ── */}
-      <section className="py-20 bg-[#161616]" aria-label="Gallery preview">
+      <section className="py-12 sm:py-20 bg-[#161616]" aria-label="Gallery preview">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-black text-white mb-3">
@@ -248,13 +250,13 @@ export default function HomePage() {
             {homeGalleryPreview.map((item) => (
               <div
                 key={item.src}
-                className="relative w-full aspect-[3/2] rounded-2xl overflow-hidden border border-white/10"
+                className="relative w-full aspect-[4/5] sm:aspect-[3/2] rounded-2xl overflow-hidden border border-white/10"
               >
                 <Image
                   src={item.src}
                   alt={item.alt}
                   fill
-                  sizes="(max-width: 768px) 50vw, 33vw"
+                  sizes="(max-width: 768px) 45vw, 33vw"
                   className="object-cover"
                 />
               </div>
@@ -273,7 +275,7 @@ export default function HomePage() {
       </section>
 
       {/* ── Section 7: Reviews Preview ── */}
-      <section className="py-20 bg-[#0A0A0A]" aria-label="Customer reviews">
+      <section className="py-12 sm:py-20 bg-[#0A0A0A]" aria-label="Customer reviews">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <div className="flex items-center justify-center gap-1 mb-3" aria-label="5 star average rating">

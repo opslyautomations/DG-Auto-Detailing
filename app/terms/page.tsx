@@ -11,7 +11,7 @@ export const metadata: Metadata = buildMetadata({
 export default function TermsPage() {
   return (
     <div className="pt-20 min-h-screen bg-[#0A0A0A]">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
         <h1 className="text-3xl font-black text-white mb-8">Terms of Service</h1>
         <div className="text-gray-400 leading-relaxed space-y-4">
           <p>By booking a service with DG Detailing, you agree to the following terms.</p>

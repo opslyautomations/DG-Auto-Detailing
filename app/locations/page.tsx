@@ -34,9 +34,9 @@ export default function LocationsPage() {
       <div className="pt-20">
         <Breadcrumbs items={[{ label: "Service Areas" }]} />
 
-        <section className="py-16 bg-[#0A0A0A] border-b border-white/10">
+        <section className="py-10 sm:py-16 bg-[#0A0A0A] border-b border-white/10">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-4xl sm:text-5xl font-black text-white mb-4">
+            <h1 className="text-[2rem] leading-[1.15] sm:text-5xl sm:leading-tight font-black text-white mb-4">
               Mobile Detailing Across{" "}
               <span style={{ color: "#00B8E6" }}>Greater Los Angeles</span>
             </h1>
@@ -47,7 +47,7 @@ export default function LocationsPage() {
           </div>
         </section>
 
-        <section className="py-16 bg-[#0A0A0A]">
+        <section className="py-10 sm:py-16 bg-[#0A0A0A]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {locations.map((loc) => (

@@ -31,12 +31,12 @@ export default function SpecialsPage() {
 
         {/* Hero */}
         <section
-          className="py-16 border-b border-white/10"
+          className="py-10 sm:py-16 border-b border-white/10"
           style={{ background: "linear-gradient(135deg, #0A0A0A 0%, #161616 100%)" }}
           aria-label="Specials hero"
         >
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-4xl sm:text-5xl font-black text-white mb-4">
+            <h1 className="text-[2rem] leading-[1.15] sm:text-5xl sm:leading-tight font-black text-white mb-4">
               Current Specials & Offers from{" "}
               <span style={{ color: "#00B8E6" }}>DG Detailing</span>
             </h1>
@@ -47,7 +47,7 @@ export default function SpecialsPage() {
         </section>
 
         {/* Featured Offer Card */}
-        <section className="py-16 bg-[#0A0A0A]" aria-label="New client special offer">
+        <section className="py-10 sm:py-16 bg-[#0A0A0A]" aria-label="New client special offer">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             <div
               className="rounded-3xl border p-8 sm:p-12 relative overflow-hidden"
@@ -162,7 +162,7 @@ export default function SpecialsPage() {
         </section>
 
         {/* Form */}
-        <section id="book" className="py-16 bg-[#161616]" aria-label="Book special offer">
+        <section id="book" className="py-10 sm:py-16 bg-[#161616]" aria-label="Book special offer">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-8">
               <h2 className="text-2xl sm:text-3xl font-black text-white mb-2">

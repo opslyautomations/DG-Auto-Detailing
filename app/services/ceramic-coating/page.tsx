@@ -224,7 +224,7 @@ export default function CeramicCoatingPage() {
 
         {/* Hero */}
         <section
-          className="py-16 lg:py-24 border-b border-white/10"
+          className="py-10 sm:py-16 lg:py-24 border-b border-white/10"
           style={{ background: "linear-gradient(135deg, #0A0A0A 0%, #161616 100%)" }}
           aria-label="Ceramic Coating hero"
         >
@@ -237,7 +237,7 @@ export default function CeramicCoatingPage() {
                 >
                   paint protection
                 </span>
-                <h1 className="text-4xl sm:text-5xl font-black text-white leading-tight mb-4">
+                <h1 className="text-[2rem] leading-[1.15] sm:text-5xl sm:leading-tight font-black text-white leading-tight mb-4">
                   Ceramic Coating{" "}
                   <span style={{ color: "#00B8E6" }}>in Los Angeles</span>
                 </h1>
@@ -293,7 +293,7 @@ export default function CeramicCoatingPage() {
         </section>
 
         {/* Intro */}
-        <section className="py-16 bg-[#161616]" aria-label="About ceramic coating">
+        <section className="py-10 sm:py-16 bg-[#161616]" aria-label="About ceramic coating">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <p className="text-gray-300 leading-relaxed">
               A ceramic coating is a liquid polymer that chemically bonds to your car&apos;s clear coat and cures
@@ -308,7 +308,7 @@ export default function CeramicCoatingPage() {
         </section>
 
         {/* What's Included */}
-        <section className="py-16 bg-[#0A0A0A]" aria-label="Service inclusions">
+        <section className="py-10 sm:py-16 bg-[#0A0A0A]" aria-label="Service inclusions">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-2xl sm:text-3xl font-black text-white mb-8">What&apos;s Included</h2>
             <ul className="grid sm:grid-cols-2 gap-3">
@@ -323,7 +323,7 @@ export default function CeramicCoatingPage() {
         </section>
 
         {/* Process */}
-        <section className="py-16 bg-[#161616]" aria-label="Our ceramic coating process">
+        <section className="py-10 sm:py-16 bg-[#161616]" aria-label="Our ceramic coating process">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-2xl sm:text-3xl font-black text-white mb-8">Our Ceramic Coating Process</h2>
             <div className="grid sm:grid-cols-2 gap-6">
@@ -345,7 +345,7 @@ export default function CeramicCoatingPage() {
         </section>
 
         {/* Choose Your Protection */}
-        <section className="py-16 bg-[#0A0A0A]" aria-label="Choose your protection: 5-year vs 7-year">
+        <section className="py-10 sm:py-16 bg-[#0A0A0A]" aria-label="Choose your protection: 5-year vs 7-year">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-2xl sm:text-3xl font-black text-white mb-4">
               Choose Your Protection — 5-Year vs 7-Year
@@ -408,10 +408,50 @@ export default function CeramicCoatingPage() {
         </section>
 
         {/* Pricing by Vehicle */}
-        <section className="py-16 bg-[#161616]" aria-label="Pricing by vehicle">
+        <section className="py-10 sm:py-16 bg-[#161616]" aria-label="Pricing by vehicle">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-2xl sm:text-3xl font-black text-white mb-8">Pricing by Vehicle</h2>
-            <div className="overflow-x-auto rounded-2xl border border-white/10">
+            {/* Phones: one card per vehicle. The table below needed sideways
+                scrolling with no affordance that more columns existed. */}
+            <div className="sm:hidden space-y-3">
+              {vehiclePricing.map((row) => (
+                <div
+                  key={row.vehicle}
+                  className="rounded-2xl border border-white/10 bg-[#0A0A0A] p-4"
+                >
+                  <p className="font-bold text-white mb-3">{row.vehicle}</p>
+                  <div className="space-y-2">
+                    {[
+                      { label: "5-Year", sub: "4 hr", price: row.five },
+                      { label: "7-Year", sub: "6 hr", price: row.seven },
+                    ].map((opt) => (
+                      <div
+                        key={opt.label}
+                        className="flex items-center justify-between gap-3 rounded-xl bg-[#161616] px-3 py-2.5"
+                      >
+                        <div>
+                          <span className="text-sm font-semibold text-white">{opt.label}</span>{" "}
+                          <span className="text-xs text-gray-500">({opt.sub})</span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <span className="font-bold text-white">${opt.price.toLocaleString()}</span>
+                          <a
+                            href="#book"
+                            className="flex items-center justify-center min-h-[40px] px-4 rounded-full text-sm font-bold text-black transition-transform active:scale-95"
+                            style={{ backgroundColor: "#00B8E6" }}
+                            aria-label={`Book ${opt.label} ceramic coating for ${row.vehicle}`}
+                          >
+                            Book
+                          </a>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="hidden sm:block overflow-x-auto rounded-2xl border border-white/10">
               <table className="w-full text-sm text-left border-collapse">
                 <thead className="bg-[#0A0A0A] text-gray-400 uppercase text-xs tracking-wider">
                   <tr>
@@ -462,7 +502,7 @@ export default function CeramicCoatingPage() {
         </section>
 
         {/* Why Choose */}
-        <section className="py-16 bg-[#0A0A0A]" aria-label="Why choose DG for ceramic coating">
+        <section className="py-10 sm:py-16 bg-[#0A0A0A]" aria-label="Why choose DG for ceramic coating">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-2xl sm:text-3xl font-black text-white mb-8">Why Choose DG for Ceramic Coating</h2>
             <div className="grid sm:grid-cols-3 gap-6">
@@ -484,7 +524,7 @@ export default function CeramicCoatingPage() {
         </section>
 
         {/* What Ceramic Coating Won't Do */}
-        <section className="py-16 bg-[#161616]" aria-label="What ceramic coating won't do">
+        <section className="py-10 sm:py-16 bg-[#161616]" aria-label="What ceramic coating won't do">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-2xl sm:text-3xl font-black text-white mb-8">What Ceramic Coating Won&apos;t Do</h2>
             <ul className="space-y-3">
@@ -499,7 +539,7 @@ export default function CeramicCoatingPage() {
         </section>
 
         {/* Service Areas */}
-        <section className="py-16 bg-[#0A0A0A]" aria-label="Service areas">
+        <section className="py-10 sm:py-16 bg-[#0A0A0A]" aria-label="Service areas">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-2xl font-black text-white mb-6">Service Areas We Cover</h2>
             <div className="flex flex-wrap gap-3">
@@ -517,7 +557,7 @@ export default function CeramicCoatingPage() {
         </section>
 
         {/* FAQs */}
-        <section className="py-16 bg-[#161616]" aria-label="Frequently asked questions">
+        <section className="py-10 sm:py-16 bg-[#161616]" aria-label="Frequently asked questions">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-2xl sm:text-3xl font-black text-white mb-8">Frequently Asked Questions</h2>
             <div className="space-y-4">
@@ -541,7 +581,7 @@ export default function CeramicCoatingPage() {
         </section>
 
         {/* Related Services */}
-        <section className="py-16 bg-[#0A0A0A]" aria-label="Related services">
+        <section className="py-10 sm:py-16 bg-[#0A0A0A]" aria-label="Related services">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-2xl font-black text-white mb-2">Related Services</h2>
             <p className="text-gray-400 italic mb-6">
@@ -570,7 +610,7 @@ export default function CeramicCoatingPage() {
         </section>
 
         {/* Book Form */}
-        <section id="book" className="py-16 bg-[#161616]" aria-label="Book this service">
+        <section id="book" className="py-10 sm:py-16 bg-[#161616]" aria-label="Book this service">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-8">
               <h2 className="text-2xl sm:text-3xl font-black text-white mb-2">

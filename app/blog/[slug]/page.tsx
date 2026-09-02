@@ -131,7 +131,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 
         {/* Article Header */}
         <header
-          className="py-16 border-b border-white/10"
+          className="py-10 sm:py-16 border-b border-white/10"
           style={{ background: "linear-gradient(135deg, #0A0A0A 0%, #161616 100%)" }}
         >
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -212,7 +212,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 
         {/* Related Posts */}
         {displayRelated.length > 0 && (
-          <section className="py-16 bg-[#161616] border-t border-white/10" aria-label="Related articles">
+          <section className="py-10 sm:py-16 bg-[#161616] border-t border-white/10" aria-label="Related articles">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <h2 className="text-2xl font-black text-white mb-8">Related Articles</h2>
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">

@@ -73,14 +73,14 @@ export default function AboutPage() {
 
         {/* Hero */}
         <section
-          className="py-16 lg:py-24 border-b border-white/10"
+          className="py-10 sm:py-16 lg:py-24 border-b border-white/10"
           style={{ background: "linear-gradient(135deg, #0A0A0A 0%, #161616 100%)" }}
           aria-label="About DG Detailing"
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div>
-                <h1 className="text-4xl sm:text-5xl font-black text-white leading-tight mb-6">
+                <h1 className="text-[2rem] leading-[1.15] sm:text-5xl sm:leading-tight font-black text-white leading-tight mb-6">
                   About DG Detailing —{" "}
                   <span style={{ color: "#00B8E6" }}>
                     Los Angeles&apos;s Trusted Mobile Auto Detailing Service
@@ -166,7 +166,7 @@ export default function AboutPage() {
         </section>
 
         {/* Our Process */}
-        <section className="py-16 bg-[#0A0A0A]" aria-label="Our detailing process">
+        <section className="py-10 sm:py-16 bg-[#0A0A0A]" aria-label="Our detailing process">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-2xl sm:text-3xl font-black text-white mb-10 text-center">
               Our Process
@@ -192,7 +192,7 @@ export default function AboutPage() {
         </section>
 
         {/* Our Standards */}
-        <section className="py-16 bg-[#161616]" aria-label="Our standards">
+        <section className="py-10 sm:py-16 bg-[#161616]" aria-label="Our standards">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-2xl sm:text-3xl font-black text-white mb-10 text-center">
               Our Standards

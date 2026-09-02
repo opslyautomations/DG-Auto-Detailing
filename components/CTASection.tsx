@@ -20,7 +20,7 @@ export default function CTASection({
 }: CTASectionProps) {
   return (
     <section
-      className={`py-20 px-4 text-center ${
+      className={`py-12 sm:py-20 px-4 text-center ${
         variant === "blue"
           ? "bg-gradient-to-r from-[#0096C7] to-[#00B8E6]"
           : "bg-[#0A0A0A] border-t border-white/10"

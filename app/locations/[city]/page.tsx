@@ -67,7 +67,7 @@ export default async function CityPage({ params }: PageProps) {
 
         {/* Hero */}
         <section
-          className="py-16 lg:py-24 border-b border-white/10"
+          className="py-10 sm:py-16 lg:py-24 border-b border-white/10"
           style={{ background: "linear-gradient(135deg, #0A0A0A 0%, #161616 100%)" }}
           aria-label={`${location.city} hero`}
         >
@@ -76,7 +76,7 @@ export default async function CityPage({ params }: PageProps) {
               <MapPin size={16} style={{ color: "#00B8E6" }} />
               <span className="text-sm text-gray-400">{location.city}, {location.state}</span>
             </div>
-            <h1 className="text-4xl sm:text-5xl font-black text-white leading-tight mb-6">
+            <h1 className="text-[2rem] leading-[1.15] sm:text-5xl sm:leading-tight font-black text-white leading-tight mb-6">
               Mobile Auto Detailing in{" "}
               <span style={{ color: "#00B8E6" }}>{location.city}</span>
             </h1>
@@ -102,7 +102,7 @@ export default async function CityPage({ params }: PageProps) {
         </section>
 
         {/* Why Us in This City */}
-        <section className="py-16 bg-[#161616]" aria-label={`Why ${location.city} clients choose DG Detailing`}>
+        <section className="py-10 sm:py-16 bg-[#161616]" aria-label={`Why ${location.city} clients choose DG Detailing`}>
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-2xl sm:text-3xl font-black text-white mb-6">
               Why {location.city} Drivers Choose DG Detailing
@@ -128,7 +128,7 @@ export default async function CityPage({ params }: PageProps) {
         </section>
 
         {/* Services Available */}
-        <section className="py-16 bg-[#0A0A0A]" aria-label="Available services">
+        <section className="py-10 sm:py-16 bg-[#0A0A0A]" aria-label="Available services">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-2xl sm:text-3xl font-black text-white mb-8">
               Services Available in {location.city}
@@ -164,7 +164,7 @@ export default async function CityPage({ params }: PageProps) {
         )}
 
         {/* Book Form */}
-        <section id="book" className="py-16 bg-[#0A0A0A]" aria-label="Book detailing in this area">
+        <section id="book" className="py-10 sm:py-16 bg-[#0A0A0A]" aria-label="Book detailing in this area">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-8">
               <h2 className="text-2xl sm:text-3xl font-black text-white mb-2">

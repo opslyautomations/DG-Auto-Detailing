@@ -103,3 +103,35 @@ html {
     scroll-behavior: auto;
   }
 }
+
+/* ── Mobile ergonomics ───────────────────────────────────────── */
+
+/* Kill the grey flash on tap; we use explicit :active states instead. */
+html {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* Stop the rubber-band scroll chaining into the page behind an open overlay. */
+body {
+  overscroll-behavior-y: none;
+}
+
+/* The GHL chat bubble is a bottom-right fixed overlay and would otherwise sit
+   underneath the mobile call/book bar. Lift it clear on phones only. */
+@media (max-width: 1023px) {
+  #chat-widget-container,
+  .chat-widget-container,
+  chat-widget {
+    bottom: calc(76px + env(safe-area-inset-bottom)) !important;
+  }
+}
+
+/* Touch devices never fire :hover, so interactive elements had no tap feedback. */
+@media (hover: none) {
+  a:active,
+  button:active {
+    opacity: 0.85;
+  }
+}

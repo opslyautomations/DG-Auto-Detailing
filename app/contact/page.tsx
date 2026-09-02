@@ -31,12 +31,12 @@ export default function ContactPage() {
 
         {/* Hero */}
         <section
-          className="py-16 border-b border-white/10"
+          className="py-10 sm:py-16 border-b border-white/10"
           style={{ background: "linear-gradient(135deg, #0A0A0A 0%, #161616 100%)" }}
           aria-label="Contact hero"
         >
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-4xl sm:text-5xl font-black text-white mb-4">
+            <h1 className="text-[2rem] leading-[1.15] sm:text-5xl sm:leading-tight font-black text-white mb-4">
               Get a Free Quote —{" "}
               <span style={{ color: "#00B8E6" }}>Mobile Auto Detailing</span>{" "}
               in Los Angeles
@@ -49,11 +49,11 @@ export default function ContactPage() {
         </section>
 
         {/* Two-Column Layout */}
-        <section className="py-16 bg-[#0A0A0A]" aria-label="Contact information and booking form">
+        <section className="py-10 sm:py-16 bg-[#0A0A0A]" aria-label="Contact information and booking form">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid lg:grid-cols-2 gap-12 items-start">
-              {/* Left: Info */}
-              <div>
+              {/* Left: Info — second on mobile, first on desktop */}
+              <div className="order-2 lg:order-1">
                 <div className="space-y-6">
                   {/* Phone */}
                   <div className="flex items-start gap-4">
@@ -185,8 +185,8 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              {/* Right: GHL Form */}
-              <div>
+              {/* Right: GHL Form — first thing a phone user sees */}
+              <div className="order-1 lg:order-2">
                 <div className="mb-4">
                   <p className="text-base font-bold text-white">Book Your Mobile Detail</p>
                   <p className="text-sm text-gray-500">Fill out the form and we&apos;ll confirm within hours.</p>

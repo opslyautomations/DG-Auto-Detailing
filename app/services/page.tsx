@@ -49,9 +49,9 @@ export default function ServicesPage() {
         <Breadcrumbs items={[{ label: "Services" }]} />
 
         {/* Hero */}
-        <section className="py-16 bg-[#0A0A0A] border-b border-white/10">
+        <section className="py-10 sm:py-16 bg-[#0A0A0A] border-b border-white/10">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-4xl sm:text-5xl font-black text-white mb-4">
+            <h1 className="text-[2rem] leading-[1.15] sm:text-5xl sm:leading-tight font-black text-white mb-4">
               Mobile Auto Detailing Services{" "}
               <span style={{ color: "#00B8E6" }}>in Los Angeles</span>
             </h1>
@@ -68,7 +68,7 @@ export default function ServicesPage() {
           return (
             <section
               key={tier}
-              className={`py-16 ${tier === "silver" ? "bg-[#161616]" : "bg-[#0A0A0A]"}`}
+              className={`py-10 sm:py-16 ${tier === "silver" ? "bg-[#161616]" : "bg-[#0A0A0A]"}`}
               aria-label={`${tierLabels[tier]} tier services`}
             >
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -89,7 +89,7 @@ export default function ServicesPage() {
         })}
 
         {/* Ceramic Coating */}
-        <section className="py-16 bg-[#0A0A0A]" aria-label="Paint protection services">
+        <section className="py-10 sm:py-16 bg-[#0A0A0A]" aria-label="Paint protection services">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="mb-10">
               <h2 className="text-2xl sm:text-3xl font-black text-white mb-2">Paint Protection</h2>
@@ -134,7 +134,7 @@ export default function ServicesPage() {
         </section>
 
         {/* Comparison note */}
-        <section className="py-16 bg-[#161616] border-t border-white/10">
+        <section className="py-10 sm:py-16 bg-[#161616] border-t border-white/10">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-2xl font-black text-white mb-4">Not Sure Which Package?</h2>
             <p className="text-gray-400 mb-6">

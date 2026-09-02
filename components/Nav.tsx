@@ -3,24 +3,49 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { Menu, X, Phone, ChevronDown, ChevronRight, ChevronLeft } from "lucide-react";
-import { services, vehicleClassLabels } from "@/lib/services";
-import { locations } from "@/lib/locations";
 
-const serviceGroups = {
-  Basic: services.filter((s) => s.tier === "basic"),
-  Silver: services.filter((s) => s.tier === "silver"),
-  Gold: services.filter((s) => s.tier === "gold"),
-};
+/**
+ * Minimal shapes projected by the server layout. Importing lib/services.ts and
+ * lib/locations.ts directly here dragged their full prose (descriptions,
+ * inclusions, FAQs, meta copy) into a ~38KB client chunk on every page, for a
+ * menu that only ever renders slugs and labels.
+ */
+export interface NavService {
+  slug: string;
+  tier: "basic" | "silver" | "gold";
+  label: string;
+}
+export interface NavLocation {
+  slug: string;
+  city: string;
+}
 
-type ServiceTierGroup = keyof typeof serviceGroups;
+interface NavProps {
+  services: NavService[];
+  locations: NavLocation[];
+}
 
-export default function Nav() {
+const TIERS = ["Basic", "Silver", "Gold"] as const;
+type ServiceTierGroup = (typeof TIERS)[number];
+
+/** Shared row sizing — 48px minimum touch target (WCAG 2.2 target size). */
+const MOBILE_ROW =
+  "flex items-center min-h-[48px] w-full px-3 rounded-lg transition-colors active:bg-white/10";
+
+export default function Nav({ services, locations }: NavProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [activeTier, setActiveTier] = useState<ServiceTierGroup | null>(null);
   const [locationsOpen, setLocationsOpen] = useState(false);
   const [mobileExpandedTier, setMobileExpandedTier] = useState<ServiceTierGroup | null>(null);
+  const [mobileAreasOpen, setMobileAreasOpen] = useState(false);
+
+  const serviceGroups: Record<ServiceTierGroup, NavService[]> = {
+    Basic: services.filter((s) => s.tier === "basic"),
+    Silver: services.filter((s) => s.tier === "silver"),
+    Gold: services.filter((s) => s.tier === "gold"),
+  };
 
   const closeServices = () => {
     setServicesOpen(false);
@@ -59,15 +84,43 @@ export default function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  /**
+   * iOS Safari ignores `overflow: hidden` on <body> for touch scrolling, so the
+   * page used to scroll behind the open menu. Pin the body and restore the
+   * scroll position on close.
+   */
   useEffect(() => {
-    document.body.style.overflow = mobileOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    if (!mobileOpen) return;
+    const y = window.scrollY;
+    const { body } = document;
+    const prev = {
+      position: body.style.position,
+      top: body.style.top,
+      left: body.style.left,
+      right: body.style.right,
+      overflow: body.style.overflow,
+    };
+    body.style.position = "fixed";
+    body.style.top = `-${y}px`;
+    body.style.left = "0";
+    body.style.right = "0";
+    body.style.overflow = "hidden";
+    return () => {
+      body.style.position = prev.position;
+      body.style.top = prev.top;
+      body.style.left = prev.left;
+      body.style.right = prev.right;
+      body.style.overflow = prev.overflow;
+      window.scrollTo(0, y);
+    };
   }, [mobileOpen]);
 
   const openMobileMenu = () => {
     setMobileOpen(true);
     setMobileExpandedTier(null);
+    setMobileAreasOpen(false);
   };
+  const closeMobile = () => setMobileOpen(false);
 
   return (
     <>
@@ -112,7 +165,7 @@ export default function Nav() {
                   >
                     {activeTier === null ? (
                       <>
-                        {(Object.keys(serviceGroups) as ServiceTierGroup[]).map((tier) => (
+                        {TIERS.map((tier) => (
                           <button
                             key={tier}
                             onClick={() => setActiveTier(tier)}
@@ -159,7 +212,7 @@ export default function Nav() {
                             className="block px-2 py-1.5 text-sm text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
                             onClick={closeServices}
                           >
-                            {vehicleClassLabels[s.vehicleClass]} Detail
+                            {s.label}
                           </Link>
                         ))}
                       </>
@@ -233,11 +286,12 @@ export default function Nav() {
               </Link>
             </div>
 
-            {/* Mobile menu button */}
+            {/* Mobile menu button — 48px target */}
             <button
-              className="lg:hidden p-2 text-gray-300 hover:text-white"
+              className="lg:hidden flex items-center justify-center -mr-2 w-12 h-12 rounded-lg text-gray-300 active:bg-white/10 transition-colors"
               onClick={openMobileMenu}
               aria-label="Open menu"
+              aria-expanded={mobileOpen}
             >
               <Menu size={24} />
             </button>
@@ -247,20 +301,20 @@ export default function Nav() {
 
       {/* Mobile Overlay */}
       {mobileOpen && (
-        <div className="fixed inset-0 z-50 bg-[#0A0A0A] flex flex-col overflow-y-auto">
-          <div className="flex items-center justify-between px-4 py-4 border-b border-white/10">
+        <div className="fixed inset-0 z-50 bg-[#0A0A0A] flex flex-col overflow-y-auto overscroll-contain">
+          <div className="flex items-center justify-between px-4 py-3 border-b border-white/10">
             <Link
               href="/"
-              className="text-xl font-black rounded-md hover:bg-white/5 transition-colors px-1 -mx-1 py-1"
-              onClick={() => setMobileOpen(false)}
+              className="text-xl font-black rounded-md px-1 -mx-1 py-1 active:bg-white/10 transition-colors"
+              onClick={closeMobile}
               aria-label="DG Detailing Home"
             >
               <span style={{ color: "#00B8E6" }}>DG</span>
               <span className="text-white"> Detailing</span>
             </Link>
             <button
-              onClick={() => setMobileOpen(false)}
-              className="p-2 text-gray-400 hover:text-white"
+              onClick={closeMobile}
+              className="flex items-center justify-center -mr-2 w-12 h-12 rounded-lg text-gray-400 active:bg-white/10 transition-colors"
               aria-label="Close menu"
             >
               <X size={24} />
@@ -271,9 +325,9 @@ export default function Nav() {
           <div className="px-4 py-4 border-b border-white/10">
             <a
               href="tel:+13106924495"
-              className="flex items-center justify-center gap-2 w-full py-3 rounded-xl font-bold text-black text-lg"
+              className="flex items-center justify-center gap-2 w-full min-h-[52px] rounded-xl font-bold text-black text-lg transition-transform active:scale-[0.98]"
               style={{ backgroundColor: "#00B8E6" }}
-              onClick={() => setMobileOpen(false)}
+              onClick={closeMobile}
             >
               <Phone size={18} />
               (310) 692-4495
@@ -281,26 +335,26 @@ export default function Nav() {
           </div>
 
           {/* Nav Links */}
-          <nav className="flex-1 px-4 py-4 space-y-1">
+          <nav className="flex-1 px-4 py-3 space-y-0.5">
             <Link
               href="/services"
-              className="block px-3 py-2 rounded-lg transition-colors text-white font-semibold hover:text-[#00B8E6]"
-              onClick={() => setMobileOpen(false)}
+              className={`${MOBILE_ROW} text-white font-semibold`}
+              onClick={closeMobile}
             >
               All Services
             </Link>
 
-            {/* Services tier accordion */}
-            {(Object.keys(serviceGroups) as ServiceTierGroup[]).map((tier) => (
+            {/* Services tier accordions */}
+            {TIERS.map((tier) => (
               <div key={tier}>
                 <button
                   onClick={() => setMobileExpandedTier(mobileExpandedTier === tier ? null : tier)}
-                  className="flex items-center justify-between w-full px-3 py-2 rounded-lg text-sm font-semibold text-gray-300 hover:text-[#00B8E6] transition-colors"
+                  className={`${MOBILE_ROW} justify-between text-sm font-semibold text-gray-300`}
                   aria-expanded={mobileExpandedTier === tier}
                 >
                   {tier}
                   <ChevronDown
-                    size={16}
+                    size={18}
                     className={`transition-transform ${mobileExpandedTier === tier ? "rotate-180" : ""}`}
                   />
                 </button>
@@ -310,27 +364,60 @@ export default function Nav() {
                       <Link
                         key={s.slug}
                         href={`/services/${s.slug}`}
-                        className="block px-3 py-2 rounded-lg text-sm text-gray-400 hover:text-[#00B8E6] transition-colors"
-                        onClick={() => setMobileOpen(false)}
+                        className={`${MOBILE_ROW} text-sm text-gray-400`}
+                        onClick={closeMobile}
                       >
-                        {vehicleClassLabels[s.vehicleClass]} Detail
+                        {s.label}
                       </Link>
                     ))}
                   </div>
                 )}
               </div>
             ))}
+
             <Link
               href="/services/ceramic-coating"
-              className="block px-3 py-2 rounded-lg transition-colors text-sm text-gray-400 hover:text-[#00B8E6]"
-              onClick={() => setMobileOpen(false)}
+              className={`${MOBILE_ROW} text-sm text-gray-400`}
+              onClick={closeMobile}
             >
               Ceramic Coating
             </Link>
 
+            {/* Service areas accordion — 7 city links used to sit flat in this list */}
+            <button
+              onClick={() => setMobileAreasOpen(!mobileAreasOpen)}
+              className={`${MOBILE_ROW} justify-between text-white font-semibold`}
+              aria-expanded={mobileAreasOpen}
+            >
+              Service Areas
+              <ChevronDown
+                size={18}
+                className={`transition-transform ${mobileAreasOpen ? "rotate-180" : ""}`}
+              />
+            </button>
+            {mobileAreasOpen && (
+              <div className="pl-4">
+                {locations.map((loc) => (
+                  <Link
+                    key={loc.slug}
+                    href={`/locations/${loc.slug}`}
+                    className={`${MOBILE_ROW} text-sm text-gray-400`}
+                    onClick={closeMobile}
+                  >
+                    {loc.city}
+                  </Link>
+                ))}
+                <Link
+                  href="/locations"
+                  className={`${MOBILE_ROW} text-sm font-semibold text-[#00B8E6]`}
+                  onClick={closeMobile}
+                >
+                  All Service Areas →
+                </Link>
+              </div>
+            )}
+
             {[
-              { href: "/locations", label: "All Service Areas" },
-              ...locations.map((l) => ({ href: `/locations/${l.slug}`, label: `  ${l.city}` })),
               { href: "/about", label: "About" },
               { href: "/reviews", label: "Reviews" },
               { href: "/gallery", label: "Gallery" },
@@ -341,23 +428,22 @@ export default function Nav() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`block px-3 py-2 rounded-lg transition-colors ${
-                  item.label.startsWith("  ")
-                    ? "text-sm text-gray-400 hover:text-[#00B8E6]"
-                    : "text-white font-semibold hover:text-[#00B8E6]"
-                }`}
-                onClick={() => setMobileOpen(false)}
+                className={`${MOBILE_ROW} text-white font-semibold`}
+                onClick={closeMobile}
               >
-                {item.label.trim()}
+                {item.label}
               </Link>
             ))}
           </nav>
 
-          <div className="px-4 py-4 border-t border-white/10">
+          <div
+            className="px-4 py-4 border-t border-white/10"
+            style={{ paddingBottom: "calc(1rem + env(safe-area-inset-bottom))" }}
+          >
             <Link
               href="/contact"
-              className="flex items-center justify-center w-full py-3 rounded-xl font-bold text-white border border-white/20"
-              onClick={() => setMobileOpen(false)}
+              className="flex items-center justify-center w-full min-h-[52px] rounded-xl font-bold text-white border border-white/20 transition-transform active:scale-[0.98] active:bg-white/10"
+              onClick={closeMobile}
             >
               Get Free Quote
             </Link>

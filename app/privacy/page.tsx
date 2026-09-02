@@ -11,7 +11,7 @@ export const metadata: Metadata = buildMetadata({
 export default function PrivacyPage() {
   return (
     <div className="pt-20 min-h-screen bg-[#0A0A0A]">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
         <h1 className="text-3xl font-black text-white mb-8">Privacy Policy</h1>
         <div className="prose text-gray-400 leading-relaxed space-y-4">
           <p>DG Detailing (&quot;we&quot;, &quot;us&quot;, &quot;our&quot;) operates www.dgautodetailing.com. This page informs you of our policies regarding the collection, use, and disclosure of personal information.</p>

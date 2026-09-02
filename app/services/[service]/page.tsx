@@ -76,7 +76,7 @@ export default async function ServicePage({ params }: PageProps) {
 
         {/* Hero */}
         <section
-          className="py-16 lg:py-24 border-b border-white/10"
+          className="py-10 sm:py-16 lg:py-24 border-b border-white/10"
           style={{ background: "linear-gradient(135deg, #0A0A0A 0%, #161616 100%)" }}
           aria-label={`${service.name} hero`}
         >
@@ -89,7 +89,7 @@ export default async function ServicePage({ params }: PageProps) {
                 >
                   {service.tier} tier
                 </span>
-                <h1 className="text-4xl sm:text-5xl font-black text-white leading-tight mb-4">
+                <h1 className="text-[2rem] leading-[1.15] sm:text-5xl sm:leading-tight font-black text-white leading-tight mb-4">
                   {service.name}{" "}
                   <span style={{ color: "#00B8E6" }}>in Los Angeles</span>
                 </h1>
@@ -134,7 +134,7 @@ export default async function ServicePage({ params }: PageProps) {
         </section>
 
         {/* What's Included */}
-        <section className="py-16 bg-[#161616]" aria-label="Service inclusions">
+        <section className="py-10 sm:py-16 bg-[#161616]" aria-label="Service inclusions">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-2xl sm:text-3xl font-black text-white mb-8">
               What&apos;s Included
@@ -151,7 +151,7 @@ export default async function ServicePage({ params }: PageProps) {
         </section>
 
         {/* 3 Key Benefits */}
-        <section className="py-16 bg-[#0A0A0A]" aria-label="Service benefits">
+        <section className="py-10 sm:py-16 bg-[#0A0A0A]" aria-label="Service benefits">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-2xl sm:text-3xl font-black text-white mb-8">
               Why Choose the {service.name}?
@@ -176,7 +176,7 @@ export default async function ServicePage({ params }: PageProps) {
         </section>
 
         {/* Service Areas */}
-        <section className="py-16 bg-[#161616]" aria-label="Service areas">
+        <section className="py-10 sm:py-16 bg-[#161616]" aria-label="Service areas">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-2xl font-black text-white mb-6">
               Service Areas We Cover
@@ -196,7 +196,7 @@ export default async function ServicePage({ params }: PageProps) {
         </section>
 
         {/* FAQs */}
-        <section className="py-16 bg-[#0A0A0A]" aria-label="Frequently asked questions">
+        <section className="py-10 sm:py-16 bg-[#0A0A0A]" aria-label="Frequently asked questions">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-2xl sm:text-3xl font-black text-white mb-8">
               Frequently Asked Questions
@@ -227,7 +227,7 @@ export default async function ServicePage({ params }: PageProps) {
 
         {/* Related Services */}
         {relatedServices.length > 0 && (
-          <section className="py-16 bg-[#161616]" aria-label="Related services">
+          <section className="py-10 sm:py-16 bg-[#161616]" aria-label="Related services">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
               <h2 className="text-2xl font-black text-white mb-6">Related Services</h2>
               <div className="grid sm:grid-cols-3 gap-4">
@@ -252,7 +252,7 @@ export default async function ServicePage({ params }: PageProps) {
         )}
 
         {/* Book Form */}
-        <section id="book" className="py-16 bg-[#0A0A0A]" aria-label="Book this service">
+        <section id="book" className="py-10 sm:py-16 bg-[#0A0A0A]" aria-label="Book this service">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-8">
               <h2 className="text-2xl sm:text-3xl font-black text-white mb-2">

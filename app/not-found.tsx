@@ -4,7 +4,7 @@ import { locations } from "@/lib/locations";
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#0A0A0A] px-4 py-20">
+    <div className="min-h-screen flex items-center justify-center bg-[#0A0A0A] px-4 py-12 sm:py-20">
       <div className="text-center max-w-xl">
         <div className="text-8xl font-black mb-4" style={{ color: "rgba(0,184,230,0.3)" }}>
           404

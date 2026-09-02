@@ -38,7 +38,7 @@ export default function ReviewsPage() {
 
         {/* Hero */}
         <section
-          className="py-16 border-b border-white/10"
+          className="py-10 sm:py-16 border-b border-white/10"
           style={{ background: "linear-gradient(135deg, #0A0A0A 0%, #161616 100%)" }}
           aria-label="Reviews hero"
         >
@@ -52,7 +52,7 @@ export default function ReviewsPage() {
             <p className="text-5xl font-black text-white mb-2">5.0</p>
             <p className="text-gray-400 mb-6">Based on {reviews.length}+ verified reviews across Greater LA</p>
 
-            <h1 className="text-4xl sm:text-5xl font-black text-white mb-4">
+            <h1 className="text-[2rem] leading-[1.15] sm:text-5xl sm:leading-tight font-black text-white mb-4">
               What LA Drivers Say About{" "}
               <span style={{ color: "#00B8E6" }}>DG Detailing</span>
             </h1>
@@ -101,7 +101,7 @@ export default function ReviewsPage() {
         </section>
 
         {/* Reviews Grid */}
-        <section className="py-16 bg-[#0A0A0A]" aria-label="All customer reviews">
+        <section className="py-10 sm:py-16 bg-[#0A0A0A]" aria-label="All customer reviews">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {reviews.map((review) => (

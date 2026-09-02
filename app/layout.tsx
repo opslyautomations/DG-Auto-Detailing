@@ -1,11 +1,26 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import SchemaJsonLd from "@/components/SchemaJsonLd";
+import MobileCtaBar from "@/components/MobileCtaBar";
 import { organizationSchema, websiteSchema } from "@/lib/schema";
+import { services, vehicleClassLabels } from "@/lib/services";
+import { locations } from "@/lib/locations";
+
+/**
+ * Nav is the only client component on the site. Projecting these down to the
+ * fields it actually renders keeps lib/services.ts and lib/locations.ts (and
+ * all their prose) out of the client bundle.
+ */
+const navServices = services.map((s) => ({
+  slug: s.slug,
+  tier: s.tier,
+  label: `${vehicleClassLabels[s.vehicleClass]} Detail`,
+}));
+const navLocations = locations.map((l) => ({ slug: l.slug, city: l.city }));
 
 const inter = Inter({
   variable: "--font-inter",
@@ -13,6 +28,13 @@ const inter = Inter({
   display: "swap",
   preload: true,
 });
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: "#0A0A0A",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.dgautodetailing.com"),
@@ -80,6 +102,7 @@ export const metadata: Metadata = {
   category: "Automotive",
   icons: {
     icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
   },
   manifest: "/manifest.json",
 };
@@ -95,19 +118,20 @@ export default function RootLayout({
         <link rel="preconnect" href="https://widgets.leadconnectorhq.com" />
         <link rel="preconnect" href="https://api.opslyautomations.com" />
       </head>
-      <body className="min-h-full flex flex-col bg-[#0A0A0A] text-[#F3F4F6]">
+      <body className="min-h-full flex flex-col bg-[#0A0A0A] text-[#F3F4F6] pb-[calc(72px+env(safe-area-inset-bottom))] lg:pb-0">
         <a href="#main-content" className="skip-to-content">Skip to content</a>
         <SchemaJsonLd schema={organizationSchema} />
         <SchemaJsonLd schema={websiteSchema} />
-        <Nav />
+        <Nav services={navServices} locations={navLocations} />
         <main id="main-content" className="flex-1">{children}</main>
         <Footer />
+        <MobileCtaBar />
         {/* GHL Chat Widget */}
         <Script
           src="https://widgets.leadconnectorhq.com/loader.js"
           data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
           data-widget-id="695d89b06f90aeb962a41c5c"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
         {/* GHL Form Embed Script */}
         <Script

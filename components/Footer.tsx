@@ -1,13 +1,90 @@
 import Link from "next/link";
-import { Phone, Mail, MapPin, Clock, ExternalLink } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, ExternalLink, ChevronDown } from "lucide-react";
 import { services } from "@/lib/services";
 import { locations } from "@/lib/locations";
 
+interface FooterLink {
+  href: string;
+  label: string;
+  accent?: boolean;
+}
+
+/**
+ * Collapsible on phones, plain column from `md` up.
+ *
+ * The two states are rendered separately rather than toggling a single
+ * <details> with CSS: browsers hide unopened <details> content via the UA slot,
+ * and overriding that at a breakpoint is not reliably supported.
+ */
+function FooterSection({ title, links }: { title: string; links: FooterLink[] }) {
+  const list = (
+    <ul className="space-y-2">
+      {links.map((l) => (
+        <li key={l.href + l.label}>
+          <Link
+            href={l.href}
+            className={`block py-1 text-sm transition-colors ${
+              l.accent
+                ? "font-semibold text-[#00B8E6] hover:text-[#48D1F0]"
+                : "text-gray-400 hover:text-[#00B8E6]"
+            }`}
+          >
+            {l.label}
+          </Link>
+        </li>
+      ))}
+    </ul>
+  );
+
+  return (
+    <>
+      {/* Phones: collapsed by default */}
+      <details className="md:hidden border-b border-white/10 group">
+        <summary className="flex items-center justify-between min-h-[48px] cursor-pointer list-none text-sm font-bold text-white uppercase tracking-widest [&::-webkit-details-marker]:hidden">
+          {title}
+          <ChevronDown
+            size={18}
+            className="text-gray-500 transition-transform group-open:rotate-180"
+            aria-hidden="true"
+          />
+        </summary>
+        <div className="pb-4">{list}</div>
+      </details>
+
+      {/* md and up: always-open column */}
+      <div className="hidden md:block">
+        <h3 className="text-sm font-bold text-white uppercase tracking-widest mb-4">{title}</h3>
+        {list}
+      </div>
+    </>
+  );
+}
+
 export default function Footer() {
+  const serviceLinks: FooterLink[] = [
+    ...services.map((s) => ({ href: `/services/${s.slug}`, label: s.name })),
+    { href: "/services/ceramic-coating", label: "Ceramic Coating" },
+    { href: "/services", label: "All Services →", accent: true },
+  ];
+
+  const areaLinks: FooterLink[] = [
+    ...locations.map((loc) => ({ href: `/locations/${loc.slug}`, label: loc.city })),
+    { href: "/locations", label: "All Service Areas →", accent: true },
+  ];
+
+  const companyLinks: FooterLink[] = [
+    { href: "/about", label: "About" },
+    { href: "/reviews", label: "Reviews" },
+    { href: "/gallery", label: "Gallery" },
+    { href: "/specials", label: "Specials" },
+    { href: "/blog", label: "Blog" },
+    { href: "/contact", label: "Contact" },
+  ];
+
   return (
     <footer className="bg-[#0A0A0A] border-t border-white/10" aria-label="Site footer">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 md:gap-10 lg:gap-8">
           {/* Column 1: Brand */}
           <div className="lg:col-span-1">
             <Link href="/" className="inline-block mb-4" aria-label="DG Detailing Home">
@@ -21,7 +98,7 @@ export default function Footer() {
             </p>
             <a
               href="tel:+13106924495"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold text-black mb-4 glow-blue transition-all"
+              className="inline-flex items-center gap-2 px-4 min-h-[44px] rounded-full text-sm font-bold text-black mb-4 glow-blue transition-all active:scale-95"
               style={{ backgroundColor: "#00B8E6" }}
             >
               <Phone size={14} />
@@ -32,7 +109,7 @@ export default function Footer() {
                 href="https://share.google/FpW0qKoCtS0gZTKRu"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 text-sm text-gray-400 hover:text-[#00B8E6] transition-colors"
+                className="inline-flex items-center gap-1 py-2 text-sm text-gray-400 hover:text-[#00B8E6] transition-colors"
                 aria-label="View DG Detailing on Google Business Profile"
               >
                 <ExternalLink size={12} />
@@ -41,96 +118,12 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Column 2: Services */}
-          <div>
-            <h3 className="text-sm font-bold text-white uppercase tracking-widest mb-4">
-              Services
-            </h3>
-            <ul className="space-y-2">
-              {services.map((s) => (
-                <li key={s.slug}>
-                  <Link
-                    href={`/services/${s.slug}`}
-                    className="text-sm text-gray-400 hover:text-[#00B8E6] transition-colors"
-                  >
-                    {s.name}
-                  </Link>
-                </li>
-              ))}
-              <li>
-                <Link
-                  href="/services/ceramic-coating"
-                  className="text-sm text-gray-400 hover:text-[#00B8E6] transition-colors"
-                >
-                  Ceramic Coating
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/services"
-                  className="text-sm font-semibold text-[#00B8E6] hover:text-[#48D1F0] transition-colors"
-                >
-                  All Services →
-                </Link>
-              </li>
-            </ul>
-          </div>
+          <FooterSection title="Services" links={serviceLinks} />
+          <FooterSection title="Service Areas" links={areaLinks} />
+          <FooterSection title="Company" links={companyLinks} />
 
-          {/* Column 3: Service Areas */}
-          <div>
-            <h3 className="text-sm font-bold text-white uppercase tracking-widest mb-4">
-              Service Areas
-            </h3>
-            <ul className="space-y-2">
-              {locations.map((loc) => (
-                <li key={loc.slug}>
-                  <Link
-                    href={`/locations/${loc.slug}`}
-                    className="text-sm text-gray-400 hover:text-[#00B8E6] transition-colors"
-                  >
-                    {loc.city}
-                  </Link>
-                </li>
-              ))}
-              <li>
-                <Link
-                  href="/locations"
-                  className="text-sm font-semibold text-[#00B8E6] hover:text-[#48D1F0] transition-colors"
-                >
-                  All Service Areas →
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Column 4: Company */}
-          <div>
-            <h3 className="text-sm font-bold text-white uppercase tracking-widest mb-4">
-              Company
-            </h3>
-            <ul className="space-y-2">
-              {[
-                { href: "/about", label: "About" },
-                { href: "/reviews", label: "Reviews" },
-                { href: "/gallery", label: "Gallery" },
-                { href: "/specials", label: "Specials" },
-                { href: "/blog", label: "Blog" },
-                { href: "/contact", label: "Contact" },
-              ].map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className="text-sm text-gray-400 hover:text-[#00B8E6] transition-colors"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Column 5: Connect */}
-          <div>
+          {/* Column 5: Connect — never collapsed; this is the actionable column */}
+          <div className="pt-4 md:pt-0">
             <h3 className="text-sm font-bold text-white uppercase tracking-widest mb-4">
               Connect
             </h3>
@@ -138,7 +131,7 @@ export default function Footer() {
               <li>
                 <a
                   href="tel:+13106924495"
-                  className="flex items-start gap-2 text-sm text-gray-400 hover:text-[#00B8E6] transition-colors"
+                  className="flex items-start gap-2 py-1 text-sm text-gray-400 hover:text-[#00B8E6] transition-colors"
                 >
                   <Phone size={14} className="mt-0.5 shrink-0" />
                   (310) 692-4495
@@ -147,7 +140,7 @@ export default function Footer() {
               <li>
                 <a
                   href="mailto:diego@dgautodetailing.com"
-                  className="flex items-start gap-2 text-sm text-gray-400 hover:text-[#00B8E6] transition-colors"
+                  className="flex items-start gap-2 py-1 text-sm text-gray-400 hover:text-[#00B8E6] transition-colors break-all"
                 >
                   <Mail size={14} className="mt-0.5 shrink-0" />
                   diego@dgautodetailing.com
@@ -173,7 +166,7 @@ export default function Footer() {
                   href="https://share.google/FpW0qKoCtS0gZTKRu"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg border border-white/10 text-xs font-medium text-gray-300 hover:text-[#00B8E6] hover:border-[#00B8E6]/30 transition-colors"
+                  className="inline-flex items-center gap-1.5 px-3 min-h-[44px] rounded-lg border border-white/10 text-xs font-medium text-gray-300 hover:text-[#00B8E6] hover:border-[#00B8E6]/30 transition-colors"
                 >
                   <ExternalLink size={12} />
                   Google Business Profile
@@ -191,10 +184,10 @@ export default function Footer() {
             © 2026 DG Detailing. All rights reserved.
           </p>
           <div className="flex items-center gap-4">
-            <Link href="/privacy" className="text-xs text-gray-500 hover:text-[#00B8E6] transition-colors">
+            <Link href="/privacy" className="py-2 text-xs text-gray-500 hover:text-[#00B8E6] transition-colors">
               Privacy Policy
             </Link>
-            <Link href="/terms" className="text-xs text-gray-500 hover:text-[#00B8E6] transition-colors">
+            <Link href="/terms" className="py-2 text-xs text-gray-500 hover:text-[#00B8E6] transition-colors">
               Terms
             </Link>
           </div>

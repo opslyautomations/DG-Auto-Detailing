@@ -31,12 +31,12 @@ export default function GalleryPage() {
 
         {/* Hero */}
         <section
-          className="py-16 border-b border-white/10"
+          className="py-10 sm:py-16 border-b border-white/10"
           style={{ background: "linear-gradient(135deg, #0A0A0A 0%, #161616 100%)" }}
           aria-label="Gallery hero"
         >
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-4xl sm:text-5xl font-black text-white mb-4">
+            <h1 className="text-[2rem] leading-[1.15] sm:text-5xl sm:leading-tight font-black text-white mb-4">
               Our Work — Before & After{" "}
               <span style={{ color: "#00B8E6" }}>Detail Work</span>
             </h1>
@@ -69,11 +69,11 @@ export default function GalleryPage() {
         </section>
 
         {/* Before & After */}
-        <section className="py-16 bg-[#0A0A0A] border-b border-white/10" aria-label="Before and after">
+        <section className="py-10 sm:py-16 bg-[#0A0A0A] border-b border-white/10" aria-label="Before and after">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-2xl sm:text-3xl font-black text-white mb-8 text-center">Before &amp; After</h2>
             {beforeAfterPairs.map((pair) => (
-              <div key={pair.label} className="grid sm:grid-cols-2 gap-4">
+              <div key={pair.label} className="grid grid-cols-2 gap-3 sm:gap-4">
                 {[pair.before, pair.after].map((img) => (
                   <div key={img.src} className="rounded-2xl overflow-hidden border border-white/10">
                     <div className="relative w-full aspect-[3/4]">
@@ -81,7 +81,7 @@ export default function GalleryPage() {
                         src={img.src}
                         alt={img.alt}
                         fill
-                        sizes="(max-width: 640px) 100vw, 50vw"
+                        sizes="(max-width: 640px) 48vw, 50vw"
                         className="object-cover"
                       />
                     </div>
@@ -96,9 +96,9 @@ export default function GalleryPage() {
         </section>
 
         {/* Masonry Grid */}
-        <section className="py-16 bg-[#0A0A0A]" aria-label="Gallery photos">
+        <section className="py-10 sm:py-16 bg-[#0A0A0A]" aria-label="Gallery photos">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4">
+            <div className="columns-2 lg:columns-3 gap-3 sm:gap-4 space-y-3 sm:space-y-4">
               {galleryImages.map((item) => (
                 <div key={item.src} className="break-inside-avoid">
                   <div
@@ -109,11 +109,11 @@ export default function GalleryPage() {
                       src={item.src}
                       alt={item.alt}
                       fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      sizes="(max-width: 640px) 48vw, (max-width: 1024px) 50vw, 33vw"
                       className="object-cover"
                     />
                   </div>
-                  <div className="mt-1.5 flex items-center justify-between px-1">
+                  <div className="mt-1.5 flex flex-wrap items-center justify-between gap-1 px-1">
                     <p className="text-xs text-gray-500">{item.caption}</p>
                     <span
                       className="text-xs px-2 py-0.5 rounded-full capitalize"
