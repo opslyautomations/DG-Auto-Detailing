@@ -186,12 +186,12 @@ export default function ContactPage() {
               </div>
 
               {/* Right: GHL Form — first thing a phone user sees */}
-              <div className="order-1 lg:order-2">
+              <div id="book" className="order-1 lg:order-2 scroll-mt-20 lg:scroll-mt-24">
                 <div className="mb-4">
                   <p className="text-base font-bold text-white">Book Your Mobile Detail</p>
                   <p className="text-sm text-gray-500">Fill out the form and we&apos;ll confirm within hours.</p>
                 </div>
-                <GHLForm />
+                <GHLForm eager />
               </div>
             </div>
           </div>

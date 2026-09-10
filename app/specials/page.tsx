@@ -162,7 +162,7 @@ export default function SpecialsPage() {
         </section>
 
         {/* Form */}
-        <section id="book" className="py-10 sm:py-16 bg-[#161616]" aria-label="Book special offer">
+        <section id="book" className="scroll-mt-20 lg:scroll-mt-24 py-10 sm:py-16 bg-[#161616]" aria-label="Book special offer">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-8">
               <h2 className="text-2xl sm:text-3xl font-black text-white mb-2">

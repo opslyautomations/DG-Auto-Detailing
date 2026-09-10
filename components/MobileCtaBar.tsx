@@ -23,7 +23,7 @@ export default function MobileCtaBar() {
           Call Now
         </a>
         <Link
-          href="/contact"
+          href="/contact#book"
           className="flex flex-1 items-center justify-center gap-2 min-h-[48px] rounded-xl text-base font-bold text-white border border-white/25 transition-transform active:scale-[0.97] active:bg-white/10"
         >
           <CalendarCheck size={18} aria-hidden="true" />
