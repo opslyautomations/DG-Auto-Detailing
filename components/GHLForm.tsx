@@ -1,163 +1,73 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-
-const BOOKING_ORIGIN = "https://api.opslyautomations.com";
+import { useState } from "react";
 
 /**
  * Embed URL as supplied by the GHL booking calendar. `form_embed.js` (loaded in
- * the root layout) matches the iframe by its `id` and sizes it to the widget's
- * content; the message listener below is a backup for the same resize events.
+ * the root layout) matches the iframe by its `id`.
  */
-const BOOKING_SRC = `${BOOKING_ORIGIN}/booking/dg-car-detailing-zerhza1hzz9?heightMode=fixed&showHeader=true`;
+const BOOKING_SRC =
+  "https://api.opslyautomations.com/booking/dg-car-detailing-zerhza1hzz9?heightMode=fixed&showHeader=true";
 
 /**
- * Used until the widget reports a height, and if it never does (script blocked,
- * message shape changed). Generous on purpose: too tall costs some dead space,
- * too short hides the booking button.
+ * The widget lives in a bounded window that scrolls on its own. On a phone the
+ * full widget is several screens tall; letting it fill the viewport leaves no
+ * surface for the page to scroll from, so a swipe anywhere just moves the
+ * widget. Capping it at ~70% of the screen, with the page gutters left visible
+ * around it, keeps both the widget and the page reachable.
+ *
+ * `svh` tracks the visible viewport with the mobile browser chrome showing;
+ * plain `vh` is the fallback where `svh` is unsupported.
  */
-const FALLBACK_HEIGHT_CLASSES = "h-[1600px] sm:h-[1200px] lg:h-[1100px]";
-
-/** Guard rails against a bogus postMessage collapsing or ballooning the frame. */
-const MIN_HEIGHT = 420;
-const MAX_HEIGHT = 6000;
-
-/** Ignore sub-pixel chatter so we don't re-render on every widget repaint. */
-const HEIGHT_EPSILON = 8;
-
-function coerceHeight(value: unknown): number | null {
-  if (typeof value === "number") return Number.isFinite(value) ? value : null;
-  if (typeof value === "string") {
-    const parsed = Number.parseFloat(value);
-    return Number.isFinite(parsed) ? parsed : null;
-  }
-  return null;
-}
-
-/**
- * GHL has shipped several message shapes for iframe resize — a bare object, a
- * JSON string, a `{ type, payload }` envelope — so probe rather than assume.
- */
-function extractHeight(data: unknown, depth = 0): number | null {
-  if (depth > 3) return null;
-
-  if (typeof data === "string") {
-    const trimmed = data.trim();
-    if (trimmed.startsWith("{") || trimmed.startsWith("[")) {
-      try {
-        return extractHeight(JSON.parse(trimmed), depth + 1);
-      } catch {
-        // Not JSON — fall through to the loose match below.
-      }
-    }
-    const match = trimmed.match(/height["':\s]+([\d.]+)/i);
-    return match ? coerceHeight(match[1]) : null;
-  }
-
-  if (data && typeof data === "object") {
-    const record = data as Record<string, unknown>;
-    for (const key of ["height", "iframeHeight", "scrollHeight", "docHeight"]) {
-      const height = coerceHeight(record[key]);
-      if (height !== null) return height;
-    }
-    for (const key of ["data", "payload", "detail"]) {
-      if (record[key] !== undefined) {
-        const height = extractHeight(record[key], depth + 1);
-        if (height !== null) return height;
-      }
-    }
-  }
-
-  return null;
-}
+const FRAME_HEIGHT_CLASSES =
+  "h-[70vh] supports-[height:100svh]:h-[70svh] min-h-[480px] max-h-[720px] lg:h-[820px] lg:max-h-none";
 
 interface GHLFormProps {
   className?: string;
   /** Skip lazy-loading. Only for an embed that is genuinely above the fold. */
   eager?: boolean;
-  /**
-   * Cancel the parent section's `px-4` on phones so the date grid gets the full
-   * screen width — 32px more is the difference between comfortable and fiddly
-   * tap targets on the month view. Assumes a `px-4 sm:px-6` parent.
-   */
-  fullBleedMobile?: boolean;
 }
 
-export default function GHLForm({
-  className = "",
-  eager = false,
-  fullBleedMobile = true,
-}: GHLFormProps) {
-  const iframeRef = useRef<HTMLIFrameElement>(null);
-  const [height, setHeight] = useState<number | null>(null);
+export default function GHLForm({ className = "", eager = false }: GHLFormProps) {
   const [loaded, setLoaded] = useState(false);
 
-  useEffect(() => {
-    function onMessage(event: MessageEvent) {
-      if (event.origin !== BOOKING_ORIGIN) return;
-      // Ignore the chat widget and anything else on the same origin.
-      const frame = iframeRef.current;
-      if (frame && event.source && event.source !== frame.contentWindow) return;
-
-      const next = extractHeight(event.data);
-      if (next === null || next < MIN_HEIGHT || next > MAX_HEIGHT) return;
-
-      setHeight((current) =>
-        current !== null && Math.abs(current - next) < HEIGHT_EPSILON
-          ? current
-          : Math.round(next),
-      );
-    }
-
-    window.addEventListener("message", onMessage);
-    return () => window.removeEventListener("message", onMessage);
-  }, []);
-
-  const measured = height !== null;
-
   return (
-    <div
-      className={[
-        "ghl-form-container relative overflow-hidden",
-        "shadow-2xl shadow-black/50",
-        fullBleedMobile ? "-mx-4 rounded-none sm:mx-0 sm:rounded-2xl" : "rounded-2xl",
-        className,
-      ]
-        .filter(Boolean)
-        .join(" ")}
-    >
-      <iframe
-        ref={iframeRef}
-        src={BOOKING_SRC}
-        // Height lives here, not on the wrapper: GHL's own form_embed.js also
-        // writes `iframe.style.height`, and a wrapper with its own fixed height
-        // would clip whenever the two disagreed. The wrapper hugs the iframe.
-        className={`block w-full border-0 ${measured ? "" : FALLBACK_HEIGHT_CLASSES}`}
-        style={{ border: "none", overflow: "hidden", ...(measured ? { height: `${height}px` } : {}) }}
-        // The page owns scrolling. Any scroller inside a cross-origin iframe
-        // swallows touch swipes on iOS, which is what stranded clients here.
-        scrolling="no"
-        allow="payment"
-        loading={eager ? "eager" : "lazy"}
-        onLoad={() => setLoaded(true)}
-        id="Z48P3v4VaWrAZifhwqd9_1790915597006"
-        title="Book a Mobile Auto Detail with DG Detailing"
-        aria-label="Booking calendar for DG Detailing mobile auto detail services"
-      />
-
-      {/* Placeholder so the reserved space doesn't read as a blank void while
-          the cross-origin widget boots on a phone connection. */}
+    <div className={className}>
       <div
-        aria-hidden="true"
-        className={`pointer-events-none absolute inset-0 flex items-start justify-center bg-[#0A0A0A] pt-24 transition-opacity duration-300 ${
-          loaded ? "opacity-0" : "opacity-100"
-        }`}
+        className={`ghl-form-container relative overflow-hidden rounded-2xl border border-white/10 shadow-2xl shadow-black/50 ${FRAME_HEIGHT_CLASSES}`}
       >
-        <div className="flex flex-col items-center gap-3">
-          <div className="h-8 w-8 animate-spin rounded-full border-2 border-white/15 border-t-[#00B8E6]" />
-          <p className="text-sm text-gray-500">Loading available times…</p>
+        <iframe
+          src={BOOKING_SRC}
+          // `!` because form_embed.js writes `iframe.style.height`; the frame
+          // must stay the size of its window or the widget's own scroller
+          // would run past the clip and hide the confirm button.
+          className="block h-full! w-full border-0"
+          allow="payment"
+          loading={eager ? "eager" : "lazy"}
+          onLoad={() => setLoaded(true)}
+          id="Z48P3v4VaWrAZifhwqd9_1790915597006"
+          title="Book a Mobile Auto Detail with DG Detailing"
+          aria-label="Booking calendar for DG Detailing mobile auto detail services"
+        />
+
+        {/* Placeholder so the reserved space doesn't read as a blank void while
+            the cross-origin widget boots on a phone connection. */}
+        <div
+          aria-hidden="true"
+          className={`pointer-events-none absolute inset-0 flex items-start justify-center bg-[#0A0A0A] pt-24 transition-opacity duration-300 ${
+            loaded ? "opacity-0" : "opacity-100"
+          }`}
+        >
+          <div className="flex flex-col items-center gap-3">
+            <div className="h-8 w-8 animate-spin rounded-full border-2 border-white/15 border-t-[#00B8E6]" />
+            <p className="text-sm text-gray-500">Loading available times…</p>
+          </div>
         </div>
       </div>
+
+      <p className="mt-2 text-center text-xs text-gray-500 lg:hidden">
+        Scroll inside the box to browse services. Scroll outside it to move the page.
+      </p>
     </div>
   );
 }
