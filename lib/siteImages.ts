@@ -5,8 +5,8 @@
  * embedded in each JPEG's EXIF/XMP. Stock images are CC0 or public domain, so
  * no visible attribution is required.
  *
- * Service photos always show the body type the service is for. SUV / Truck
- * services show an SUV and a pickup truck side by side.
+ * Service photos always show the body type the service is for, as a single
+ * full-frame photo.
  */
 export interface ImageCredit {
   creator: string;
@@ -26,11 +26,11 @@ export interface SiteImage {
   title: string;
   caption: string;
   keywords: string[];
-  /** Service images: each vehicle shown, left to right, with its body type. */
+  /** Service images: the vehicle shown, with its body type. */
   vehicles?: { name: string; type: "Coupe" | "Sedan" | "SUV" | "Pickup truck" }[];
   /** Location images: the landmark shown. */
   place?: string;
-  /** One per source photo; a side-by-side image has two. */
+  /** One per source photo. */
   credits: ImageCredit[];
 }
 
@@ -75,26 +75,18 @@ export const serviceImages: Record<string, SiteImage> = {
     ],
   },
   "basic-suv-truck-detail": {
-    src: "/images/services/basic-suv-truck-detail-toyota-4runner-suv-ford-raptor-pickup-truck.jpg",
-    ogSrc: "/images/og/basic-suv-truck-detail-toyota-4runner-suv-ford-raptor-pickup-truck-og.jpg",
+    src: "/images/services/basic-suv-truck-detail-ford-raptor-pickup-truck-foam-hand-wash.jpg",
+    ogSrc: "/images/og/basic-suv-truck-detail-ford-raptor-pickup-truck-foam-hand-wash-og.jpg",
     width: 1600,
     height: 1200,
-    alt: "A Toyota 4Runner SUV beside a Ford F-150 Raptor pickup truck in snow foam, the two vehicle types covered by the Basic SUV / Truck Detail",
-    title: "Basic SUV / Truck Detail — Toyota 4Runner SUV and Ford Raptor pickup truck",
-    caption: "Basic SUV / Truck Detail: a full hand wash for SUVs like the Toyota 4Runner and pickup trucks like this foamed Ford Raptor.",
-    keywords: ["basic SUV detail", "basic truck detail", "SUV hand wash", "pickup truck hand wash", "Toyota 4Runner detailing", "Ford Raptor detailing", "mobile truck wash Los Angeles"],
+    alt: "Ford F-150 Raptor pickup truck covered in snow foam during a Basic SUV / Truck Detail hand wash in a Los Angeles driveway",
+    title: "Basic SUV / Truck Detail — Ford Raptor pickup truck foam hand wash",
+    caption: "Basic SUV / Truck Detail: snow foam loosens road grime across a full-size Ford Raptor pickup before hand washing.",
+    keywords: ["basic truck detail", "pickup truck hand wash", "Ford Raptor detailing", "truck foam wash", "mobile truck wash Los Angeles"],
     vehicles: [
-      { name: "Toyota 4Runner", type: "SUV" },
       { name: "Ford F-150 Raptor", type: "Pickup truck" },
     ],
     credits: [
-      {
-        creator: "HJUdall",
-        license: "CC0 1.0",
-        licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/",
-        sourceUrl: "https://commons.wikimedia.org/wiki/File:21_Toyota_4Runner_Limited.jpg",
-        copyright: "No known copyright restrictions",
-      },
       DG_CREDIT,
     ],
   },
@@ -131,20 +123,18 @@ export const serviceImages: Record<string, SiteImage> = {
     ],
   },
   "silver-suv-truck-detail": {
-    src: "/images/services/silver-suv-truck-detail-lexus-suv-ram-1500-pickup-truck.jpg",
-    ogSrc: "/images/og/silver-suv-truck-detail-lexus-suv-ram-1500-pickup-truck-og.jpg",
+    src: "/images/services/silver-suv-truck-detail-ram-1500-pickup-truck.jpg",
+    ogSrc: "/images/og/silver-suv-truck-detail-ram-1500-pickup-truck-og.jpg",
     width: 1600,
     height: 1200,
-    alt: "A waxed Lexus SUV under detailing lights beside a red Ram 1500 pickup truck, the two vehicle types covered by the Silver SUV / Truck Detail",
-    title: "Silver SUV / Truck Detail — Lexus SUV and Ram 1500 pickup truck",
-    caption: "Silver SUV / Truck Detail: 3-month wax and leather conditioning for SUVs like this Lexus and pickup trucks like the Ram 1500.",
-    keywords: ["silver SUV detail", "silver truck detail", "SUV wax detail", "pickup truck wax", "Lexus SUV detailing", "Ram 1500 detailing", "mobile SUV detailing Los Angeles"],
+    alt: "Red Ram 1500 Laramie crew cab pickup truck with a clean, glossy finish, the kind of truck covered by the Silver SUV / Truck Detail",
+    title: "Silver SUV / Truck Detail — Ram 1500 pickup truck",
+    caption: "Silver SUV / Truck Detail: 3-month wax and plastic protectant keep full-size pickups like the Ram 1500 glossy and protected.",
+    keywords: ["silver truck detail", "pickup truck wax", "Ram 1500 detailing", "truck paint protection", "mobile truck detailing Los Angeles"],
     vehicles: [
-      { name: "Lexus SUV", type: "SUV" },
-      { name: "Ram 1500", type: "Pickup truck" },
+      { name: "Ram 1500 Laramie", type: "Pickup truck" },
     ],
     credits: [
-      DG_CREDIT,
       {
         creator: "HJUdall",
         license: "CC0 1.0",
@@ -193,31 +183,23 @@ export const serviceImages: Record<string, SiteImage> = {
     ],
   },
   "gold-suv-truck-detail": {
-    src: "/images/services/gold-suv-truck-detail-chevrolet-tahoe-suv-toyota-tacoma-pickup-truck.jpg",
-    ogSrc: "/images/og/gold-suv-truck-detail-chevrolet-tahoe-suv-toyota-tacoma-pickup-truck-og.jpg",
+    src: "/images/services/gold-suv-truck-detail-chevrolet-silverado-3500hd-pickup-truck.jpg",
+    ogSrc: "/images/og/gold-suv-truck-detail-chevrolet-silverado-3500hd-pickup-truck-og.jpg",
     width: 1600,
     height: 1200,
-    alt: "A navy Chevrolet Tahoe SUV beside a white Toyota Tacoma TRD Pro pickup truck, the two vehicle types covered by the Gold SUV / Truck Detail",
-    title: "Gold SUV / Truck Detail — Chevrolet Tahoe SUV and Toyota Tacoma pickup truck",
-    caption: "Gold SUV / Truck Detail: the full restoration for SUVs like the Chevrolet Tahoe and pickup trucks like the Toyota Tacoma TRD Pro.",
-    keywords: ["gold SUV detail", "gold truck detail", "full SUV detail", "full truck detail", "Chevrolet Tahoe detailing", "Toyota Tacoma detailing", "mobile truck detailing Los Angeles"],
+    alt: "Black Chevrolet Silverado 3500HD High Country dually pickup truck with a deep glossy finish, the kind of truck covered by the Gold SUV / Truck Detail",
+    title: "Gold SUV / Truck Detail — Chevrolet Silverado 3500HD pickup truck",
+    caption: "Gold SUV / Truck Detail: clay bar, 6-month sealant and a full interior reset for heavy-duty pickups like the Silverado 3500HD.",
+    keywords: ["gold truck detail", "full truck detail", "Chevrolet Silverado detailing", "heavy duty truck detailing", "mobile truck detailing Los Angeles"],
     vehicles: [
-      { name: "Chevrolet Tahoe", type: "SUV" },
-      { name: "Toyota Tacoma TRD Pro", type: "Pickup truck" },
+      { name: "Chevrolet Silverado 3500HD High Country", type: "Pickup truck" },
     ],
     credits: [
       {
         creator: "HJUdall",
         license: "CC0 1.0",
         licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/",
-        sourceUrl: "https://commons.wikimedia.org/wiki/File:23_Chevrolet_Tahoe_Premier.jpg",
-        copyright: "No known copyright restrictions",
-      },
-      {
-        creator: "HJUdall",
-        license: "CC0 1.0",
-        licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/",
-        sourceUrl: "https://commons.wikimedia.org/wiki/File:23_Toyota_Tacoma_TRD_Pro.jpg",
+        sourceUrl: "https://commons.wikimedia.org/wiki/File:22_Chevrolet_Silverado_3500HD_High_Country.jpg",
         copyright: "No known copyright restrictions",
       },
     ],
