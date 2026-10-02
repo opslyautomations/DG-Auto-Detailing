@@ -198,6 +198,9 @@ export function locationSchema(city: string, description: string, image?: SiteIm
  */
 export function imageObjectSchema(image: SiteImage, pageUrl: string) {
   const url = `https://www.dgautodetailing.com${image.src}`;
+  const licenses = new Set(image.credits.map((c) => c.licenseUrl));
+  const sources = image.credits.flatMap((c) => (c.sourceUrl ? [c.sourceUrl] : []));
+  const creators = [...new Set(image.credits.map((c) => c.creator))];
   return {
     "@context": "https://schema.org",
     "@type": "ImageObject",
@@ -211,19 +214,20 @@ export function imageObjectSchema(image: SiteImage, pageUrl: string) {
     description: image.alt,
     keywords: image.keywords.join(", "),
     ...(image.place && { contentLocation: { "@type": "Place", name: `${image.place}, Los Angeles, CA` } }),
-    ...(image.vehicle && {
-      about: { "@type": "Vehicle", name: image.vehicle, bodyType: image.vehicleType },
+    ...(image.vehicles && {
+      about: image.vehicles.map((v) => ({ "@type": "Vehicle", name: v.name, bodyType: v.type })),
     }),
     mainEntityOfPage: pageUrl,
-    creator: {
-      "@type": image.credit.creator === "DG Detailing" ? "Organization" : "Person",
-      name: image.credit.creator,
-    },
-    creditText: image.credit.creator,
-    copyrightNotice: image.credit.copyright,
-    ...(image.credit.licenseUrl && { license: image.credit.licenseUrl }),
-    ...(image.credit.sourceUrl && { isBasedOn: image.credit.sourceUrl }),
-    acquireLicensePage: image.credit.sourceUrl ?? "https://www.dgautodetailing.com/contact",
+    creator: creators.map((name) => ({
+      "@type": name === "DG Detailing" ? "Organization" : "Person",
+      name,
+    })),
+    creditText: creators.join(" and "),
+    copyrightNotice: [...new Set(image.credits.map((c) => c.copyright))].join(" / "),
+    // A single licence only applies when every source photo shares it.
+    ...(licenses.size === 1 && image.credits[0].licenseUrl && { license: image.credits[0].licenseUrl }),
+    ...(sources.length > 0 && { isBasedOn: sources.length === 1 ? sources[0] : sources }),
+    acquireLicensePage: sources[0] ?? "https://www.dgautodetailing.com/contact",
   };
 }
 

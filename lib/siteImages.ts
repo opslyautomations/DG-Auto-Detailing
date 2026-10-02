@@ -1,10 +1,21 @@
 /**
  * Photos for the service and location pages, with the SEO metadata each one
- * carries (alt, title, caption, keywords) and its credit. Credits are never
+ * carries (alt, title, caption, keywords) and its credits. Credits are never
  * rendered on the page: they go into ImageObject structured data and are also
  * embedded in each JPEG's EXIF/XMP. Stock images are CC0 or public domain, so
  * no visible attribution is required.
+ *
+ * Service photos always show the body type the service is for. SUV / Truck
+ * services show an SUV and a pickup truck side by side.
  */
+export interface ImageCredit {
+  creator: string;
+  license: string;
+  licenseUrl?: string;
+  sourceUrl?: string;
+  copyright: string;
+}
+
 export interface SiteImage {
   src: string;
   /** 1200x630 crop for Open Graph / Twitter cards. */
@@ -15,19 +26,19 @@ export interface SiteImage {
   title: string;
   caption: string;
   keywords: string[];
-  /** Service images: the class of vehicle shown, and the vehicle itself. */
-  vehicleType?: "Coupe" | "Sedan" | "SUV / Truck";
-  vehicle?: string;
+  /** Service images: each vehicle shown, left to right, with its body type. */
+  vehicles?: { name: string; type: "Coupe" | "Sedan" | "SUV" | "Pickup truck" }[];
   /** Location images: the landmark shown. */
   place?: string;
-  credit: {
-    creator: string;
-    license: string;
-    licenseUrl?: string;
-    sourceUrl?: string;
-    copyright: string;
-  };
+  /** One per source photo; a side-by-side image has two. */
+  credits: ImageCredit[];
 }
+
+const DG_CREDIT: ImageCredit = {
+  creator: "DG Detailing",
+  license: "All rights reserved",
+  copyright: "© DG Detailing. All rights reserved.",
+};
 
 /** Keyed by service slug (plus "ceramic-coating"). */
 export const serviceImages: Record<string, SiteImage> = {
@@ -40,13 +51,12 @@ export const serviceImages: Record<string, SiteImage> = {
     title: "Basic Coupe Detail — Mercedes-AMG GT foam hand wash",
     caption: "Basic Coupe Detail: snow foam pre-wash on a Mercedes-AMG GT before a pH-balanced hand wash.",
     keywords: ["basic coupe detail", "coupe hand wash", "Mercedes-AMG GT detailing", "snow foam pre-wash", "mobile car wash Los Angeles"],
-    vehicleType: "Coupe",
-    vehicle: "Mercedes-AMG GT",
-    credit: {
-      creator: "DG Detailing",
-      license: "All rights reserved",
-      copyright: "© DG Detailing. All rights reserved.",
-    },
+    vehicles: [
+      { name: "Mercedes-AMG GT", type: "Coupe" },
+    ],
+    credits: [
+      DG_CREDIT,
+    ],
   },
   "basic-sedan-detail": {
     src: "/images/services/basic-sedan-detail-toyota-camry-foam-hand-wash.jpg",
@@ -57,30 +67,36 @@ export const serviceImages: Record<string, SiteImage> = {
     title: "Basic Sedan Detail — Toyota Camry foam hand wash",
     caption: "Basic Sedan Detail: foam pre-wash on a Toyota Camry, washed curbside with DG Detailing's own water supply.",
     keywords: ["basic sedan detail", "sedan hand wash", "Toyota Camry detailing", "mobile car wash Los Angeles", "foam pre-wash"],
-    vehicleType: "Sedan",
-    vehicle: "Toyota Camry",
-    credit: {
-      creator: "DG Detailing",
-      license: "All rights reserved",
-      copyright: "© DG Detailing. All rights reserved.",
-    },
+    vehicles: [
+      { name: "Toyota Camry", type: "Sedan" },
+    ],
+    credits: [
+      DG_CREDIT,
+    ],
   },
   "basic-suv-truck-detail": {
-    src: "/images/services/basic-suv-truck-detail-ford-raptor-foam-hand-wash.jpg",
-    ogSrc: "/images/og/basic-suv-truck-detail-ford-raptor-foam-hand-wash-og.jpg",
+    src: "/images/services/basic-suv-truck-detail-toyota-4runner-suv-ford-raptor-pickup-truck.jpg",
+    ogSrc: "/images/og/basic-suv-truck-detail-toyota-4runner-suv-ford-raptor-pickup-truck-og.jpg",
     width: 1600,
     height: 1200,
-    alt: "Ford F-150 Raptor pickup truck covered in snow foam during a Basic SUV / Truck Detail hand wash in a Los Angeles driveway",
-    title: "Basic SUV / Truck Detail — Ford Raptor foam hand wash",
-    caption: "Basic SUV / Truck Detail: snow foam loosens road grime across a full-size Ford Raptor before hand washing.",
-    keywords: ["basic truck detail", "SUV hand wash", "pickup truck detailing", "Ford Raptor detailing", "mobile truck wash Los Angeles"],
-    vehicleType: "SUV / Truck",
-    vehicle: "Ford F-150 Raptor",
-    credit: {
-      creator: "DG Detailing",
-      license: "All rights reserved",
-      copyright: "© DG Detailing. All rights reserved.",
-    },
+    alt: "A Toyota 4Runner SUV beside a Ford F-150 Raptor pickup truck in snow foam, the two vehicle types covered by the Basic SUV / Truck Detail",
+    title: "Basic SUV / Truck Detail — Toyota 4Runner SUV and Ford Raptor pickup truck",
+    caption: "Basic SUV / Truck Detail: a full hand wash for SUVs like the Toyota 4Runner and pickup trucks like this foamed Ford Raptor.",
+    keywords: ["basic SUV detail", "basic truck detail", "SUV hand wash", "pickup truck hand wash", "Toyota 4Runner detailing", "Ford Raptor detailing", "mobile truck wash Los Angeles"],
+    vehicles: [
+      { name: "Toyota 4Runner", type: "SUV" },
+      { name: "Ford F-150 Raptor", type: "Pickup truck" },
+    ],
+    credits: [
+      {
+        creator: "HJUdall",
+        license: "CC0 1.0",
+        licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/",
+        sourceUrl: "https://commons.wikimedia.org/wiki/File:21_Toyota_4Runner_Limited.jpg",
+        copyright: "No known copyright restrictions",
+      },
+      DG_CREDIT,
+    ],
   },
   "silver-coupe-detail": {
     src: "/images/services/silver-coupe-detail-dodge-challenger-wax-gloss.jpg",
@@ -91,13 +107,12 @@ export const serviceImages: Record<string, SiteImage> = {
     title: "Silver Coupe Detail — Dodge Challenger wax finish",
     caption: "Silver Coupe Detail: a Dodge Challenger finished with 3-month wax protection for a deep, glossy shine.",
     keywords: ["silver coupe detail", "coupe wax detail", "Dodge Challenger detailing", "car wax Los Angeles", "paint protection"],
-    vehicleType: "Coupe",
-    vehicle: "Dodge Challenger",
-    credit: {
-      creator: "DG Detailing",
-      license: "All rights reserved",
-      copyright: "© DG Detailing. All rights reserved.",
-    },
+    vehicles: [
+      { name: "Dodge Challenger", type: "Coupe" },
+    ],
+    credits: [
+      DG_CREDIT,
+    ],
   },
   "silver-sedan-detail": {
     src: "/images/services/silver-sedan-detail-dodge-charger-foam-pre-wash.jpg",
@@ -108,85 +123,104 @@ export const serviceImages: Record<string, SiteImage> = {
     title: "Silver Sedan Detail — Dodge Charger pre-wash",
     caption: "Silver Sedan Detail: the Dodge Charger is foamed and hand washed before wax and leather conditioning.",
     keywords: ["silver sedan detail", "sedan wax detail", "Dodge Charger detailing", "leather conditioning", "mobile detailing Los Angeles"],
-    vehicleType: "Sedan",
-    vehicle: "Dodge Charger",
-    credit: {
-      creator: "DG Detailing",
-      license: "All rights reserved",
-      copyright: "© DG Detailing. All rights reserved.",
-    },
+    vehicles: [
+      { name: "Dodge Charger", type: "Sedan" },
+    ],
+    credits: [
+      DG_CREDIT,
+    ],
   },
   "silver-suv-truck-detail": {
-    src: "/images/services/silver-suv-truck-detail-lexus-suv-gloss-finish.jpg",
-    ogSrc: "/images/og/silver-suv-truck-detail-lexus-suv-gloss-finish-og.jpg",
+    src: "/images/services/silver-suv-truck-detail-lexus-suv-ram-1500-pickup-truck.jpg",
+    ogSrc: "/images/og/silver-suv-truck-detail-lexus-suv-ram-1500-pickup-truck-og.jpg",
     width: 1600,
     height: 1200,
-    alt: "Lexus SUV with a glossy waxed finish after a Silver SUV / Truck Detail, under hexagon detailing lights",
-    title: "Silver SUV / Truck Detail — Lexus SUV wax finish",
-    caption: "Silver SUV / Truck Detail: a Lexus SUV with a fresh wax finish, inspected under detailing lights.",
-    keywords: ["silver SUV detail", "SUV wax detail", "Lexus SUV detailing", "SUV paint protection", "mobile SUV detailing Los Angeles"],
-    vehicleType: "SUV / Truck",
-    vehicle: "Lexus SUV",
-    credit: {
-      creator: "DG Detailing",
-      license: "All rights reserved",
-      copyright: "© DG Detailing. All rights reserved.",
-    },
+    alt: "A waxed Lexus SUV under detailing lights beside a red Ram 1500 pickup truck, the two vehicle types covered by the Silver SUV / Truck Detail",
+    title: "Silver SUV / Truck Detail — Lexus SUV and Ram 1500 pickup truck",
+    caption: "Silver SUV / Truck Detail: 3-month wax and leather conditioning for SUVs like this Lexus and pickup trucks like the Ram 1500.",
+    keywords: ["silver SUV detail", "silver truck detail", "SUV wax detail", "pickup truck wax", "Lexus SUV detailing", "Ram 1500 detailing", "mobile SUV detailing Los Angeles"],
+    vehicles: [
+      { name: "Lexus SUV", type: "SUV" },
+      { name: "Ram 1500", type: "Pickup truck" },
+    ],
+    credits: [
+      DG_CREDIT,
+      {
+        creator: "HJUdall",
+        license: "CC0 1.0",
+        licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/",
+        sourceUrl: "https://commons.wikimedia.org/wiki/File:25_Ram_1500_Laramie.jpg",
+        copyright: "No known copyright restrictions",
+      },
+    ],
   },
   "gold-coupe-detail": {
-    src: "/images/services/gold-coupe-detail-mclaren-leather-interior.jpg",
-    ogSrc: "/images/og/gold-coupe-detail-mclaren-leather-interior-og.jpg",
+    src: "/images/services/gold-coupe-detail-mclaren-foam-decontamination-wash.jpg",
+    ogSrc: "/images/og/gold-coupe-detail-mclaren-foam-decontamination-wash-og.jpg",
     width: 1600,
     height: 1200,
-    alt: "Clean tan leather seats, steering wheel and dashboard of a McLaren coupe after a Gold Coupe Detail interior reset",
-    title: "Gold Coupe Detail — McLaren leather interior",
-    caption: "Gold Coupe Detail: a McLaren cabin after deep cleaning and leather conditioning.",
-    keywords: ["gold coupe detail", "full coupe detail", "McLaren interior detailing", "leather seat cleaning", "interior detailing Los Angeles"],
-    vehicleType: "Coupe",
-    vehicle: "McLaren",
-    credit: {
-      creator: "DG Detailing",
-      license: "All rights reserved",
-      copyright: "© DG Detailing. All rights reserved.",
-    },
+    alt: "McLaren coupe covered in thick snow foam during the decontamination wash of a Gold Coupe Detail in Los Angeles",
+    title: "Gold Coupe Detail — McLaren foam decontamination wash",
+    caption: "Gold Coupe Detail: a McLaren in snow foam ahead of clay bar treatment and 6-month sealant.",
+    keywords: ["gold coupe detail", "full coupe detail", "McLaren detailing", "clay bar treatment", "paint sealant Los Angeles"],
+    vehicles: [
+      { name: "McLaren", type: "Coupe" },
+    ],
+    credits: [
+      DG_CREDIT,
+    ],
   },
   "gold-sedan-detail": {
-    src: "/images/services/gold-sedan-detail-tesla-model-3-interior.jpg",
-    ogSrc: "/images/og/gold-sedan-detail-tesla-model-3-interior-og.jpg",
+    src: "/images/services/gold-sedan-detail-tesla-model-3-red-sedan.jpg",
+    ogSrc: "/images/og/gold-sedan-detail-tesla-model-3-red-sedan-og.jpg",
     width: 1600,
     height: 1200,
-    alt: "Spotless black interior, steering wheel and touchscreen of a Tesla Model 3 sedan, the cabin finish of a Gold Sedan Detail",
-    title: "Gold Sedan Detail — Tesla Model 3 interior",
-    caption: "Gold Sedan Detail: the full interior reset brings sedan cabins like this Tesla Model 3 back to showroom condition.",
-    keywords: ["gold sedan detail", "full sedan detail", "Tesla Model 3 interior detailing", "interior shampoo", "interior detailing Los Angeles"],
-    vehicleType: "Sedan",
-    vehicle: "Tesla Model 3",
-    credit: {
-      creator: "Mpelas199",
-      license: "CC0 1.0",
-      licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/",
-      sourceUrl: "https://commons.wikimedia.org/wiki/File:Upgraded_Tesla_Model_3_-_2023_-_Interior.jpg",
-      copyright: "No known copyright restrictions",
-    },
+    alt: "Glossy red Tesla Model 3 sedan with a showroom-clean finish, the result of a Gold Sedan Detail",
+    title: "Gold Sedan Detail — red Tesla Model 3 sedan",
+    caption: "Gold Sedan Detail: clay bar, 6-month sealant and a full interior reset leave sedans like this Tesla Model 3 showroom-clean.",
+    keywords: ["gold sedan detail", "full sedan detail", "Tesla Model 3 detailing", "paint sealant", "mobile sedan detailing Los Angeles"],
+    vehicles: [
+      { name: "Tesla Model 3", type: "Sedan" },
+    ],
+    credits: [
+      {
+        creator: "n1xkp",
+        license: "CC0 1.0",
+        licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/",
+        sourceUrl: "https://commons.wikimedia.org/wiki/File:Upgraded_Tesla_Model_3_-_2023_-_Exterior.jpg",
+        copyright: "No known copyright restrictions",
+      },
+    ],
   },
   "gold-suv-truck-detail": {
-    src: "/images/services/gold-suv-truck-detail-range-rover-velar-interior.jpg",
-    ogSrc: "/images/og/gold-suv-truck-detail-range-rover-velar-interior-og.jpg",
+    src: "/images/services/gold-suv-truck-detail-chevrolet-tahoe-suv-toyota-tacoma-pickup-truck.jpg",
+    ogSrc: "/images/og/gold-suv-truck-detail-chevrolet-tahoe-suv-toyota-tacoma-pickup-truck-og.jpg",
     width: 1600,
     height: 1200,
-    alt: "Clean leather dashboard, steering wheel and center console of a Range Rover Velar SUV, the cabin finish of a Gold SUV / Truck Detail",
-    title: "Gold SUV / Truck Detail — Range Rover Velar interior",
-    caption: "Gold SUV / Truck Detail: deep interior cleaning and steam sanitizing for large SUV cabins like the Range Rover Velar.",
-    keywords: ["gold SUV detail", "full SUV detail", "Range Rover interior detailing", "SUV interior steam clean", "interior detailing Los Angeles"],
-    vehicleType: "SUV / Truck",
-    vehicle: "Range Rover Velar",
-    credit: {
-      creator: "160SX",
-      license: "CC0 1.0",
-      licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/",
-      sourceUrl: "https://commons.wikimedia.org/wiki/File:Range-Rover_Velar_R-Dynamic_interior.jpg",
-      copyright: "No known copyright restrictions",
-    },
+    alt: "A navy Chevrolet Tahoe SUV beside a white Toyota Tacoma TRD Pro pickup truck, the two vehicle types covered by the Gold SUV / Truck Detail",
+    title: "Gold SUV / Truck Detail — Chevrolet Tahoe SUV and Toyota Tacoma pickup truck",
+    caption: "Gold SUV / Truck Detail: the full restoration for SUVs like the Chevrolet Tahoe and pickup trucks like the Toyota Tacoma TRD Pro.",
+    keywords: ["gold SUV detail", "gold truck detail", "full SUV detail", "full truck detail", "Chevrolet Tahoe detailing", "Toyota Tacoma detailing", "mobile truck detailing Los Angeles"],
+    vehicles: [
+      { name: "Chevrolet Tahoe", type: "SUV" },
+      { name: "Toyota Tacoma TRD Pro", type: "Pickup truck" },
+    ],
+    credits: [
+      {
+        creator: "HJUdall",
+        license: "CC0 1.0",
+        licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/",
+        sourceUrl: "https://commons.wikimedia.org/wiki/File:23_Chevrolet_Tahoe_Premier.jpg",
+        copyright: "No known copyright restrictions",
+      },
+      {
+        creator: "HJUdall",
+        license: "CC0 1.0",
+        licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/",
+        sourceUrl: "https://commons.wikimedia.org/wiki/File:23_Toyota_Tacoma_TRD_Pro.jpg",
+        copyright: "No known copyright restrictions",
+      },
+    ],
   },
   "ceramic-coating": {
     src: "/images/services/ceramic-coating-mercedes-amg-gt-high-gloss.jpg",
@@ -197,13 +231,12 @@ export const serviceImages: Record<string, SiteImage> = {
     title: "Ceramic Coating — Mercedes-AMG GT high-gloss finish",
     caption: "Ceramic coating locks in a high-gloss finish like this Mercedes-AMG GT's for 5 or 7 years.",
     keywords: ["ceramic coating Los Angeles", "ceramic coating Mercedes-AMG GT", "paint protection coating", "high gloss paint", "mobile ceramic coating"],
-    vehicleType: "Coupe",
-    vehicle: "Mercedes-AMG GT",
-    credit: {
-      creator: "DG Detailing",
-      license: "All rights reserved",
-      copyright: "© DG Detailing. All rights reserved.",
-    },
+    vehicles: [
+      { name: "Mercedes-AMG GT", type: "Coupe" },
+    ],
+    credits: [
+      DG_CREDIT,
+    ],
   },
 };
 
@@ -219,13 +252,15 @@ export const locationImages: Record<string, SiteImage> = {
     caption: "Downtown Los Angeles skyline at dusk.",
     keywords: ["mobile auto detailing Los Angeles", "car detailing Los Angeles CA", "downtown Los Angeles", "Los Angeles skyline"],
     place: "Downtown Los Angeles skyline",
-    credit: {
-      creator: "Carol M. Highsmith",
-      license: "Public domain",
-      licenseUrl: "https://creativecommons.org/publicdomain/mark/1.0/",
-      sourceUrl: "https://commons.wikimedia.org/wiki/File:Skyline_view_of_Los_Angeles,_California_LCCN2013631694.tif",
-      copyright: "No known copyright restrictions",
-    },
+    credits: [
+      {
+        creator: "Carol M. Highsmith",
+        license: "Public domain",
+        licenseUrl: "https://creativecommons.org/publicdomain/mark/1.0/",
+        sourceUrl: "https://commons.wikimedia.org/wiki/File:Skyline_view_of_Los_Angeles,_California_LCCN2013631694.tif",
+        copyright: "No known copyright restrictions",
+      },
+    ],
   },
   "santa-monica": {
     src: "/images/locations/mobile-car-detailing-santa-monica-pier.jpg",
@@ -237,13 +272,15 @@ export const locationImages: Record<string, SiteImage> = {
     caption: "Santa Monica Pier and the Pacific Park Ferris wheel at sunset.",
     keywords: ["mobile car detailing Santa Monica", "car detailing Santa Monica CA", "Santa Monica Pier", "Pacific Park Ferris wheel"],
     place: "Santa Monica Pier",
-    credit: {
-      creator: "Carol M. Highsmith",
-      license: "Public domain",
-      licenseUrl: "https://creativecommons.org/publicdomain/mark/1.0/",
-      sourceUrl: "https://www.loc.gov/pictures/item/2017656571/",
-      copyright: "No known copyright restrictions",
-    },
+    credits: [
+      {
+        creator: "Carol M. Highsmith",
+        license: "Public domain",
+        licenseUrl: "https://creativecommons.org/publicdomain/mark/1.0/",
+        sourceUrl: "https://www.loc.gov/pictures/item/2017656571/",
+        copyright: "No known copyright restrictions",
+      },
+    ],
   },
   "venice-beach": {
     src: "/images/locations/mobile-car-detailing-venice-beach-canals.jpg",
@@ -255,13 +292,15 @@ export const locationImages: Record<string, SiteImage> = {
     caption: "The Venice Canals Historic District in Venice Beach.",
     keywords: ["mobile car detailing Venice Beach", "car detailing Venice CA", "Venice Canals", "Venice Beach Los Angeles"],
     place: "Venice Canals",
-    credit: {
-      creator: "Carol M. Highsmith",
-      license: "Public domain",
-      licenseUrl: "https://creativecommons.org/publicdomain/mark/1.0/",
-      sourceUrl: "https://commons.wikimedia.org/wiki/File:Highsmithvenicecanals.jpg",
-      copyright: "No known copyright restrictions",
-    },
+    credits: [
+      {
+        creator: "Carol M. Highsmith",
+        license: "Public domain",
+        licenseUrl: "https://creativecommons.org/publicdomain/mark/1.0/",
+        sourceUrl: "https://commons.wikimedia.org/wiki/File:Highsmithvenicecanals.jpg",
+        copyright: "No known copyright restrictions",
+      },
+    ],
   },
   "marina-del-rey": {
     src: "/images/locations/mobile-car-detailing-marina-del-rey-harbor-aerial.jpg",
@@ -273,13 +312,15 @@ export const locationImages: Record<string, SiteImage> = {
     caption: "Aerial view of the Marina del Rey harbor on Santa Monica Bay.",
     keywords: ["mobile car detailing Marina del Rey", "car detailing Marina del Rey CA", "Marina del Rey harbor", "coastal paint protection"],
     place: "Marina del Rey harbor",
-    credit: {
-      creator: "Albaum",
-      license: "Public domain",
-      licenseUrl: "https://creativecommons.org/publicdomain/mark/1.0/",
-      sourceUrl: "https://commons.wikimedia.org/wiki/File:Marina_Del_Rey_Looking_South.jpg",
-      copyright: "No known copyright restrictions",
-    },
+    credits: [
+      {
+        creator: "Albaum",
+        license: "Public domain",
+        licenseUrl: "https://creativecommons.org/publicdomain/mark/1.0/",
+        sourceUrl: "https://commons.wikimedia.org/wiki/File:Marina_Del_Rey_Looking_South.jpg",
+        copyright: "No known copyright restrictions",
+      },
+    ],
   },
   "playa-vista": {
     src: "/images/locations/mobile-car-detailing-playa-vista-aerial.jpg",
@@ -291,13 +332,15 @@ export const locationImages: Record<string, SiteImage> = {
     caption: "Playa Vista, Ballona Creek and the Marina del Rey coastline from the air.",
     keywords: ["mobile car detailing Playa Vista", "car detailing Playa Vista CA", "Playa Vista Los Angeles", "Silicon Beach"],
     place: "Playa Vista and Ballona Creek",
-    credit: {
-      creator: "Alfred Twu",
-      license: "CC0 1.0",
-      licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/",
-      sourceUrl: "https://commons.wikimedia.org/wiki/File:Marina_Del_Rey,_Playa_Vista,_and_Los_Angeles_International_Airport.jpg",
-      copyright: "No known copyright restrictions",
-    },
+    credits: [
+      {
+        creator: "Alfred Twu",
+        license: "CC0 1.0",
+        licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/",
+        sourceUrl: "https://commons.wikimedia.org/wiki/File:Marina_Del_Rey,_Playa_Vista,_and_Los_Angeles_International_Airport.jpg",
+        copyright: "No known copyright restrictions",
+      },
+    ],
   },
   "culver-city": {
     src: "/images/locations/mobile-car-detailing-culver-city-city-hall.jpg",
@@ -309,13 +352,15 @@ export const locationImages: Record<string, SiteImage> = {
     caption: "Culver City City Hall on Culver Boulevard.",
     keywords: ["mobile car detailing Culver City", "car detailing Culver City CA", "Culver City City Hall", "Culver Boulevard"],
     place: "Culver City City Hall",
-    credit: {
-      creator: "Northwalker",
-      license: "CC0 1.0",
-      licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/",
-      sourceUrl: "https://commons.wikimedia.org/wiki/File:Culver_City_City_Hall_.jpg",
-      copyright: "No known copyright restrictions",
-    },
+    credits: [
+      {
+        creator: "Northwalker",
+        license: "CC0 1.0",
+        licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/",
+        sourceUrl: "https://commons.wikimedia.org/wiki/File:Culver_City_City_Hall_.jpg",
+        copyright: "No known copyright restrictions",
+      },
+    ],
   },
   "brentwood": {
     src: "/images/locations/luxury-mobile-car-detailing-brentwood-country-mart.jpg",
@@ -327,12 +372,14 @@ export const locationImages: Record<string, SiteImage> = {
     caption: "The Brentwood Country Mart on 26th Street.",
     keywords: ["luxury mobile car detailing Brentwood", "car detailing Brentwood CA", "Brentwood Country Mart", "Brentwood Los Angeles"],
     place: "Brentwood Country Mart",
-    credit: {
-      creator: "Mx. Granger",
-      license: "CC0 1.0",
-      licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/",
-      sourceUrl: "https://commons.wikimedia.org/wiki/File:Brentwood_Country_Mart_4.jpg",
-      copyright: "No known copyright restrictions",
-    },
+    credits: [
+      {
+        creator: "Mx. Granger",
+        license: "CC0 1.0",
+        licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/",
+        sourceUrl: "https://commons.wikimedia.org/wiki/File:Brentwood_Country_Mart_4.jpg",
+        copyright: "No known copyright restrictions",
+      },
+    ],
   },
 };
