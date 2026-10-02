@@ -5,16 +5,11 @@ import { useEffect, useRef, useState } from "react";
 const BOOKING_ORIGIN = "https://api.opslyautomations.com";
 
 /**
- * `heightMode=auto` is the whole trick. In `fixed` mode the widget builds its
- * own scroll container inside our iframe, and on a phone — where the month
- * grid, the slot list and the contact fields stack instead of sitting side by
- * side — that container is far taller than the frame. The result is a nested
- * scroller: a swipe over the calendar moves the widget's inner viewport (or
- * dies at its end) instead of the page, and the confirm button hides below the
- * clip. In `auto` mode the widget reports its natural height, we grow the
- * iframe to match, and the page is a single scroll surface again.
+ * Embed URL as supplied by the GHL booking calendar. `form_embed.js` (loaded in
+ * the root layout) matches the iframe by its `id` and sizes it to the widget's
+ * content; the message listener below is a backup for the same resize events.
  */
-const BOOKING_SRC = `${BOOKING_ORIGIN}/booking/dg-car-detailing-zerhza1hzz9?heightMode=auto&showHeader=false`;
+const BOOKING_SRC = `${BOOKING_ORIGIN}/booking/dg-car-detailing-zerhza1hzz9?heightMode=fixed&showHeader=true`;
 
 /**
  * Used until the widget reports a height, and if it never does (script blocked,
@@ -138,13 +133,14 @@ export default function GHLForm({
         // writes `iframe.style.height`, and a wrapper with its own fixed height
         // would clip whenever the two disagreed. The wrapper hugs the iframe.
         className={`block w-full border-0 ${measured ? "" : FALLBACK_HEIGHT_CLASSES}`}
-        style={measured ? { height: `${height}px` } : undefined}
+        style={{ border: "none", overflow: "hidden", ...(measured ? { height: `${height}px` } : {}) }}
         // The page owns scrolling. Any scroller inside a cross-origin iframe
         // swallows touch swipes on iOS, which is what stranded clients here.
         scrolling="no"
+        allow="payment"
         loading={eager ? "eager" : "lazy"}
         onLoad={() => setLoaded(true)}
-        id="Z48P3v4VaWrAZifhwqd9_1783720246857"
+        id="Z48P3v4VaWrAZifhwqd9_1790915597006"
         title="Book a Mobile Auto Detail with DG Detailing"
         aria-label="Booking calendar for DG Detailing mobile auto detail services"
       />
