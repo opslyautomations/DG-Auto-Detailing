@@ -6,6 +6,7 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import SchemaJsonLd from "@/components/SchemaJsonLd";
 import MobileCtaBar from "@/components/MobileCtaBar";
+import BookingOverlay from "@/components/BookingOverlay";
 import { organizationSchema, websiteSchema } from "@/lib/schema";
 import { services, vehicleClassLabels } from "@/lib/services";
 import { locations } from "@/lib/locations";
@@ -126,6 +127,7 @@ export default function RootLayout({
         <main id="main-content" className="flex-1">{children}</main>
         <Footer />
         <MobileCtaBar />
+        <BookingOverlay />
         {/* GHL Chat Widget */}
         <Script
           src="https://widgets.leadconnectorhq.com/loader.js"

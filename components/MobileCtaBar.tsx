@@ -1,11 +1,16 @@
+"use client";
+
 import Link from "next/link";
 import { Phone, CalendarCheck } from "lucide-react";
+import { openBooking } from "@/components/BookingOverlay";
 
 /**
  * Fixed call/book bar for phones. Below `lg` the site otherwise offers no way
  * to reach the phone number without scrolling to the footer or opening the menu.
  *
  * Sits at z-40 so the full-screen mobile menu (z-50) covers it when open.
+ * Book opens the full-screen booking overlay; the link is the fallback before
+ * hydration.
  */
 export default function MobileCtaBar() {
   return (
@@ -24,6 +29,9 @@ export default function MobileCtaBar() {
         </a>
         <Link
           href="/contact#book"
+          onClick={(event) => {
+            if (openBooking()) event.preventDefault();
+          }}
           className="flex flex-1 items-center justify-center gap-2 min-h-[48px] rounded-xl text-base font-bold text-white border border-white/25 transition-transform active:scale-[0.97] active:bg-white/10"
         >
           <CalendarCheck size={18} aria-hidden="true" />

@@ -274,6 +274,7 @@ export default function CeramicCoatingPage() {
 
                 <a
                   href="#book"
+                  data-open-booking
                   className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-bold text-black glow-blue transition-all"
                   style={{ backgroundColor: "#00B8E6" }}
                 >
@@ -437,6 +438,7 @@ export default function CeramicCoatingPage() {
                           <span className="font-bold text-white">${opt.price.toLocaleString()}</span>
                           <a
                             href="#book"
+                            data-open-booking
                             className="flex items-center justify-center min-h-[40px] px-4 rounded-full text-sm font-bold text-black transition-transform active:scale-95"
                             style={{ backgroundColor: "#00B8E6" }}
                             aria-label={`Book ${opt.label} ceramic coating for ${row.vehicle}`}
@@ -469,6 +471,7 @@ export default function CeramicCoatingPage() {
                           <span className="font-bold text-white">${row.five.toLocaleString()}</span>
                           <a
                             href="#book"
+                            data-open-booking
                             className="px-3 py-1 rounded-full text-xs font-bold text-black whitespace-nowrap"
                             style={{ backgroundColor: "#00B8E6" }}
                           >
@@ -481,6 +484,7 @@ export default function CeramicCoatingPage() {
                           <span className="font-bold text-white">${row.seven.toLocaleString()}</span>
                           <a
                             href="#book"
+                            data-open-booking
                             className="px-3 py-1 rounded-full text-xs font-bold text-black whitespace-nowrap"
                             style={{ backgroundColor: "#00B8E6" }}
                           >

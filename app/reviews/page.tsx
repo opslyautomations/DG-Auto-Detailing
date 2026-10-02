@@ -72,6 +72,7 @@ export default function ReviewsPage() {
               </a>
               <Link
                 href="/contact"
+                data-open-booking
                 className="inline-flex items-center justify-center px-6 py-3 rounded-full font-bold text-black text-sm glow-blue"
                 style={{ backgroundColor: "#00B8E6" }}
               >

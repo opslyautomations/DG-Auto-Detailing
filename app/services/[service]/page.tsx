@@ -115,6 +115,7 @@ export default async function ServicePage({ params }: PageProps) {
 
                 <a
                   href="#book"
+                  data-open-booking
                   className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-bold text-black glow-blue transition-all"
                   style={{ backgroundColor: "#00B8E6" }}
                 >

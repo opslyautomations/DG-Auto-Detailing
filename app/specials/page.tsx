@@ -105,6 +105,7 @@ export default function SpecialsPage() {
                 <div className="flex flex-col sm:flex-row gap-4">
                   <a
                     href="#book"
+                    data-open-booking
                     className="inline-flex items-center justify-center px-8 py-4 rounded-full font-bold text-black glow-blue"
                     style={{ backgroundColor: "#00B8E6" }}
                   >
