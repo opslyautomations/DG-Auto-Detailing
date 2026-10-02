@@ -33,9 +33,11 @@ export default function GHLForm({ className = "", eager = false }: GHLFormProps)
 
   return (
     <div className={className}>
-      {/* The frame is only mounted once we know we're on desktop, so phones
-          never load a second copy behind the overlay. */}
-      <div className="ghl-form-container relative hidden h-[820px] overflow-hidden rounded-2xl border border-white/10 shadow-2xl shadow-black/50 lg:block">
+      {/* 905px matches the widget (see WIDGET_HEIGHT in BookingOverlay), so its
+          list is the only scroller. The frame is only mounted once we know
+          we're on desktop, so phones never load a second copy behind the
+          overlay. */}
+      <div className="ghl-form-container relative hidden h-[905px] overflow-hidden rounded-2xl border border-white/10 shadow-2xl shadow-black/50 lg:block">
         {isDesktop && <BookingFrame eager={eager} />}
       </div>
 

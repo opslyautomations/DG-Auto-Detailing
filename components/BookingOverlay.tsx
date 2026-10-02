@@ -1,9 +1,17 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import BookingFrame from "@/components/BookingFrame";
 
 const OPEN_EVENT = "dg:open-booking";
+
+/**
+ * The GHL widget lays itself out as a fixed 900px-tall box with its own
+ * scrolling service list inside, plus a few px of document overflow (GHL's
+ * own embed script adds 5px for the same reason). Measured from the live
+ * widget; it does not change with the frame size or heightMode.
+ */
+const WIDGET_HEIGHT = 905;
 
 /** Matches Tailwind's `lg` breakpoint. */
 export const DESKTOP_QUERY = "(min-width: 1024px)";
@@ -16,6 +24,47 @@ export function openBooking(): boolean {
   if (window.matchMedia(DESKTOP_QUERY).matches) return false;
   window.dispatchEvent(new Event(OPEN_EVENT));
   return true;
+}
+
+/**
+ * A frame shorter than the widget's height leaves the widget's own document
+ * scrollable around its inner list: two scrollers inside one iframe, which
+ * iOS Safari can't chain between (swipe down works, swipe back up doesn't).
+ * So the frame is always exactly the widget's height and scaled down to fit the screen,
+ * leaving the inner list as the only scroller anywhere.
+ */
+function FittedBookingFrame() {
+  const boxRef = useRef<HTMLDivElement>(null);
+  const [size, setSize] = useState<{ width: number; height: number } | null>(null);
+
+  useEffect(() => {
+    const box = boxRef.current;
+    if (!box) return;
+    const observer = new ResizeObserver(([entry]) => {
+      const { width, height } = entry.contentRect;
+      if (width > 0 && height > 0) setSize({ width, height });
+    });
+    observer.observe(box);
+    return () => observer.disconnect();
+  }, []);
+
+  const scale = size ? Math.min(1, size.height / WIDGET_HEIGHT) : 1;
+
+  return (
+    <div ref={boxRef} className="ghl-form-container relative h-full w-full overflow-hidden">
+      {size && (
+        <BookingFrame
+          eager
+          frameStyle={{
+            width: `${size.width / scale}px`,
+            height: `${WIDGET_HEIGHT}px`,
+            transform: `scale(${scale})`,
+            transformOrigin: "0 0",
+          }}
+        />
+      )}
+    </div>
+  );
 }
 
 /**
@@ -81,21 +130,20 @@ export default function BookingOverlay() {
       aria-label="Book a detail with DG Detailing"
       className="fixed inset-0 z-[2147483646] flex h-[100dvh] flex-col bg-[#0A0A0A] lg:hidden"
     >
-      <div className="flex shrink-0 items-center justify-between border-b border-white/10 px-4 pb-3 pt-[calc(0.75rem+env(safe-area-inset-top))]">
-        <p className="text-base font-semibold text-white">Book Your Detail</p>
+      {/* The widget's own header carries the business name, so the close
+          button floats over its empty right side instead of taking a row. */}
+      <div className="relative min-h-0 flex-1 pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)]">
+        <FittedBookingFrame />
         <button
           type="button"
           onClick={() => setOpen(false)}
           aria-label="Close booking"
-          className="-mr-2 flex h-11 w-11 items-center justify-center rounded-full text-gray-300 active:bg-white/10"
+          className="absolute right-3 top-[calc(0.5rem+env(safe-area-inset-top))] z-10 flex h-11 w-11 items-center justify-center rounded-full bg-black/70 text-white shadow-lg backdrop-blur-sm active:scale-95"
         >
           <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
             <path d="M6 6l12 12M18 6L6 18" />
           </svg>
         </button>
-      </div>
-      <div className="ghl-form-container relative min-h-0 flex-1 overflow-hidden pb-[env(safe-area-inset-bottom)]">
-        <BookingFrame eager />
       </div>
     </div>
   );

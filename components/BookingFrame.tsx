@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
 
 /**
  * Embed URL as supplied by the GHL booking calendar. In `heightMode=fixed` the
@@ -13,10 +13,17 @@ const BOOKING_IFRAME_ID = "Z48P3v4VaWrAZifhwqd9_1790915597006";
 
 /**
  * The GHL booking iframe plus its loading placeholder. Fills its parent, which
- * must be `relative` with a definite height. Only one may be mounted at a time,
- * as the frame carries a fixed id.
+ * must be `relative` with a definite height, unless `frameStyle` sizes the
+ * frame explicitly. Only one may be mounted at a time, as the frame carries a
+ * fixed id.
  */
-export default function BookingFrame({ eager }: { eager: boolean }) {
+export default function BookingFrame({
+  eager,
+  frameStyle,
+}: {
+  eager: boolean;
+  frameStyle?: CSSProperties;
+}) {
   const [loaded, setLoaded] = useState(false);
 
   return (
@@ -25,7 +32,8 @@ export default function BookingFrame({ eager }: { eager: boolean }) {
         src={BOOKING_SRC}
         // The frame must stay the size of its container or the widget's own
         // scroller would run past the clip and hide the confirm button.
-        className="block h-full w-full border-0"
+        className={`block border-0 ${frameStyle ? "" : "h-full w-full"}`}
+        style={frameStyle}
         allow="payment"
         loading={eager ? "eager" : "lazy"}
         onLoad={() => setLoaded(true)}
