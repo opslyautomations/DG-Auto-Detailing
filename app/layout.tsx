@@ -135,11 +135,10 @@ export default function RootLayout({
           data-widget-id="695d89b06f90aeb962a41c5c"
           strategy="lazyOnload"
         />
-        {/* GHL Form Embed Script */}
-        <Script
-          src="https://api.opslyautomations.com/js/form_embed.js"
-          strategy="lazyOnload"
-        />
+        {/* No GHL form_embed.js: it wraps every `/booking` iframe in
+            iframe-resizer, which fights the widget's own scrolling on touch
+            screens (swipes down work, swipes back up don't). The booking
+            widget runs in heightMode=fixed and scrolls itself without it. */}
       </body>
     </html>
   );

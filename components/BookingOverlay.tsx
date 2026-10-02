@@ -23,10 +23,9 @@ export function openBooking(): boolean {
  * any button on any page can open it via `openBooking()`.
  *
  * Phones never get the widget inline. An inline widget is a scroller nested in
- * the page scroller, and on touch screens the two fight: swipes over the frame
- * get trapped, and form_embed.js's resizer restores the page scroll position
- * on every widget resize, which pins the page. Full screen, with the page
- * locked behind it, the widget is the only thing that scrolls.
+ * the page scroller, and on touch screens the two fight over swipes. Full
+ * screen, with the page locked behind it, the widget is the only thing that
+ * scrolls.
  */
 export default function BookingOverlay() {
   const [open, setOpen] = useState(false);
