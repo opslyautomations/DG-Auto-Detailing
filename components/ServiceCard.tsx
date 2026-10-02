@@ -1,6 +1,8 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Clock, DollarSign, ArrowRight } from "lucide-react";
 import type { Service } from "@/lib/services";
+import { serviceImages } from "@/lib/siteImages";
 
 interface ServiceCardProps {
   service: Service;
@@ -15,10 +17,23 @@ const tierColors = {
 
 export default function ServiceCard({ service, showDetails = false }: ServiceCardProps) {
   const colors = tierColors[service.tier];
+  const image = serviceImages[service.slug];
 
   return (
-    <article className="group relative rounded-2xl overflow-hidden border border-white/10 hover:border-[#00B8E6]/40 transition-all duration-300 hover:shadow-xl hover:shadow-[#00B8E6]/5">
-      <div className={`bg-gradient-to-br ${colors.bg} p-6 h-full flex flex-col`}>
+    <article className="group relative flex flex-col rounded-2xl overflow-hidden border border-white/10 hover:border-[#00B8E6]/40 transition-all duration-300 hover:shadow-xl hover:shadow-[#00B8E6]/5">
+      {image && (
+        <div className="relative aspect-[16/10] overflow-hidden">
+          <Image
+            src={image.src}
+            alt={image.alt}
+            title={image.title}
+            fill
+            sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw"
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+        </div>
+      )}
+      <div className={`bg-gradient-to-br ${colors.bg} p-6 flex-1 flex flex-col`}>
         {/* Tier Badge */}
         <div className="flex items-center justify-between mb-4">
           <span className={`inline-block px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider ${colors.badge}`}>

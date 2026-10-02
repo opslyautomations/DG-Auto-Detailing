@@ -1,19 +1,25 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { Clock, DollarSign, Shield, CheckCircle, MinusCircle, ChevronDown } from "lucide-react";
 import SchemaJsonLd from "@/components/SchemaJsonLd";
 import GHLForm from "@/components/GHLForm";
 import CTASection from "@/components/CTASection";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import PlaceholderImage from "@/components/PlaceholderImage";
-import { breadcrumbSchema, faqSchema } from "@/lib/schema";
+import { serviceImages } from "@/lib/siteImages";
+import { breadcrumbSchema, faqSchema, imageObjectSchema } from "@/lib/schema";
 import { buildMetadata } from "@/lib/seo";
+
+const image = serviceImages["ceramic-coating"];
+const pageUrl = "https://www.dgautodetailing.com/services/ceramic-coating";
 
 export const metadata: Metadata = buildMetadata({
   title: "Ceramic Coating in Los Angeles | DG Detailing",
   description:
     "Mobile ceramic coating in Los Angeles from $750. Choose 5-year or 7-year paint protection — clay bar, machine polish & pro ceramic application. We come to you.",
   canonical: "/services/ceramic-coating",
+  ogImage: image.ogSrc,
+  ogImageAlt: image.alt,
   keywords: [
     "ceramic coating Los Angeles",
     "mobile ceramic coating LA",
@@ -161,6 +167,7 @@ const serviceJsonLd = {
   "@type": "Service",
   name: "Ceramic Coating",
   serviceType: "Automotive ceramic coating",
+  image: `https://www.dgautodetailing.com${image.src}`,
   description:
     "Professional mobile ceramic coating in Los Angeles — decontamination wash, machine polish, and multi-year ceramic paint protection applied at your location.",
   provider: {
@@ -205,6 +212,7 @@ export default function CeramicCoatingPage() {
   return (
     <>
       <SchemaJsonLd schema={serviceJsonLd} />
+      <SchemaJsonLd schema={imageObjectSchema(image, pageUrl)} />
       <SchemaJsonLd schema={faqSchema(faqs)} />
       <SchemaJsonLd
         schema={breadcrumbSchema([
@@ -282,13 +290,17 @@ export default function CeramicCoatingPage() {
                 </a>
               </div>
 
-              <PlaceholderImage
-                width={600}
-                height={400}
-                alt="Ceramic Coating — DG Detailing Los Angeles"
-                label="Ceramic Coating — coming soon"
-                className="aspect-[3/2]"
-              />
+              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/10 shadow-2xl shadow-black/50">
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  title={image.title}
+                  fill
+                  priority
+                  sizes="(min-width: 1280px) 600px, (min-width: 1024px) 50vw, 100vw"
+                  className="object-cover"
+                />
+              </div>
             </div>
           </div>
         </section>

@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { services } from "@/lib/services";
 import { locations } from "@/lib/locations";
 import { blogPosts } from "@/lib/blog";
+import { serviceImages, locationImages } from "@/lib/siteImages";
 
 const BASE_URL = "https://www.dgautodetailing.com";
 
@@ -23,6 +24,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(),
     changeFrequency: "monthly",
     priority: 0.9,
+    images: [`${BASE_URL}${serviceImages[s.slug].src}`],
   }));
 
   const ceramicCoatingPage: MetadataRoute.Sitemap = [
@@ -31,6 +33,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.9,
+      images: [`${BASE_URL}${serviceImages["ceramic-coating"].src}`],
     },
   ];
 
@@ -39,6 +42,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(),
     changeFrequency: "monthly",
     priority: 0.9,
+    images: [`${BASE_URL}${locationImages[l.slug].src}`],
   }));
 
   const blogPages: MetadataRoute.Sitemap = blogPosts.map((p) => ({

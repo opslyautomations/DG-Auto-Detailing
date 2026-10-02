@@ -1,15 +1,16 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { Clock, DollarSign, CheckCircle, ChevronDown } from "lucide-react";
 import SchemaJsonLd from "@/components/SchemaJsonLd";
 import GHLForm from "@/components/GHLForm";
 import CTASection from "@/components/CTASection";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import PlaceholderImage from "@/components/PlaceholderImage";
 import { services, getServiceBySlug } from "@/lib/services";
 import { locations } from "@/lib/locations";
-import { serviceSchema, faqSchema, breadcrumbSchema } from "@/lib/schema";
+import { serviceImages } from "@/lib/siteImages";
+import { serviceSchema, faqSchema, breadcrumbSchema, imageObjectSchema } from "@/lib/schema";
 import { buildMetadata } from "@/lib/seo";
 
 interface PageProps {
@@ -24,10 +25,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { service: slug } = await params;
   const service = getServiceBySlug(slug);
   if (!service) return {};
+  const image = serviceImages[slug];
   return buildMetadata({
     title: `${service.name} in Los Angeles | DG Detailing`,
     description: `${service.name} starting at $${service.priceFrom}. ${service.shortDescription} Mobile service across LA. Call (310) 692-4495.`,
     canonical: `/services/${slug}`,
+    ogImage: image?.ogSrc,
+    ogImageAlt: image?.alt,
     keywords: [
       `${service.name} Los Angeles`,
       `mobile ${service.vehicleClass} detailing LA`,
@@ -42,6 +46,9 @@ export default async function ServicePage({ params }: PageProps) {
   const service = getServiceBySlug(slug);
   if (!service) notFound();
 
+  const image = serviceImages[service.slug];
+  const pageUrl = `https://www.dgautodetailing.com/services/${service.slug}`;
+
   const relatedServices = service.relatedSlugs
     .map((s) => services.find((sv) => sv.slug === s))
     .filter(Boolean);
@@ -54,9 +61,11 @@ export default async function ServicePage({ params }: PageProps) {
           description: service.shortDescription,
           price: service.priceFrom.toString(),
           duration: service.duration,
-          url: `https://www.dgautodetailing.com/services/${service.slug}`,
+          url: pageUrl,
+          image,
         })}
       />
+      {image && <SchemaJsonLd schema={imageObjectSchema(image, pageUrl)} />}
       <SchemaJsonLd schema={faqSchema(service.faqs)} />
       <SchemaJsonLd
         schema={breadcrumbSchema([
@@ -123,13 +132,19 @@ export default async function ServicePage({ params }: PageProps) {
                 </a>
               </div>
 
-              <PlaceholderImage
-                width={600}
-                height={400}
-                alt={`${service.name} — DG Detailing Los Angeles`}
-                label={`${service.name} — coming soon`}
-                className="aspect-[3/2]"
-              />
+              {image && (
+                <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/10 shadow-2xl shadow-black/50">
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    title={image.title}
+                    fill
+                    priority
+                    sizes="(min-width: 1280px) 600px, (min-width: 1024px) 50vw, 100vw"
+                    className="object-cover"
+                  />
+                </div>
+              )}
             </div>
           </div>
         </section>

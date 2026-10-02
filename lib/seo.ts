@@ -9,6 +9,8 @@ export function buildMetadata(opts: {
   description: string;
   canonical: string;
   ogImage?: string;
+  /** Alt text for `ogImage`; defaults to the page title. */
+  ogImageAlt?: string;
   ogType?: "website" | "article";
   keywords?: string[];
   noIndex?: boolean;
@@ -33,7 +35,7 @@ export function buildMetadata(opts: {
           url: ogImage,
           width: 1200,
           height: 630,
-          alt: opts.title,
+          alt: opts.ogImageAlt || opts.title,
         },
       ],
     },
@@ -41,7 +43,7 @@ export function buildMetadata(opts: {
       card: "summary_large_image",
       title: opts.title,
       description: opts.description,
-      images: [ogImage],
+      images: [{ url: ogImage, alt: opts.ogImageAlt || opts.title }],
     },
     robots: opts.noIndex
       ? { index: false, follow: false }

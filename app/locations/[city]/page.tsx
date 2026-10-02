@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { MapPin, CheckCircle } from "lucide-react";
 import SchemaJsonLd from "@/components/SchemaJsonLd";
 import GHLForm from "@/components/GHLForm";
@@ -9,7 +10,8 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import ServiceCard from "@/components/ServiceCard";
 import { locations, getLocationBySlug } from "@/lib/locations";
 import { services } from "@/lib/services";
-import { locationSchema, breadcrumbSchema } from "@/lib/schema";
+import { locationImages } from "@/lib/siteImages";
+import { locationSchema, breadcrumbSchema, imageObjectSchema } from "@/lib/schema";
 import { buildMetadata } from "@/lib/seo";
 
 interface PageProps {
@@ -24,10 +26,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { city: slug } = await params;
   const location = getLocationBySlug(slug);
   if (!location) return {};
+  const image = locationImages[slug];
   return buildMetadata({
     title: location.metaTitle,
     description: location.metaDescription,
     canonical: `/locations/${slug}`,
+    ogImage: image?.ogSrc,
+    ogImageAlt: image?.alt,
     keywords: [
       `mobile auto detailing ${location.city}`,
       `car detailing ${location.city} CA`,
@@ -42,13 +47,17 @@ export default async function CityPage({ params }: PageProps) {
   const location = getLocationBySlug(slug);
   if (!location) notFound();
 
+  const image = locationImages[location.slug];
+  const pageUrl = `https://www.dgautodetailing.com/locations/${location.slug}`;
+
   const nearbyLocations = location.nearbyAreas
     .map((city) => locations.find((l) => l.city === city))
     .filter(Boolean);
 
   return (
     <>
-      <SchemaJsonLd schema={locationSchema(location.city, location.intro)} />
+      <SchemaJsonLd schema={locationSchema(location.city, location.intro, image)} />
+      {image && <SchemaJsonLd schema={imageObjectSchema(image, pageUrl)} />}
       <SchemaJsonLd
         schema={breadcrumbSchema([
           { name: "Home", url: "https://www.dgautodetailing.com" },
@@ -71,33 +80,51 @@ export default async function CityPage({ params }: PageProps) {
           style={{ background: "linear-gradient(135deg, #0A0A0A 0%, #161616 100%)" }}
           aria-label={`${location.city} hero`}
         >
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center gap-2 mb-4">
-              <MapPin size={16} style={{ color: "#00B8E6" }} />
-              <span className="text-sm text-gray-400">{location.city}, {location.state}</span>
-            </div>
-            <h1 className="text-[2rem] leading-[1.15] sm:text-5xl sm:leading-tight font-black text-white leading-tight mb-6">
-              Mobile Auto Detailing in{" "}
-              <span style={{ color: "#00B8E6" }}>{location.city}</span>
-            </h1>
-            <p className="text-lg text-gray-300 leading-relaxed mb-8">
-              {location.intro}
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <a
-                href="#book"
-                data-open-booking
-                className="inline-flex items-center justify-center px-8 py-4 rounded-full font-bold text-black glow-blue"
-                style={{ backgroundColor: "#00B8E6" }}
-              >
-                Book in {location.city}
-              </a>
-              <a
-                href="tel:+13106924495"
-                className="inline-flex items-center justify-center px-8 py-4 rounded-full font-bold border border-white/20 text-white hover:bg-white/10 transition-colors"
-              >
-                Call (310) 692-4495
-              </a>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <div className="flex items-center gap-2 mb-4">
+                  <MapPin size={16} style={{ color: "#00B8E6" }} />
+                  <span className="text-sm text-gray-400">{location.city}, {location.state}</span>
+                </div>
+                <h1 className="text-[2rem] leading-[1.15] sm:text-5xl sm:leading-tight font-black text-white leading-tight mb-6">
+                  Mobile Auto Detailing in{" "}
+                  <span style={{ color: "#00B8E6" }}>{location.city}</span>
+                </h1>
+                <p className="text-lg text-gray-300 leading-relaxed mb-8">
+                  {location.intro}
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <a
+                    href="#book"
+                    data-open-booking
+                    className="inline-flex items-center justify-center px-8 py-4 rounded-full font-bold text-black glow-blue"
+                    style={{ backgroundColor: "#00B8E6" }}
+                  >
+                    Book in {location.city}
+                  </a>
+                  <a
+                    href="tel:+13106924495"
+                    className="inline-flex items-center justify-center px-8 py-4 rounded-full font-bold border border-white/20 text-white hover:bg-white/10 transition-colors"
+                  >
+                    Call (310) 692-4495
+                  </a>
+                </div>
+              </div>
+
+              {image && (
+                <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/10 shadow-2xl shadow-black/50">
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    title={image.title}
+                    fill
+                    priority
+                    sizes="(min-width: 1280px) 600px, (min-width: 1024px) 50vw, 100vw"
+                    className="object-cover"
+                  />
+                </div>
+              )}
             </div>
           </div>
         </section>

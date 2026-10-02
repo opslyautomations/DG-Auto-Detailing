@@ -1,3 +1,5 @@
+import type { SiteImage } from "@/lib/siteImages";
+
 export const organizationSchema = {
   "@context": "https://schema.org",
   "@type": ["LocalBusiness", "AutoRepair"],
@@ -99,6 +101,7 @@ export function serviceSchema(opts: {
   price: string;
   duration: string;
   url: string;
+  image?: SiteImage;
 }) {
   return {
     "@context": "https://schema.org",
@@ -106,6 +109,7 @@ export function serviceSchema(opts: {
     name: opts.name,
     description: opts.description,
     url: opts.url,
+    ...(opts.image && { image: `https://www.dgautodetailing.com${opts.image.src}` }),
     provider: { "@id": "https://www.dgautodetailing.com/#organization" },
     areaServed: { "@type": "State", name: "California" },
     hasOfferCatalog: {
@@ -166,13 +170,14 @@ export function reviewsPageSchema(reviews: { author: string; rating: number; tex
   };
 }
 
-export function locationSchema(city: string, description: string) {
+export function locationSchema(city: string, description: string, image?: SiteImage) {
   return {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "@id": `https://www.dgautodetailing.com/locations/${city.toLowerCase().replace(/\s+/g, "-")}#local`,
     name: `DG Detailing — ${city}`,
     description,
+    ...(image && { image: `https://www.dgautodetailing.com${image.src}` }),
     url: `https://www.dgautodetailing.com/locations/${city.toLowerCase().replace(/\s+/g, "-")}`,
     telephone: "+13106924495",
     email: "diego@dgautodetailing.com",
@@ -184,6 +189,41 @@ export function locationSchema(city: string, description: string) {
       addressCountry: "US",
     },
     parentOrganization: { "@id": "https://www.dgautodetailing.com/#organization" },
+  };
+}
+
+/**
+ * ImageObject for a page photo. This is where the photo credit lives: it is
+ * machine-readable for search engines but never rendered on the page.
+ */
+export function imageObjectSchema(image: SiteImage, pageUrl: string) {
+  const url = `https://www.dgautodetailing.com${image.src}`;
+  return {
+    "@context": "https://schema.org",
+    "@type": "ImageObject",
+    "@id": `${url}#image`,
+    url,
+    contentUrl: url,
+    width: image.width,
+    height: image.height,
+    name: image.title,
+    caption: image.caption,
+    description: image.alt,
+    keywords: image.keywords.join(", "),
+    ...(image.place && { contentLocation: { "@type": "Place", name: `${image.place}, Los Angeles, CA` } }),
+    ...(image.vehicle && {
+      about: { "@type": "Vehicle", name: image.vehicle, bodyType: image.vehicleType },
+    }),
+    mainEntityOfPage: pageUrl,
+    creator: {
+      "@type": image.credit.creator === "DG Detailing" ? "Organization" : "Person",
+      name: image.credit.creator,
+    },
+    creditText: image.credit.creator,
+    copyrightNotice: image.credit.copyright,
+    ...(image.credit.licenseUrl && { license: image.credit.licenseUrl }),
+    ...(image.credit.sourceUrl && { isBasedOn: image.credit.sourceUrl }),
+    acquireLicensePage: image.credit.sourceUrl ?? "https://www.dgautodetailing.com/contact",
   };
 }
 
