@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { services } from "@/lib/services";
 import { locations } from "@/lib/locations";
 import { blogPosts } from "@/lib/blog";
-import { serviceImages, locationImages } from "@/lib/siteImages";
+import { serviceImages, locationImages, blogImages } from "@/lib/siteImages";
 
 const BASE_URL = "https://www.dgautodetailing.com";
 
@@ -50,6 +50,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(p.updatedAt || p.publishedAt),
     changeFrequency: "weekly",
     priority: 0.7,
+    ...(blogImages[p.slug] && { images: [`${BASE_URL}${blogImages[p.slug].src}`] }),
   }));
 
   return [...staticPages, ...servicePages, ...ceramicCoatingPage, ...locationPages, ...blogPages];

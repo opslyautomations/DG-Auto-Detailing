@@ -236,6 +236,7 @@ export function blogPostSchema(opts: {
   slug: string;
   description: string;
   date: string;
+  modified?: string;
   image?: string;
 }) {
   return {
@@ -245,7 +246,7 @@ export function blogPostSchema(opts: {
     description: opts.description,
     url: `https://www.dgautodetailing.com/blog/${opts.slug}`,
     datePublished: opts.date,
-    dateModified: opts.date,
+    dateModified: opts.modified ?? opts.date,
     author: {
       "@type": "Organization",
       name: "DG Detailing",

@@ -1,3 +1,6 @@
+import { fall2026Posts } from "@/lib/blogPostsFall2026";
+import { october2026Posts } from "@/lib/blogPostsOctober2026";
+
 export type BlogCategory = "Service Guide" | "Location Guide" | "Detailing Tips" | "Maintenance";
 
 export interface BlogPost {
@@ -11,11 +14,10 @@ export interface BlogPost {
   updatedAt: string;
   author: "Diego" | "DG Detailing Team";
   readTime: number;
-  ogImage: string;
   body: string;
 }
 
-export const blogPosts: BlogPost[] = [
+const originalPosts: BlogPost[] = [
   // ─── SERVICE GUIDES (9) ──────────────────────────────────────────────
   {
     slug: "what-is-included-in-a-basic-car-detail",
@@ -28,7 +30,6 @@ export const blogPosts: BlogPost[] = [
     updatedAt: "2026-01-08",
     author: "Diego",
     readTime: 6,
-    ogImage: "/images/og/og-default.jpg",
     body: `## What Is a Basic Car Detail?
 
 Most people have heard the term "basic detail," but very few know what actually happens during one — or why it's fundamentally different from a regular car wash. Let me walk you through exactly what our Basic Detail includes, what each step does, and why the sequence matters.
@@ -106,7 +107,6 @@ If you're interested in adding wax protection, leather conditioning, and plastic
     updatedAt: "2026-01-15",
     author: "Diego",
     readTime: 6,
-    ogImage: "/images/og/og-default.jpg",
     body: `## The Core Question
 
 When clients first contact DG Detailing, one of the most common questions is: "Is the Basic good enough, or do I need Silver?" It's a fair question — the price difference is meaningful (starting at $105 vs. $185 for coupes), and you want to spend it on something that actually makes a difference.
@@ -197,7 +197,6 @@ Ready to choose? [Call (310) 692-4495](/contact) and we'll help you decide based
     updatedAt: "2026-01-22",
     author: "Diego",
     readTime: 8,
-    ogImage: "/images/og/og-default.jpg",
     body: `## What Makes the Gold Detail Different
 
 Every DG Detailing package starts with the same professional hand wash and interior clean. The Gold Detail takes it further — much further. This is a full-day restoration service, and I want to explain exactly why each step is in the package and what it accomplishes for your vehicle.
@@ -296,7 +295,6 @@ For most LA drivers, twice a year — every 5–6 months. The 6-month sealant dr
     updatedAt: "2026-01-29",
     author: "DG Detailing Team",
     readTime: 5,
-    ogImage: "/images/og/og-default.jpg",
     body: `## Why Does My SUV Cost More to Detail Than a Coupe?
 
 It's one of the most common questions we get, especially from clients who are pricing out a detail for the first time. The short answer: more surface area, more interior volume, more time. Let me break it down properly.
@@ -374,7 +372,6 @@ When in doubt about where your vehicle falls:
     updatedAt: "2026-02-05",
     author: "Diego",
     readTime: 6,
-    ogImage: "/images/og/og-default.jpg",
     body: `## The Most Common Mistake LA Car Owners Make
 
 I've detailed over 1,500 vehicles in Greater Los Angeles. The most common situation I encounter: a car owner who washes their car at an automated wash every few weeks, then calls me every 12–18 months for "a real clean." By that point, the paint has swirl marks from the automated brushes, the leather is starting to dry and crack, and what should have been a $215 Silver Detail is now a $455 Gold Detail plus discussion of whether paint correction is needed.
@@ -448,7 +445,6 @@ Most maintenance clients see us on the same day and approximate time each month.
     updatedAt: "2026-02-12",
     author: "Diego",
     readTime: 7,
-    ogImage: "/images/og/og-default.jpg",
     body: `## The Test That Changes Everything
 
 Here's something I do with almost every new client. After washing their car, I have them run their fingers across the hood. The paint looks clean and dry. But under their fingers, it feels rough — like fine sandpaper, or like there's something on the surface that the wash didn't remove.
@@ -526,7 +522,6 @@ It's one of those steps that, once you've experienced it, you can't imagine a pr
     updatedAt: "2026-02-19",
     author: "Diego",
     readTime: 7,
-    ogImage: "/images/og/og-default.jpg",
     body: `## The Three Layers of Paint Protection
 
 If you've spent any time researching car care, you've encountered these three terms. Wax, sealant, and ceramic coating are all paint protection products, but they differ fundamentally in chemistry, durability, application, and cost. Here's an honest, practical breakdown for LA vehicle owners.
@@ -627,7 +622,6 @@ For the majority of DG Detailing clients: start with the [Gold Detail](/services
     updatedAt: "2026-02-26",
     author: "Diego",
     readTime: 6,
-    ogImage: "/images/og/og-default.jpg",
     body: `## Your Car's Interior Is Dirtier Than You Think
 
 Studies consistently show that the average car interior harbors more bacteria per square inch than a typical kitchen counter. This isn't a scare statistic — it's a logical result of how cars get used. Food and drinks get consumed, outdoor debris tracks in on shoes, pets shed and drool, children spill, and the interior gets closed up in the California heat, creating conditions where bacteria and mold thrive.
@@ -737,7 +731,6 @@ After a full interior deep clean:
     updatedAt: "2026-03-05",
     author: "Diego",
     readTime: 7,
-    ogImage: "/images/og/og-default.jpg",
     body: `## The Short Version
 
 A drive-through car wash makes your car look cleaner for about 24 hours while adding micro-scratches to your paint every single time. A professional mobile detail makes your car genuinely clean — and keeps it that way — without damaging the clear coat.
@@ -831,7 +824,6 @@ The bottom line: [call (310) 692-4495](/contact) or book online to schedule your
     updatedAt: "2026-01-10",
     author: "Diego",
     readTime: 6,
-    ogImage: "/images/og/og-default.jpg",
     body: `## Los Angeles Has No Shortage of Mobile Detailers
 
 Type "mobile detailing Los Angeles" into any search engine and you'll find hundreds of results — solo operators with pressure washers, established businesses with commercial vehicles, and everything in between. How do you tell them apart?
@@ -924,7 +916,6 @@ A Gold Detail on a sedan takes 5 hours when done properly. A detailer offering a
     updatedAt: "2026-01-17",
     author: "Diego",
     readTime: 5,
-    ogImage: "/images/og/og-default.jpg",
     body: `## Marina Del Rey: Beautiful Location, Demanding Environment
 
 Living near the marina is one of the best decisions you can make in Los Angeles. Easy access to the water, the marina lifestyle, the views. Your car, however, is working harder than you realize to survive the environment.
@@ -996,7 +987,6 @@ That's the sealant doing its job in a marine environment.
     updatedAt: "2026-01-24",
     author: "DG Detailing Team",
     readTime: 5,
-    ogImage: "/images/og/og-default.jpg",
     body: `## The Santa Monica Triple Threat
 
 Santa Monica might be the most photogenic city in LA. It's also one of the most demanding environments for a vehicle's exterior. Three factors combine to create conditions that accelerate paint degradation faster than almost anywhere else in the city.
@@ -1051,7 +1041,6 @@ Don't wipe it dry. Use a waterless detail spray with a microfiber cloth to softe
     updatedAt: "2026-01-31",
     author: "DG Detailing Team",
     readTime: 5,
-    ogImage: "/images/og/og-default.jpg",
     body: `## Culver City: The Commute Problem
 
 Culver City sits at the convergence of some of LA's most congested traffic corridors — the 405, the 90, Lincoln Boulevard, and Venice Boulevard all funnel through this neighborhood. If you work at Amazon, Apple TV+, Sony, MGM, or any of the dozens of studios and tech companies in Culver City, you know the commute.
@@ -1105,7 +1094,6 @@ We come to wherever your car is:
     updatedAt: "2026-02-07",
     author: "Diego",
     readTime: 5,
-    ogImage: "/images/og/og-default.jpg",
     body: `## Why Venice Beach Is the Hardest Environment for Cars in LA
 
 Every coastal area in Los Angeles presents automotive challenges. But Venice Beach combines them in a way that's uniquely aggressive: salt air, wind-driven sand, intense UV, and very limited garage parking create conditions that damage vehicles noticeably faster than the LA average.
@@ -1158,7 +1146,6 @@ I've detailed many cars in Venice Beach over 6 years, and the pattern is consist
     updatedAt: "2026-02-14",
     author: "DG Detailing Team",
     readTime: 4,
-    ogImage: "/images/og/og-default.jpg",
     body: `## Playa Vista: Where Time Is the Premium
 
 Playa Vista has become one of the most sought-after addresses in Los Angeles for a specific type of professional: the tech industry worker, the creative executive, the remote-first knowledge worker. Google, Amazon, YouTube, Hulu, Beats by Dre, and dozens of startups have made Playa Vista their LA home.
@@ -1227,7 +1214,6 @@ We're equally accessible to clients in [Marina Del Rey](/locations/marina-del-re
     updatedAt: "2026-02-21",
     author: "Diego",
     readTime: 5,
-    ogImage: "/images/og/og-default.jpg",
     body: `## Brentwood's Vehicles Require a Different Standard
 
 I detail a lot of cars in Brentwood. Porsches (Taycan, 911, Cayenne), Range Rover Sport and Autobiography, Mercedes G-Wagen and S-Class, BMW M-series, Tesla Plaid, occasional Ferraris and Lamborghinis. The common thread: these are vehicles where paint quality and condition have real financial stakes.
@@ -1289,7 +1275,6 @@ I don't post client names or vehicle details without permission. But I'm happy t
     updatedAt: "2026-03-05",
     author: "DG Detailing Team",
     readTime: 6,
-    ogImage: "/images/og/og-default.jpg",
     body: `## There's No Universal Answer — But There Are Smart Guidelines
 
 The most common question we get from first-time clients: "How often should I get my car detailed?" The correct answer depends on factors specific to your vehicle and situation. But after 6 years and 1,500+ details in Los Angeles, I can give you a clear framework that applies to most LA drivers.
@@ -1369,7 +1354,6 @@ The work required to restore a neglected vehicle is always more expensive than t
     updatedAt: "2026-03-12",
     author: "DG Detailing Team",
     readTime: 5,
-    ogImage: "/images/og/og-default.jpg",
     body: `## Most Damage Builds Slowly and Invisibly
 
 The problem with deferring car care is that most damage doesn't announce itself loudly. Your paint doesn't suddenly look terrible — it degrades gradually, and you adapt to the new normal. Then you see your car in a photo or under parking garage lights and realize it looks 10 years older than it should.
@@ -1433,7 +1417,6 @@ If you're checking off multiple items from this list, a [Gold Detail](/services/
     updatedAt: "2026-03-19",
     author: "Diego",
     readTime: 7,
-    ogImage: "/images/og/og-default.jpg",
     body: `## Your Car's Paint Has More Enemies in LA Than You Think
 
 Every day your car is parked in Los Angeles, it's being subjected to a combination of environmental factors that collectively degrade your paint faster than almost any other major American city. Here's the complete picture — and the professional approach to stopping the damage.
@@ -1511,7 +1494,6 @@ No single product eliminates all these threats permanently, but consistent profe
     updatedAt: "2026-03-26",
     author: "DG Detailing Team",
     readTime: 6,
-    ogImage: "/images/og/og-default.jpg",
     body: `## Why LA Is Particularly Harsh on Leather
 
 Leather interiors that would last decades with minimal attention in a moderate climate can begin cracking and fading in 2–3 years in Los Angeles without proper care. This isn't an exaggeration — it's the result of two compounding factors that make LA uniquely demanding on leather:
@@ -1592,7 +1574,6 @@ If you're conditioning between professional visits:
     updatedAt: "2026-04-02",
     author: "DG Detailing Team",
     readTime: 6,
-    ogImage: "/images/og/og-default.jpg",
     body: `## The Pre-Sale Detail Is One of the Best Returns You'll Get
 
 No home seller lists their house without cleaning and staging it. Yet car sellers routinely list vehicles with dirty exteriors, stained carpets, and cracked leather — and then wonder why they're getting lowball offers or no interest at all.
@@ -1671,7 +1652,6 @@ Your photos are the first sales tool. For maximum photo appeal:
     updatedAt: "2026-04-09",
     author: "Diego",
     readTime: 6,
-    ogImage: "/images/og/og-default.jpg",
     body: `## The Honest Comparison
 
 I run a mobile detailing business, so I have an obvious perspective here. I'm going to try to give you the honest comparison anyway — including where shop detailing has legitimate advantages — because that's how you make a good decision for your situation.
@@ -1757,7 +1737,6 @@ For the LA professional or resident whose time has real value, mobile pays for i
     updatedAt: "2026-04-23",
     author: "Diego",
     readTime: 7,
-    ogImage: "/images/og/og-default.jpg",
     body: `## The Question I Get Asked Most
 
 "Should I get ceramic coating?" comes up in almost every consultation once a client sees what a Gold Detail's 6-month sealant does. Here's the honest, unhurried answer — what ceramic coating is, what it actually costs, how long it holds up under real LA conditions, and when it's genuinely worth the investment versus when it isn't.
@@ -1837,7 +1816,6 @@ Ready to talk it through? [Contact us](/contact) or call [(310) 692-4495](tel:+1
     updatedAt: "2026-05-07",
     author: "Diego",
     readTime: 6,
-    ogImage: "/images/og/og-default.jpg",
     body: `## More Than Just "Bigger"
 
 Clients sometimes assume SUV and truck detailing is simply a longer version of a sedan detail — more surface area, more time, same process. That's mostly true, but there are real differences in technique, equipment, and what to expect that are worth understanding before you book.
@@ -1893,7 +1871,6 @@ Whether it's a compact SUV or a full-size work truck, we tailor the approach to 
     updatedAt: "2026-05-21",
     author: "Diego",
     readTime: 5,
-    ogImage: "/images/og/og-default.jpg",
     body: `## A Common Request We Don't Talk About Enough
 
 A good chunk of our bookings are for more than one vehicle — a family with two or three cars in the driveway, a small business with a few company vehicles, a property manager coordinating for residents. Multi-vehicle detailing works differently from a single appointment in ways worth knowing before you book.
@@ -1949,7 +1926,6 @@ Multi-vehicle bookings work through the same [booking system](/contact) — just
     updatedAt: "2026-06-04",
     author: "Diego",
     readTime: 6,
-    ogImage: "/images/og/og-default.jpg",
     body: `## LA Has Seasons — Just Not the Ones You Learned in School
 
 Los Angeles doesn't have a real winter, but it absolutely has detailing seasons — periods where your paint and interior face very different threats. Building your maintenance schedule around what's actually happening outside, rather than a generic monthly reminder, gets meaningfully better results.
@@ -2005,7 +1981,6 @@ If juggling seasons feels like more than you want to track yourself, our [monthl
     updatedAt: "2026-06-18",
     author: "Diego",
     readTime: 5,
-    ogImage: "/images/og/og-default.jpg",
     body: `## Two Different Details, Two Different Purposes
 
 Clients often ask whether they should detail before a road trip, after, or both. The honest answer is both — but they serve different purposes, and understanding the difference helps you get real value out of each.
@@ -2062,7 +2037,6 @@ Tell us your travel dates when you book and we'll help you time both visits righ
     updatedAt: "2026-07-02",
     author: "Diego",
     readTime: 6,
-    ogImage: "/images/og/og-default.jpg",
     body: `## Why the First 90 Days Matter So Much
 
 New clear coat is genuinely different from paint that's a year or more old. It's still curing, chemically settling, and more vulnerable to certain kinds of damage than most new owners realize. What you do — and avoid doing — in the first three months meaningfully affects how the paint looks in year five, not just year one.
@@ -2112,7 +2086,6 @@ Bring us your new vehicle for an assessment and we'll tell you honestly what it 
     updatedAt: "2026-07-16",
     author: "Diego",
     readTime: 5,
-    ogImage: "/images/og/og-default.jpg",
     body: `## The Marketing vs. the Chemistry
 
 "Touchless" car washes are marketed as the safe alternative to brush tunnels — no physical contact means no scratching, right? The logic sounds reasonable, but it skips over how touchless washes actually remove dirt without any physical agitation. The answer is chemistry, and that chemistry has its own downsides that rarely make it into the marketing.
@@ -2160,7 +2133,6 @@ If your car has been through a lot of automated touchless washing and you're not
     updatedAt: "2026-07-30",
     author: "Diego",
     readTime: 6,
-    ogImage: "/images/og/og-default.jpg",
     body: `## Three Contaminants, One Common Mistake
 
 Bird droppings, tree sap, and road tar are among the most common paint-damage causes we see, and nearly every case follows the same pattern: someone tries to wipe or scrape it off dry, and creates a scratch that outlasts the original stain by years. Here's the actual safe method for each, and why speed matters more than most people think.
@@ -2222,7 +2194,6 @@ If you're dealing with any of these right now, don't wait. [Book a detail](/cont
     updatedAt: "2026-08-06",
     author: "Diego",
     readTime: 5,
-    ogImage: "/images/og/og-default.jpg",
     body: `## Air Fresheners Don't Fix This — They Cover It Up
 
 A musty smell in your car almost never comes from something you can spray away permanently. It comes from moisture and organic material trapped somewhere in the cabin — and until that source is actually removed, an air freshener is just layering a new smell on top of the old one, temporarily.
@@ -2270,7 +2241,6 @@ Our [Gold Detail](/services/gold-sedan-detail) includes full carpet and seat sha
     updatedAt: "2026-08-11",
     author: "Diego",
     readTime: 6,
-    ogImage: "/images/og/og-default.jpg",
     body: `## Why This Matters More Than People Realize
 
 A bad detail isn't just a wasted afternoon and some money — some bad practices can actually cause lasting damage to your vehicle's paint, interior, or trim. Knowing the warning signs before you book protects both your wallet and your car. Here's what to actually look for.
@@ -2322,6 +2292,11 @@ At DG Detailing, every question above has a specific, honest answer, and we'd ra
 [Book a detail](/contact) and ask us anything about our process beforehand — we're glad to walk through it. Call [(310) 692-4495](tel:+13106924495) or [read our reviews](/reviews) from clients across Greater LA.`,
   },
 ];
+
+/** Every post, newest first. */
+export const blogPosts: BlogPost[] = [...october2026Posts, ...fall2026Posts, ...originalPosts].sort((a, b) =>
+  b.publishedAt.localeCompare(a.publishedAt),
+);
 
 export function getBlogPostBySlug(slug: string): BlogPost | undefined {
   return blogPosts.find((p) => p.slug === slug);

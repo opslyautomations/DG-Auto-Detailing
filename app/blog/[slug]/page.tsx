@@ -1,13 +1,16 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { Clock, Calendar, ArrowLeft } from "lucide-react";
 import SchemaJsonLd from "@/components/SchemaJsonLd";
 import CTASection from "@/components/CTASection";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import BlogCard from "@/components/BlogCard";
+import BlogBody from "@/components/BlogBody";
 import { blogPosts, getBlogPostBySlug } from "@/lib/blog";
-import { blogPostSchema, breadcrumbSchema } from "@/lib/schema";
+import { blogImages } from "@/lib/siteImages";
+import { blogPostSchema, breadcrumbSchema, imageObjectSchema } from "@/lib/schema";
 import { buildMetadata } from "@/lib/seo";
 
 interface PageProps {
@@ -22,11 +25,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { slug } = await params;
   const post = getBlogPostBySlug(slug);
   if (!post) return {};
+  const image = blogImages[slug];
   return buildMetadata({
     title: post.title,
     description: post.description,
     canonical: `/blog/${slug}`,
     ogType: "article",
+    ogImage: image?.ogSrc,
+    ogImageAlt: image?.alt,
   });
 }
 
@@ -44,64 +50,8 @@ export default async function BlogPostPage({ params }: PageProps) {
     .slice(0, 3 - relatedPosts.length);
 
   const displayRelated = [...relatedPosts, ...fallbackRelated].slice(0, 3);
-
-  // Convert markdown-like content to HTML paragraphs
-  const contentBlocks = post.body.split("\n\n").map((block, i) => {
-    if (block.startsWith("## ")) {
-      return <h2 key={i} className="text-2xl font-black text-white mt-10 mb-4">{block.replace("## ", "")}</h2>;
-    }
-    if (block.startsWith("# ")) {
-      return <h1 key={i} className="text-3xl font-black text-white mt-10 mb-4">{block.replace("# ", "")}</h1>;
-    }
-    if (block.startsWith("- ")) {
-      const items = block.split("\n").filter((l) => l.startsWith("- "));
-      return (
-        <ul key={i} className="space-y-2 my-4">
-          {items.map((item, j) => (
-            <li key={j} className="flex items-start gap-2 text-gray-300">
-              <span style={{ color: "#00B8E6" }} className="mt-0.5 shrink-0">•</span>
-              <span dangerouslySetInnerHTML={{ __html: item.replace("- ", "").replace(/\*\*(.*?)\*\*/g, "<strong class='text-white'>$1</strong>") }} />
-            </li>
-          ))}
-        </ul>
-      );
-    }
-    if (block.includes("|") && block.includes("---")) {
-      return null; // skip table divider
-    }
-    if (block.startsWith("|")) {
-      // Simple table rendering
-      const rows = block.split("\n").filter((r) => r.startsWith("|") && !r.includes("---"));
-      return (
-        <div key={i} className="overflow-x-auto my-6">
-          <table className="w-full text-sm border-collapse">
-            {rows.map((row, ri) => {
-              const cells = row.split("|").filter((c) => c.trim());
-              return (
-                <tr key={ri} className={`border-b border-white/10 ${ri === 0 ? "font-bold text-white" : "text-gray-400"}`}>
-                  {cells.map((cell, ci) => (
-                    <td key={ci} className="px-3 py-2">{cell.trim()}</td>
-                  ))}
-                </tr>
-              );
-            })}
-          </table>
-        </div>
-      );
-    }
-    // Regular paragraph with bold support
-    return (
-      <p
-        key={i}
-        className="text-gray-300 leading-relaxed mb-4"
-        dangerouslySetInnerHTML={{
-          __html: block
-            .replace(/\*\*(.*?)\*\*/g, "<strong class='text-white'>$1</strong>")
-            .replace(/\n/g, "<br />"),
-        }}
-      />
-    );
-  });
+  const image = blogImages[post.slug];
+  const pageUrl = `https://www.dgautodetailing.com/blog/${post.slug}`;
 
   return (
     <>
@@ -111,8 +61,11 @@ export default async function BlogPostPage({ params }: PageProps) {
           slug: post.slug,
           description: post.description,
           date: post.publishedAt,
+          modified: post.updatedAt,
+          image: image?.src,
         })}
       />
+      {image && <SchemaJsonLd schema={imageObjectSchema(image, pageUrl)} />}
       <SchemaJsonLd
         schema={breadcrumbSchema([
           { name: "Home", url: "https://www.dgautodetailing.com" },
@@ -152,7 +105,7 @@ export default async function BlogPostPage({ params }: PageProps) {
               </span>
               <span className="flex items-center gap-1 text-xs text-gray-500">
                 <Clock size={11} />
-                {post.readTime} read
+                {post.readTime} min read
               </span>
               <span className="flex items-center gap-1 text-xs text-gray-500">
                 <Calendar size={11} />
@@ -160,6 +113,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                   month: "long",
                   day: "numeric",
                   year: "numeric",
+                  timeZone: "UTC",
                 })}
               </span>
             </div>
@@ -173,12 +127,28 @@ export default async function BlogPostPage({ params }: PageProps) {
           </div>
         </header>
 
+        {image && (
+          <div className="bg-[#0A0A0A] pt-10">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="relative aspect-[16/9] overflow-hidden rounded-2xl border border-white/10 shadow-2xl shadow-black/50">
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  title={image.title}
+                  fill
+                  priority
+                  sizes="(min-width: 896px) 832px, 100vw"
+                  className="object-cover"
+                />
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Article Body */}
         <article className="py-12 bg-[#0A0A0A]">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="prose-content">
-              {contentBlocks}
-            </div>
+            <BlogBody body={post.body} />
 
             {/* Author / CTA block */}
             <div
