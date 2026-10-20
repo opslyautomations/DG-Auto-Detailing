@@ -171,16 +171,22 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                {/* Static service area map placeholder */}
-                <div
-                  className="mt-8 rounded-2xl border border-white/10 h-48 flex items-center justify-center"
-                  style={{ backgroundColor: "rgba(0,184,230,0.03)" }}
-                  aria-label="DG Detailing service area map — Greater Los Angeles"
-                >
-                  <div className="text-center">
-                    <MapPin size={24} style={{ color: "#00B8E6" }} className="mx-auto mb-2" />
-                    <p className="text-xs text-gray-500">Service Area Map</p>
-                    <p className="text-xs text-gray-600 mt-0.5">Greater Los Angeles, CA</p>
+                {/* Embedded service area map — centered on the Westside cities we serve */}
+                <div className="mt-8 rounded-2xl border border-white/10 overflow-hidden">
+                  <iframe
+                    title="DG Detailing service area map — Greater Los Angeles"
+                    src="https://www.google.com/maps?q=Culver+City,+CA&z=11&output=embed"
+                    className="block w-full h-72 sm:h-80"
+                    style={{ border: 0 }}
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    allowFullScreen
+                  />
+                  <div className="flex items-center gap-2 px-4 py-3 border-t border-white/10">
+                    <MapPin size={14} style={{ color: "#00B8E6" }} />
+                    <p className="text-xs text-gray-500">
+                      Mobile service across Greater Los Angeles — we come to you.
+                    </p>
                   </div>
                 </div>
               </div>
