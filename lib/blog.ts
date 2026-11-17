@@ -1,5 +1,6 @@
 import { fall2026Posts } from "@/lib/blogPostsFall2026";
 import { october2026Posts } from "@/lib/blogPostsOctober2026";
+import { november2026Posts } from "@/lib/blogPostsNovember2026";
 
 export type BlogCategory = "Service Guide" | "Location Guide" | "Detailing Tips" | "Maintenance";
 
@@ -364,12 +365,12 @@ When in doubt about where your vehicle falls:
 
   {
     slug: "monthly-maintenance-plan-guide",
-    title: "How a Monthly Detailing Plan Saves You Money (And Your Paint)",
+    title: "How a Recurring Detailing Plan Saves You Money (And Your Paint)",
     description:
-      "DG Detailing's monthly maintenance plan is more than convenience — it's the most cost-effective way to protect your vehicle's paint and value long-term.",
+      "DG Detailing's recurring maintenance packages (weekly, bi-weekly, or monthly) are the most cost-effective way to protect your vehicle's paint and value long-term.",
     category: "Maintenance",
     publishedAt: "2026-02-05",
-    updatedAt: "2026-02-05",
+    updatedAt: "2026-11-16",
     author: "Diego",
     readTime: 6,
     body: `## The Most Common Mistake LA Car Owners Make
@@ -378,15 +379,19 @@ I've detailed over 1,500 vehicles in Greater Los Angeles. The most common situat
 
 This pattern costs more money and produces worse results than consistent monthly maintenance. Here's why — and what the monthly plan actually looks like.
 
-## What the Monthly Maintenance Plan Is
+## What the Maintenance Plan Is
 
-The maintenance plan is a recurring monthly appointment. You choose a service tier — most maintenance clients choose Bronze or Silver — and we schedule a recurring appointment at your location on a consistent schedule.
+Our maintenance plan is a recurring cleaning appointment at your home or office, on the schedule that fits how you drive: weekly, bi-weekly, or monthly. Pricing is per visit and stays the same whichever schedule you pick:
 
-That's it. No complicated contracts, no hidden fees. We show up monthly, you always have a professionally detailed car.
+- [Coupe Maintenance Package](/services/coupe-maintenance-package): $105 per visit
+- [Sedan Maintenance Package](/services/sedan-maintenance-package): $115 per visit
+- [SUV / Truck Maintenance Package](/services/suv-truck-maintenance-package): $135 per visit
 
-## The Financial Case for Monthly Maintenance
+Every visit includes an exterior hand wash, interior vacuuming and surface wipe-down, high-gloss detail spray, and tire shine. Protection, meaning wax from a [Silver Detail](/services/silver-sedan-detail) or sealant from a [Gold Detail](/services/gold-sedan-detail), is refreshed with a full detail when it's due. Not sure how often you need us? See [weekly vs. bi-weekly vs. monthly car cleaning](/blog/weekly-vs-biweekly-vs-monthly-car-cleaning).
 
-Let me run the numbers honestly.
+## The Financial Case for Regular Maintenance
+
+Let me run the numbers honestly, using a sedan as the example.
 
 **Scenario A: Sporadic "when it gets bad" approach**
 - Automated car wash 2x/month: $30/month × 12 = $360/year (and it's scratching your paint every visit)
@@ -394,42 +399,38 @@ Let me run the numbers honestly.
 - Paint correction every 2–3 years due to swirl damage: $300–$600
 - **Annual average cost: ~$900–$1,100/year + paint degradation**
 
-**Scenario B: Monthly Bronze maintenance plan**
-- Monthly Bronze Sedan Detail: $125 × 12 = $1,500/year
+**Scenario B: Monthly Sedan Maintenance Package**
+- Monthly maintenance visit: $115 × 12 = $1,380/year
 - No automated washes needed
 - Gold Detail every 6 months for sealant refresh: $455 × 2 = $910
 - No paint correction needed
-- **Annual average cost: ~$2,410/year**
+- **Annual cost: ~$2,290/year**
 
-That's more. But here's what you get: a car that looks professionally detailed 365 days a year, paint that doesn't deteriorate, leather that doesn't crack, and a vehicle that holds significantly more resale value. The value of preventing paint correction alone is substantial.
-
-**Scenario C: Monthly Silver maintenance plan** (the most popular choice)
-- Monthly Silver Sedan Detail: ~$215 × 12 = $2,580/year
+**Scenario C: Bi-weekly Sedan Maintenance Package**
+- Bi-weekly maintenance visit: $115 × 26 = $2,990/year
 - Gold Detail twice annually: $910
 - No automated washes, no paint correction
-- **Annual cost: ~$3,490/year**
+- **Annual cost: ~$3,900/year**
 
-For a vehicle worth $30,000–$100,000+, this is maintenance spending in proportion to the asset. Most of our Brentwood and Playa Vista clients on the Silver maintenance plan drive vehicles where protecting the finish has real financial stakes.
+Scenarios B and C cost more up front. Here's what you get: a car that looks professionally cleaned all year, paint that doesn't deteriorate, an interior that never gets stained or musty, and a vehicle that holds more of its resale value. For a vehicle worth $30,000–$100,000+, that's maintenance spending in proportion to the asset. More on this in [how regular car cleaning saves you money](/blog/regular-car-cleaning-saves-money).
 
-## What Monthly Maintenance Prevents
+## What Regular Maintenance Prevents
 
-**Paint contamination buildup:** Every month, your car accumulates brake dust, salt, organic debris, and industrial fallout. Monthly professional washing removes these before they bond into the clear coat.
+**Paint contamination buildup:** Every week, your car accumulates brake dust, salt, organic debris, and industrial fallout. Regular hand washing removes these before they bond into the clear coat.
 
-**Wax depletion:** The Silver package's 3-month wax needs refreshing quarterly. On a monthly Silver plan, you never have unprotected paint — the wax is refreshed before it fails.
+**Wax and sealant depletion:** Grime sitting on the paint breaks protection down early. Gentle, regular washes let Silver wax last its full 3 months and Gold sealant its full 6, and you refresh it before it fails.
 
-**Leather degradation:** Monthly conditioning prevents the dry-out cycle. Leather that's conditioned regularly never reaches the cracking stage. Leather that cracks needs professional restoration — or replacement.
+**Leather and interior wear:** Regular vacuuming and wipe-downs keep grit from grinding into leather and carpet, and conditioning at each Silver or Gold refresh keeps leather from drying out.
 
-**Odor accumulation:** Regular interior cleaning prevents the slow buildup of smells that come from embedded food particles, moisture in carpet fibers, and organic contamination. Monthly vacuuming means smells never have time to settle in.
+**Odor accumulation:** Regular interior cleaning prevents the slow buildup of smells that come from embedded food particles, moisture in carpet fibers, and organic contamination.
 
-**Swirl mark accumulation:** Without monthly hand washing, most LA drivers resort to automated washes between professional details. Every automated wash adds swirl marks. Monthly hand washing is the only way to guarantee your paint never gets scratched between appointments.
+**Swirl mark accumulation:** Without regular hand washing, most LA drivers resort to automated washes between professional details. Every automated wash risks adding swirl marks. A recurring hand wash means your paint doesn't get scratched between appointments.
 
 ## How to Start a Maintenance Plan
 
-1. Book your first detail — we recommend Gold to reset your vehicle to a clean baseline
-2. Schedule recurring monthly appointments at your preferred time
-3. We maintain your vehicle from there
-
-Most maintenance clients see us on the same day and approximate time each month. Your car is always clean before your week starts, before the weekend, or before whatever matters to you.
+1. Book your first detail. We recommend [Silver or Gold](/blog/reset-then-maintain-silver-gold-before-recurring-cleaning) to reset your vehicle to a clean, protected baseline
+2. Choose weekly, bi-weekly, or monthly maintenance
+3. We maintain your vehicle from there, at your home or office
 
 [Call (310) 692-4495](/contact) to set up your plan. We serve [Los Angeles](/locations/los-angeles), [Marina Del Rey](/locations/marina-del-rey), [Santa Monica](/locations/santa-monica), [Culver City](/locations/culver-city), [Venice Beach](/locations/venice-beach), [Playa Vista](/locations/playa-vista), and [Brentwood](/locations/brentwood).`,
   },
@@ -2294,7 +2295,7 @@ At DG Detailing, every question above has a specific, honest answer, and we'd ra
 ];
 
 /** Every post, newest first. */
-export const blogPosts: BlogPost[] = [...october2026Posts, ...fall2026Posts, ...originalPosts].sort((a, b) =>
+export const blogPosts: BlogPost[] = [...november2026Posts, ...october2026Posts, ...fall2026Posts, ...originalPosts].sort((a, b) =>
   b.publishedAt.localeCompare(a.publishedAt),
 );
 

@@ -26,6 +26,20 @@ import {
 import { serviceImages } from "@/lib/siteImages";
 import { areaServedSchema, breadcrumbSchema, faqSchema, imageObjectSchema } from "@/lib/schema";
 import { buildMetadata } from "@/lib/seo";
+import { getBlogPostBySlug } from "@/lib/blog";
+import type { VehicleClass } from "@/lib/services";
+
+/** Blog guides linked from every maintenance page, then per vehicle class. */
+const SHARED_GUIDES = [
+  "weekly-vs-biweekly-vs-monthly-car-cleaning",
+  "regular-car-cleaning-saves-money",
+  "reset-then-maintain-silver-gold-before-recurring-cleaning",
+];
+const VEHICLE_GUIDES: Record<VehicleClass, string[]> = {
+  coupe: ["how-to-keep-an-exotic-car-clean-year-round", "how-often-to-wash-a-black-car-los-angeles"],
+  sedan: ["office-car-washing-culver-city-playa-vista", "keep-leased-car-clean-avoid-lease-return-charges"],
+  "suv-truck": ["keeping-family-suv-clean-kids-pets-beach", "recurring-car-cleaning-santa-monica-marina-del-rey"],
+};
 
 const BASE_URL = "https://www.dgautodetailing.com";
 const BLUE = "#00B8E6";
@@ -48,10 +62,13 @@ export default function MaintenancePage({ pkg }: { pkg: MaintenancePackage }) {
   const faqs = [...pkg.faqs, ...sharedMaintenanceFaqs];
   const otherPackages = maintenancePackages.filter((p) => p.slug !== pkg.slug);
   const vehicleLower = pkg.vehicle.toLowerCase();
+  const guides = [...SHARED_GUIDES, ...VEHICLE_GUIDES[pkg.vehicleClass]]
+    .map((slug) => getBlogPostBySlug(slug))
+    .filter((post) => post !== undefined);
 
   const routines = [
     { icon: CalendarCheck, label: "Weekly", tag: "Best for daily drivers", body: pkg.routines.weekly },
-    { icon: CalendarDays, label: "Bi-Weekly", tag: "Most popular", body: pkg.routines.biweekly, featured: true },
+    { icon: CalendarDays, label: "Bi-Weekly", tag: "Recommended for most", body: pkg.routines.biweekly, featured: true },
     { icon: CalendarClock, label: "Monthly", tag: "Best for garaged vehicles", body: pkg.routines.monthly },
   ];
 
@@ -401,6 +418,28 @@ export default function MaintenancePage({ pkg }: { pkg: MaintenancePackage }) {
                 </details>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* Maintenance guides */}
+        <section className="py-10 sm:py-16 bg-[#0A0A0A] border-t border-white/10" aria-label="Maintenance guides">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-2xl font-black text-white mb-6">Maintenance Guides</h2>
+            <ul className="grid sm:grid-cols-2 gap-4">
+              {guides.map((post) => (
+                <li key={post.slug}>
+                  <Link
+                    href={`/blog/${post.slug}`}
+                    className="block h-full rounded-2xl border border-white/10 hover:border-[#00B8E6]/40 bg-[#161616] p-4 transition-all group"
+                  >
+                    <p className="text-sm font-semibold text-white group-hover:text-[#00B8E6] transition-colors">
+                      {post.title}
+                    </p>
+                    <p className="text-xs text-gray-500 mt-1">{post.readTime} min read</p>
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
         </section>
 

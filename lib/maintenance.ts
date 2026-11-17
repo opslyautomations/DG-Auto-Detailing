@@ -155,7 +155,7 @@ export const maintenancePackages: MaintenancePackage[] = [
       weekly:
         "For heavy commuters, rideshare and business drivers, or anyone who meets clients in their car. Weekly visits keep the interior presentable and the paint free of road film.",
       biweekly:
-        "The most popular choice for sedan owners. Every two weeks keeps the car consistently clean and makes your Silver or Gold protection last its full life.",
+        "Our recommendation for most sedan owners. Every two weeks keeps the car consistently clean and makes your Silver or Gold protection last its full life.",
       monthly:
         "For lighter drivers or garaged sedans. A monthly visit clears the build-up before it turns into stains, etching, or a car that needs a full detail again.",
     },
@@ -204,7 +204,7 @@ export const maintenancePackages: MaintenancePackage[] = [
       weekly:
         "For family haulers, pet owners, and work trucks. Weekly visits keep sand, crumbs, and hair from grinding into the carpet and seats.",
       biweekly:
-        "The most popular choice for SUV owners. Every two weeks keeps the large paint surfaces and the cabin consistently clean and protects your Silver or Gold finish.",
+        "Our recommendation for most SUV owners. Every two weeks keeps the large paint surfaces and the cabin consistently clean and protects your Silver or Gold finish.",
       monthly:
         "For lighter-use SUVs and weekend trucks. A monthly visit clears the build-up before it turns into stains, odors, or a vehicle that needs a full detail again.",
     },
@@ -234,7 +234,7 @@ export const sharedMaintenanceFaqs: ServiceFAQ[] = [
   {
     question: "Should I choose weekly, bi-weekly, or monthly?",
     answer:
-      "Bi-weekly is the most popular routine. Choose weekly if you drive daily, park outside, live near the coast, or have kids or pets. Monthly works well for garaged or low-mileage vehicles. Not sure? Call us at (310) 692-4495 and we'll recommend a routine for how you drive.",
+      "Bi-weekly is what we recommend for most drivers. Choose weekly if you drive daily, park outside, live near the coast, or have kids or pets. Monthly works well for garaged or low-mileage vehicles. Not sure? Call us at (310) 692-4495 and we'll recommend a routine for how you drive.",
   },
   {
     question: "How does frequent cleaning save me money?",
