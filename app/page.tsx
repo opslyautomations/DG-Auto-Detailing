@@ -23,7 +23,7 @@ const homeGalleryPreview = [
 
 export default function HomePage() {
   const featuredReviews = getFeaturedReviews();
-  const tiers: ServiceTier[] = ["basic", "silver", "gold"];
+  const tiers: ServiceTier[] = ["bronze", "silver", "gold"];
 
   return (
     <>

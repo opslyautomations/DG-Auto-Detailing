@@ -40,17 +40,17 @@ const DG_CREDIT: ImageCredit = {
   copyright: "© DG Detailing. All rights reserved.",
 };
 
-/** Keyed by service slug (plus "ceramic-coating"). */
+/** Keyed by service slug (plus "ceramic-coating" and the maintenance package slugs). */
 export const serviceImages: Record<string, SiteImage> = {
-  "basic-coupe-detail": {
-    src: "/images/services/basic-coupe-detail-mercedes-amg-gt-foam-hand-wash.jpg",
-    ogSrc: "/images/og/basic-coupe-detail-mercedes-amg-gt-foam-hand-wash-og.jpg",
+  "bronze-coupe-detail": {
+    src: "/images/services/bronze-coupe-detail-mercedes-amg-gt-foam-hand-wash.jpg",
+    ogSrc: "/images/og/bronze-coupe-detail-mercedes-amg-gt-foam-hand-wash-og.jpg",
     width: 1600,
     height: 1200,
-    alt: "Mercedes-AMG GT coupe covered in thick snow foam during a Basic Coupe Detail hand wash by DG Detailing in Los Angeles",
-    title: "Basic Coupe Detail — Mercedes-AMG GT foam hand wash",
-    caption: "Basic Coupe Detail: snow foam pre-wash on a Mercedes-AMG GT before a pH-balanced hand wash.",
-    keywords: ["basic coupe detail", "coupe hand wash", "Mercedes-AMG GT detailing", "snow foam pre-wash", "mobile car wash Los Angeles"],
+    alt: "Mercedes-AMG GT coupe covered in thick snow foam during a Bronze Coupe Detail hand wash by DG Detailing in Los Angeles",
+    title: "Bronze Coupe Detail — Mercedes-AMG GT foam hand wash",
+    caption: "Bronze Coupe Detail: snow foam pre-wash on a Mercedes-AMG GT before a pH-balanced hand wash.",
+    keywords: ["bronze coupe detail", "coupe hand wash", "Mercedes-AMG GT detailing", "snow foam pre-wash", "mobile car wash Los Angeles"],
     vehicles: [
       { name: "Mercedes-AMG GT", type: "Coupe" },
     ],
@@ -58,15 +58,15 @@ export const serviceImages: Record<string, SiteImage> = {
       DG_CREDIT,
     ],
   },
-  "basic-sedan-detail": {
-    src: "/images/services/basic-sedan-detail-toyota-camry-foam-hand-wash.jpg",
-    ogSrc: "/images/og/basic-sedan-detail-toyota-camry-foam-hand-wash-og.jpg",
+  "bronze-sedan-detail": {
+    src: "/images/services/bronze-sedan-detail-toyota-camry-foam-hand-wash.jpg",
+    ogSrc: "/images/og/bronze-sedan-detail-toyota-camry-foam-hand-wash-og.jpg",
     width: 1600,
     height: 1200,
-    alt: "Toyota Camry sedan covered in snow foam during a Basic Sedan Detail mobile hand wash on a Los Angeles street",
-    title: "Basic Sedan Detail — Toyota Camry foam hand wash",
-    caption: "Basic Sedan Detail: foam pre-wash on a Toyota Camry, washed curbside with DG Detailing's own water supply.",
-    keywords: ["basic sedan detail", "sedan hand wash", "Toyota Camry detailing", "mobile car wash Los Angeles", "foam pre-wash"],
+    alt: "Toyota Camry sedan covered in snow foam during a Bronze Sedan Detail mobile hand wash on a Los Angeles street",
+    title: "Bronze Sedan Detail — Toyota Camry foam hand wash",
+    caption: "Bronze Sedan Detail: foam pre-wash on a Toyota Camry, washed curbside with DG Detailing's own water supply.",
+    keywords: ["bronze sedan detail", "sedan hand wash", "Toyota Camry detailing", "mobile car wash Los Angeles", "foam pre-wash"],
     vehicles: [
       { name: "Toyota Camry", type: "Sedan" },
     ],
@@ -74,15 +74,15 @@ export const serviceImages: Record<string, SiteImage> = {
       DG_CREDIT,
     ],
   },
-  "basic-suv-truck-detail": {
-    src: "/images/services/basic-suv-truck-detail-ford-raptor-pickup-truck-foam-hand-wash.jpg",
-    ogSrc: "/images/og/basic-suv-truck-detail-ford-raptor-pickup-truck-foam-hand-wash-og.jpg",
+  "bronze-suv-truck-detail": {
+    src: "/images/services/bronze-suv-truck-detail-ford-raptor-pickup-truck-foam-hand-wash.jpg",
+    ogSrc: "/images/og/bronze-suv-truck-detail-ford-raptor-pickup-truck-foam-hand-wash-og.jpg",
     width: 1600,
     height: 1200,
-    alt: "Ford F-150 Raptor pickup truck covered in snow foam during a Basic SUV / Truck Detail hand wash in a Los Angeles driveway",
-    title: "Basic SUV / Truck Detail — Ford Raptor pickup truck foam hand wash",
-    caption: "Basic SUV / Truck Detail: snow foam loosens road grime across a full-size Ford Raptor pickup before hand washing.",
-    keywords: ["basic truck detail", "pickup truck hand wash", "Ford Raptor detailing", "truck foam wash", "mobile truck wash Los Angeles"],
+    alt: "Ford F-150 Raptor pickup truck covered in snow foam during a Bronze SUV / Truck Detail hand wash in a Los Angeles driveway",
+    title: "Bronze SUV / Truck Detail — Ford Raptor pickup truck foam hand wash",
+    caption: "Bronze SUV / Truck Detail: snow foam loosens road grime across a full-size Ford Raptor pickup before hand washing.",
+    keywords: ["bronze truck detail", "pickup truck hand wash", "Ford Raptor detailing", "truck foam wash", "mobile truck wash Los Angeles"],
     vehicles: [
       { name: "Ford F-150 Raptor", type: "Pickup truck" },
     ],
@@ -218,6 +218,72 @@ export const serviceImages: Record<string, SiteImage> = {
     ],
     credits: [
       DG_CREDIT,
+    ],
+  },
+  "coupe-maintenance-package": {
+    src: "/images/services/coupe-maintenance-package-ferrari-488-gtb-red-coupe.jpg",
+    ogSrc: "/images/og/coupe-maintenance-package-ferrari-488-gtb-red-coupe-og.jpg",
+    width: 1600,
+    height: 1200,
+    alt: "Red Ferrari 488 GTB coupe at speed, the kind of high-end coupe kept clean on a DG Detailing Coupe Maintenance Package in Los Angeles",
+    title: "Coupe Maintenance Package — red Ferrari 488 GTB",
+    caption: "Coupe Maintenance Package: weekly, bi-weekly or monthly hand washes keep exotic coupes like this Ferrari 488 GTB showroom-clean.",
+    keywords: ["coupe maintenance package", "recurring car cleaning Los Angeles", "Ferrari detailing", "exotic car maintenance wash", "weekly car wash Santa Monica"],
+    vehicles: [
+      { name: "Ferrari 488 GTB", type: "Coupe" },
+    ],
+    credits: [
+      {
+        creator: "Joshua Kleinholz (U.S. Air Force)",
+        license: "Public domain",
+        licenseUrl: "https://creativecommons.org/publicdomain/mark/1.0/",
+        sourceUrl: "https://commons.wikimedia.org/wiki/File:Ferrari_488_GTB_at_Exotics_Racing_in_Las_Vegas.jpg",
+        copyright: "Public domain (work of the U.S. federal government)",
+      },
+    ],
+  },
+  "sedan-maintenance-package": {
+    src: "/images/services/sedan-maintenance-package-mercedes-benz-s-class-sedan.jpg",
+    ogSrc: "/images/og/sedan-maintenance-package-mercedes-benz-s-class-sedan-og.jpg",
+    width: 1600,
+    height: 1200,
+    alt: "Silver Mercedes-Benz S-Class luxury sedan with a clean, glossy finish, the kind of sedan kept clean on a DG Detailing Sedan Maintenance Package in Los Angeles",
+    title: "Sedan Maintenance Package — Mercedes-Benz S-Class sedan",
+    caption: "Sedan Maintenance Package: recurring hand washes and interior wipe-downs keep luxury sedans like this Mercedes-Benz S-Class looking new.",
+    keywords: ["sedan maintenance package", "recurring car cleaning Los Angeles", "Mercedes-Benz S-Class detailing", "bi-weekly car wash", "mobile car wash Culver City"],
+    vehicles: [
+      { name: "Mercedes-Benz S-Class", type: "Sedan" },
+    ],
+    credits: [
+      {
+        creator: "OSX",
+        license: "Public domain",
+        licenseUrl: "https://creativecommons.org/publicdomain/mark/1.0/",
+        sourceUrl: "https://commons.wikimedia.org/wiki/File:2012_Mercedes-Benz_S_350_(W_221_MY11)_BlueEFFICIENCY_sedan_(2012-10-26)_01.jpg",
+        copyright: "Public domain",
+      },
+    ],
+  },
+  "suv-truck-maintenance-package": {
+    src: "/images/services/suv-truck-maintenance-package-cadillac-escalade-luxury-suv.jpg",
+    ogSrc: "/images/og/suv-truck-maintenance-package-cadillac-escalade-luxury-suv-og.jpg",
+    width: 1600,
+    height: 1200,
+    alt: "Red Cadillac Escalade Sport Platinum luxury SUV with a deep glossy finish, the kind of SUV kept clean on a DG Detailing SUV / Truck Maintenance Package in Los Angeles",
+    title: "SUV / Truck Maintenance Package — Cadillac Escalade luxury SUV",
+    caption: "SUV / Truck Maintenance Package: scheduled maintenance washes keep full-size luxury SUVs like the Cadillac Escalade clean between full details.",
+    keywords: ["SUV maintenance package", "truck maintenance wash", "recurring car cleaning Los Angeles", "Cadillac Escalade detailing", "monthly SUV detail Brentwood"],
+    vehicles: [
+      { name: "Cadillac Escalade Sport Platinum", type: "SUV" },
+    ],
+    credits: [
+      {
+        creator: "HJUdall",
+        license: "CC0 1.0",
+        licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/",
+        sourceUrl: "https://commons.wikimedia.org/wiki/File:23_Cadillac_Escalade_Sport_Platinum_(1).jpg",
+        copyright: "No known copyright restrictions",
+      },
     ],
   },
 };
@@ -373,10 +439,10 @@ export const blogImages: Record<string, SiteImage> = {
     ogSrc: "/images/og/basic-car-detail-toyota-camry-foam-hand-wash-og.jpg",
     width: 1600,
     height: 900,
-    alt: "Toyota Camry covered in snow foam during the hand-wash step of a basic car detail on a Los Angeles street",
-    title: "What's included in a basic car detail — foam hand wash",
-    caption: "The hand wash at the heart of a basic detail: snow foam loosens dirt before the mitt touches the paint.",
-    keywords: ["basic car detail", "what is included in a car detail", "hand car wash Los Angeles", "foam pre-wash"],
+    alt: "Toyota Camry covered in snow foam during the hand-wash step of a Bronze car detail on a Los Angeles street",
+    title: "What's included in a Bronze car detail — foam hand wash",
+    caption: "The hand wash at the heart of a Bronze Detail: snow foam loosens dirt before the mitt touches the paint.",
+    keywords: ["bronze car detail", "what is included in a car detail", "hand car wash Los Angeles", "foam pre-wash"],
     vehicles: [
       { name: "Toyota Camry", type: "Sedan" },
     ],
@@ -389,10 +455,10 @@ export const blogImages: Record<string, SiteImage> = {
     ogSrc: "/images/og/silver-vs-basic-detail-dodge-challenger-wax-finish-og.jpg",
     width: 1600,
     height: 900,
-    alt: "Orange Dodge Challenger with a glossy waxed finish after a Silver Detail, compared with a basic detail",
-    title: "Silver vs. Basic Detail — waxed Dodge Challenger",
-    caption: "A Silver Detail adds 3-month wax protection on top of everything in a Basic Detail.",
-    keywords: ["silver vs basic detail", "car wax detail", "Dodge Challenger detailing", "car detailing packages"],
+    alt: "Orange Dodge Challenger with a glossy waxed finish after a Silver Detail, compared with a Bronze Detail",
+    title: "Silver vs. Bronze Detail — waxed Dodge Challenger",
+    caption: "A Silver Detail adds 3-month wax protection on top of everything in a Bronze Detail.",
+    keywords: ["silver vs bronze detail", "car wax detail", "Dodge Challenger detailing", "car detailing packages"],
     vehicles: [
       { name: "Dodge Challenger", type: "Coupe" },
     ],

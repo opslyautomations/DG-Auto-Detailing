@@ -1,4 +1,4 @@
-export type ServiceTier = "basic" | "silver" | "gold";
+export type ServiceTier = "bronze" | "silver" | "gold";
 export type VehicleClass = "coupe" | "sedan" | "suv-truck";
 
 export interface ServiceFAQ {
@@ -20,17 +20,17 @@ export interface Service {
   relatedSlugs: string[];
 }
 
-const basicBenefits = [
+const bronzeBenefits = [
   "Hand-washed by a professional — never automated brushes that scratch your paint.",
   "Quick, thorough, and affordable — ideal for between-detail upkeep.",
   "We come to you — your driveway, garage, or office parking lot.",
 ];
 
-const basicFaqs: ServiceFAQ[] = [
+const bronzeFaqs: ServiceFAQ[] = [
   {
     question: "How is this different from a regular car wash?",
     answer:
-      "Every basic detail is hand-washed with pH-balanced shampoos and microfiber towels — no automated tunnels that scratch clear coats and miss interior detail.",
+      "Every Bronze Detail is hand-washed with pH-balanced shampoos and microfiber towels — no automated tunnels that scratch clear coats and miss interior detail.",
   },
   {
     question: "Do I need to be home?",
@@ -38,16 +38,16 @@ const basicFaqs: ServiceFAQ[] = [
       "No, as long as the vehicle is accessible. We bring our own water and power if needed.",
   },
   {
-    question: "How often should I get a basic detail?",
+    question: "How often should I get a Bronze Detail?",
     answer:
-      "Every 4–6 weeks for most LA drivers. Ask about our maintenance plan.",
+      "Every 4–6 weeks for most LA drivers. For weekly, bi-weekly, or monthly upkeep, see our Maintenance Packages.",
   },
 ];
 
 const silverBenefits = [
   "Adds protection — wax sealant guards your paint from sun, salt air, and bird damage for up to 3 months.",
   "Restores leather and plastic — interior surfaces protected from UV cracking and fading.",
-  "Step up from the basic — perfect for owners who want their car to look factory-fresh longer.",
+  "Step up from Bronze — perfect for owners who want their car to look factory-fresh longer.",
 ];
 
 const silverFaqs: ServiceFAQ[] = [
@@ -94,9 +94,9 @@ const goldFaqs: ServiceFAQ[] = [
 
 export const services: Service[] = [
   {
-    slug: "basic-coupe-detail",
-    name: "Basic Coupe Detail",
-    tier: "basic",
+    slug: "bronze-coupe-detail",
+    name: "Bronze Coupe Detail",
+    tier: "bronze",
     vehicleClass: "coupe",
     priceFrom: 105,
     duration: "1 hr 30 min",
@@ -107,14 +107,14 @@ export const services: Service[] = [
       "High-Gloss Detail Spray",
       "Tire Shine",
     ],
-    benefits: basicBenefits,
-    faqs: basicFaqs,
-    relatedSlugs: ["silver-coupe-detail", "gold-coupe-detail", "basic-sedan-detail"],
+    benefits: bronzeBenefits,
+    faqs: bronzeFaqs,
+    relatedSlugs: ["silver-coupe-detail", "gold-coupe-detail", "bronze-sedan-detail"],
   },
   {
-    slug: "basic-sedan-detail",
-    name: "Basic Sedan Detail",
-    tier: "basic",
+    slug: "bronze-sedan-detail",
+    name: "Bronze Sedan Detail",
+    tier: "bronze",
     vehicleClass: "sedan",
     priceFrom: 125,
     duration: "2 hrs",
@@ -125,14 +125,14 @@ export const services: Service[] = [
       "High-Gloss Detail Spray",
       "Tire Shine",
     ],
-    benefits: basicBenefits,
-    faqs: basicFaqs,
-    relatedSlugs: ["silver-sedan-detail", "gold-sedan-detail", "basic-coupe-detail"],
+    benefits: bronzeBenefits,
+    faqs: bronzeFaqs,
+    relatedSlugs: ["silver-sedan-detail", "gold-sedan-detail", "bronze-coupe-detail"],
   },
   {
-    slug: "basic-suv-truck-detail",
-    name: "Basic SUV / Truck Detail",
-    tier: "basic",
+    slug: "bronze-suv-truck-detail",
+    name: "Bronze SUV / Truck Detail",
+    tier: "bronze",
     vehicleClass: "suv-truck",
     priceFrom: 155,
     duration: "2 hrs",
@@ -143,9 +143,9 @@ export const services: Service[] = [
       "High-Gloss Detail Spray",
       "Tire Shine",
     ],
-    benefits: basicBenefits,
-    faqs: basicFaqs,
-    relatedSlugs: ["silver-suv-truck-detail", "gold-suv-truck-detail", "basic-sedan-detail"],
+    benefits: bronzeBenefits,
+    faqs: bronzeFaqs,
+    relatedSlugs: ["silver-suv-truck-detail", "gold-suv-truck-detail", "bronze-sedan-detail"],
   },
   {
     slug: "silver-coupe-detail",
@@ -154,16 +154,16 @@ export const services: Service[] = [
     vehicleClass: "coupe",
     priceFrom: 185,
     duration: "2 hrs 30 min",
-    shortDescription: "Everything in Basic plus leather conditioning, 3-month wax protection, and plastic protectant for coupes.",
+    shortDescription: "Everything in Bronze plus leather conditioning, 3-month wax protection, and plastic protectant for coupes.",
     inclusions: [
-      "Everything in Basic Detail",
+      "Everything in Bronze Detail",
       "Leather Conditioning",
       "Wax for 3 Month Protection",
       "Plastic Protectant on Interior and Exterior",
     ],
     benefits: silverBenefits,
     faqs: silverFaqs,
-    relatedSlugs: ["basic-coupe-detail", "gold-coupe-detail", "silver-sedan-detail"],
+    relatedSlugs: ["bronze-coupe-detail", "gold-coupe-detail", "silver-sedan-detail"],
   },
   {
     slug: "silver-sedan-detail",
@@ -172,16 +172,16 @@ export const services: Service[] = [
     vehicleClass: "sedan",
     priceFrom: 215,
     duration: "3 hrs",
-    shortDescription: "Everything in Basic plus leather conditioning, 3-month wax protection, and plastic protectant for sedans.",
+    shortDescription: "Everything in Bronze plus leather conditioning, 3-month wax protection, and plastic protectant for sedans.",
     inclusions: [
-      "Everything in Basic Detail",
+      "Everything in Bronze Detail",
       "Leather Conditioning",
       "Wax for 3 Month Protection",
       "Plastic Protectant on Interior and Exterior",
     ],
     benefits: silverBenefits,
     faqs: silverFaqs,
-    relatedSlugs: ["basic-sedan-detail", "gold-sedan-detail", "silver-coupe-detail"],
+    relatedSlugs: ["bronze-sedan-detail", "gold-sedan-detail", "silver-coupe-detail"],
   },
   {
     slug: "silver-suv-truck-detail",
@@ -190,16 +190,16 @@ export const services: Service[] = [
     vehicleClass: "suv-truck",
     priceFrom: 265,
     duration: "3 hrs 30 min",
-    shortDescription: "Everything in Basic plus leather conditioning, 3-month wax protection, and plastic protectant for SUVs & trucks.",
+    shortDescription: "Everything in Bronze plus leather conditioning, 3-month wax protection, and plastic protectant for SUVs & trucks.",
     inclusions: [
-      "Everything in Basic Detail",
+      "Everything in Bronze Detail",
       "Leather Conditioning",
       "Wax for 3 Month Protection",
       "Plastic Protectant on Interior and Exterior",
     ],
     benefits: silverBenefits,
     faqs: silverFaqs,
-    relatedSlugs: ["basic-suv-truck-detail", "gold-suv-truck-detail", "silver-sedan-detail"],
+    relatedSlugs: ["bronze-suv-truck-detail", "gold-suv-truck-detail", "silver-sedan-detail"],
   },
   {
     slug: "gold-coupe-detail",
@@ -271,19 +271,19 @@ export function getServiceBySlug(slug: string): Service | undefined {
 }
 
 export const tierLabels: Record<ServiceTier, string> = {
-  basic: "Basic",
+  bronze: "Bronze",
   silver: "Silver",
   gold: "Gold",
 };
 
 export const tierDescriptions: Record<ServiceTier, string> = {
-  basic: "Professional hand wash & interior clean — the perfect regular refresh.",
-  silver: "Everything in Basic plus wax protection, leather care, and plastic protectant.",
+  bronze: "Professional hand wash & interior clean — the perfect regular refresh.",
+  silver: "Everything in Bronze plus wax protection, leather care, and plastic protectant.",
   gold: "Full restoration with clay bar, 6-month sealant, deep carpet & seat shampoo, and steam clean.",
 };
 
 export const tierColors: Record<ServiceTier, string> = {
-  basic: "from-zinc-700 to-zinc-800",
+  bronze: "from-orange-800 to-stone-900",
   silver: "from-slate-500 to-slate-700",
   gold: "from-yellow-600 to-amber-800",
 };

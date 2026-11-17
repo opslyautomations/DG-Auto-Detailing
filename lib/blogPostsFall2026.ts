@@ -980,7 +980,7 @@ Stains, odors, a sticky spill, a scratch you're worried about — mention it whe
 
 ## During the Appointment
 
-Most details take between about 1.5 and 6 hours depending on the package and vehicle size — a Basic coupe detail is quickest, a Gold SUV detail the longest. Ceramic coating takes longer. Feel free to check in along the way, or just come back when it's done.
+Most details take between about 1.5 and 6 hours depending on the package and vehicle size — a Bronze coupe detail is quickest, a Gold SUV detail the longest. Ceramic coating takes longer. Feel free to check in along the way, or just come back when it's done.
 
 ## After the Detail
 

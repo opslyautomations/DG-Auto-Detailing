@@ -1,6 +1,15 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // The entry tier was renamed from Basic to Bronze. Keep the old URLs (and
+  // whatever ranking/backlinks they earned) pointing at the new pages.
+  async redirects() {
+    return ["coupe", "sedan", "suv-truck"].map((v) => ({
+      source: `/services/basic-${v}-detail`,
+      destination: `/services/bronze-${v}-detail`,
+      permanent: true,
+    }));
+  },
   images: {
     // AVIF first (~35% smaller than WebP on photos), WebP as the fallback.
     formats: ["image/avif", "image/webp"],

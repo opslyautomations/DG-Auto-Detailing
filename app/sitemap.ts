@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { services } from "@/lib/services";
 import { locations } from "@/lib/locations";
+import { maintenancePackages } from "@/lib/maintenance";
 import { blogPosts } from "@/lib/blog";
 import { serviceImages, locationImages, blogImages } from "@/lib/siteImages";
 
@@ -37,6 +38,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
+  const maintenancePages: MetadataRoute.Sitemap = maintenancePackages.map((p) => ({
+    url: `${BASE_URL}/services/${p.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly",
+    priority: 0.9,
+    images: [`${BASE_URL}${serviceImages[p.slug].src}`],
+  }));
+
   const locationPages: MetadataRoute.Sitemap = locations.map((l) => ({
     url: `${BASE_URL}/locations/${l.slug}`,
     lastModified: new Date(),
@@ -53,5 +62,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...(blogImages[p.slug] && { images: [`${BASE_URL}${blogImages[p.slug].src}`] }),
   }));
 
-  return [...staticPages, ...servicePages, ...ceramicCoatingPage, ...locationPages, ...blogPages];
+  return [...staticPages, ...servicePages, ...maintenancePages, ...ceramicCoatingPage, ...locationPages, ...blogPages];
 }

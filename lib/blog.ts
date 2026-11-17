@@ -21,20 +21,20 @@ const originalPosts: BlogPost[] = [
   // ─── SERVICE GUIDES (9) ──────────────────────────────────────────────
   {
     slug: "what-is-included-in-a-basic-car-detail",
-    title: "What's Actually Included in a Basic Car Detail (And Why It Matters)",
+    title: "What's Actually Included in a Bronze Car Detail (And Why It Matters)",
     description:
-      "A basic car detail is more than a car wash — here's exactly what's included, what a professional does differently, and why it matters for your paint.",
+      "Our Bronze Detail is more than a car wash — here's exactly what's included, what a professional does differently, and why it matters for your paint.",
     category: "Service Guide",
-    service: "basic-coupe-detail",
+    service: "bronze-coupe-detail",
     publishedAt: "2026-01-08",
     updatedAt: "2026-01-08",
     author: "Diego",
     readTime: 6,
-    body: `## What Is a Basic Car Detail?
+    body: `## What Is a Bronze Car Detail?
 
-Most people have heard the term "basic detail," but very few know what actually happens during one — or why it's fundamentally different from a regular car wash. Let me walk you through exactly what our Basic Detail includes, what each step does, and why the sequence matters.
+Most shops call it a "basic detail." We call ours the Bronze Detail, and very few people know what actually happens during one — or why it's fundamentally different from a regular car wash. Let me walk you through exactly what our Bronze Detail includes, what each step does, and why the sequence matters.
 
-At DG Detailing, our Basic Detail covers four core services: an exterior hand wash, interior vacuuming and surface wipe-down, a high-gloss detail spray application, and tire dressing. Those four steps sound simple. The difference is in how they're done.
+At DG Detailing, our Bronze Detail covers four core services: an exterior hand wash, interior vacuuming and surface wipe-down, a high-gloss detail spray application, and tire dressing. Those four steps sound simple. The difference is in how they're done.
 
 ## The Exterior Hand Wash
 
@@ -73,19 +73,19 @@ Here's the difference in plain terms. A drive-through car wash:
 - Skips interior entirely (unless you pay extra)
 - Provides zero protection after the rinse
 
-A DG Detailing Basic Detail:
+A DG Detailing Bronze Detail:
 - Washes entirely by hand with paint-safe products
 - Vacuums and cleans the interior properly
 - Leaves a protective detail spray layer on paint
 - Dresses tires for a complete, finished look
 
-## Who the Basic Detail Is For
+## Who the Bronze Detail Is For
 
-The Basic Detail is ideal for regular maintenance. If you're already on a Silver or Gold schedule, a Basic Detail in between keeps your car looking sharp without the time and cost of a full protection package.
+The Bronze Detail is ideal for regular maintenance. If you're already on a Silver or Gold schedule, a Bronze Detail in between keeps your car looking sharp without the time and cost of a full protection package.
 
 It's also an excellent starting point for clients who've never had a professional detail — a clean baseline from which to assess your car's actual condition and decide on the right next step.
 
-## How Often Should You Book a Basic Detail?
+## How Often Should You Book a Bronze Detail?
 
 Every 4–6 weeks for most LA drivers. Los Angeles's combination of UV, coastal salt air, and freeway grime means contamination builds up faster here than in most cities. Monthly maintenance prevents that buildup from bonding into the paint.
 
@@ -93,14 +93,14 @@ Ready to book? [Call (310) 692-4495](/contact) or book online. We come to your h
 
 ## Related Services
 
-If you're interested in adding wax protection, leather conditioning, and plastic treatment to a basic hand wash, our [Silver Detail packages](/services/silver-sedan-detail) start at $185 for coupes. For the full restoration with clay bar and 6-month sealant, our [Gold Detail packages](/services/gold-sedan-detail) start at $425.`,
+If you're interested in adding wax protection, leather conditioning, and plastic treatment to the Bronze hand wash, our [Silver Detail packages](/services/silver-sedan-detail) start at $185 for coupes. For the full restoration with clay bar and 6-month sealant, our [Gold Detail packages](/services/gold-sedan-detail) start at $425.`,
   },
 
   {
     slug: "silver-vs-basic-detail-comparison",
-    title: "Silver vs. Basic Detail: Which One Does Your Car Actually Need?",
+    title: "Silver vs. Bronze Detail: Which One Does Your Car Actually Need?",
     description:
-      "Deciding between a Basic and Silver detail? Here's exactly what changes between the two packages, and how to choose based on your car's condition.",
+      "Deciding between a Bronze and Silver detail? Here's exactly what changes between the two packages, and how to choose based on your car's condition.",
     category: "Service Guide",
     service: "silver-sedan-detail",
     publishedAt: "2026-01-15",
@@ -109,19 +109,19 @@ If you're interested in adding wax protection, leather conditioning, and plastic
     readTime: 6,
     body: `## The Core Question
 
-When clients first contact DG Detailing, one of the most common questions is: "Is the Basic good enough, or do I need Silver?" It's a fair question — the price difference is meaningful (starting at $105 vs. $185 for coupes), and you want to spend it on something that actually makes a difference.
+When clients first contact DG Detailing, one of the most common questions is: "Is the Bronze good enough, or do I need Silver?" It's a fair question — the price difference is meaningful (starting at $105 vs. $185 for coupes), and you want to spend it on something that actually makes a difference.
 
 Here's the honest answer: the right choice depends on three factors — where you park your car, how often you wash it, and the current condition of your paint and interior.
 
 ## What Each Package Includes
 
-**Basic Detail includes:**
+**Bronze Detail includes:**
 - Exterior hand wash (pH-balanced, microfiber, two-bucket method)
 - Interior vacuuming and surface wipe-down
 - High-gloss detail spray
 - Tire shine
 
-**Silver Detail adds on top of Basic:**
+**Silver Detail adds on top of Bronze:**
 - Leather conditioning
 - Wax for 3-month protection
 - Plastic protectant (interior and exterior)
@@ -150,7 +150,7 @@ The conditioner we use is a matte-finish, non-greasy formula that:
 - Creates a UV-blocking layer that slows fading
 - Leaves surfaces feeling supple and clean, not sticky or shiny
 
-If you have leather seats and you're in LA, the Silver package's conditioning step alone justifies the upgrade from Basic.
+If you have leather seats and you're in LA, the Silver package's conditioning step alone justifies the upgrade from Bronze.
 
 ### Plastic Protectant
 
@@ -158,11 +158,11 @@ Interior and exterior plastic age visibly without protection. That chalky, faded
 
 The plastic protectant we apply creates a UV-absorbing layer that maintains the rich color and texture of both interior and exterior plastic. It's applied to dashboard panels, door trim, exterior bumpers, mud guards, and any exposed black trim.
 
-## When Basic Is Enough
+## When Bronze Is Enough
 
-The Basic Detail is genuinely the right choice in these situations:
+The Bronze Detail is genuinely the right choice in these situations:
 
-- **You already have a Silver or Gold schedule and want in-between maintenance.** Monthly Basic details keep your protected car looking sharp between quarterly Silver or bi-annual Gold visits.
+- **You already have a Silver or Gold schedule and want in-between maintenance.** Monthly Bronze details keep your protected car looking sharp between quarterly Silver or bi-annual Gold visits.
 - **Your car is less than 6 months old and parked in a garage.** New cars with intact factory protection and minimal UV exposure don't urgently need additional wax every 4–6 weeks.
 - **Your budget is the primary constraint right now.** A professional hand wash every month is far better for your paint than one Silver detail per year.
 
@@ -177,7 +177,7 @@ Choose Silver if any of these apply:
 
 ## The Maintenance Plan Approach
 
-Many of our clients run a combination: **Silver every 6–8 weeks, Basic in between.** This keeps continuous protection on the paint without the cost of a full Silver at every visit. The math works out to two Silver details every 3 months, which keeps that synthetic wax fresh and your leather conditioned consistently.
+Many of our clients run a combination: **Silver every 6–8 weeks, Bronze in between.** This keeps continuous protection on the paint without the cost of a full Silver at every visit. The math works out to two Silver details every 3 months, which keeps that synthetic wax fresh and your leather conditioned consistently.
 
 ## Upgrade Path
 
@@ -280,7 +280,7 @@ Interior: genuinely fresh smell, clean carpets and seats, sanitized hard surface
 
 ## How Often Should You Book Gold?
 
-For most LA drivers, twice a year — every 5–6 months. The 6-month sealant drives this schedule naturally. Between Gold visits, monthly Basic or Silver details maintain the result.
+For most LA drivers, twice a year — every 5–6 months. The 6-month sealant drives this schedule naturally. Between Gold visits, monthly Bronze or Silver details maintain the result.
 
 [Book your Gold Detail](/contact) or call [(310) 692-4495](tel:+13106924495). We serve all of Greater Los Angeles.`,
   },
@@ -313,13 +313,13 @@ Some vehicles fall between categories. When in doubt, we price by actual size an
 
 Coupes have the smallest surface area of any vehicle category we service. Less hood, smaller roof, smaller trunk lid, no rear doors. That translates directly to fewer panels to wash, fewer surfaces to clay bar, fewer areas to apply sealant.
 
-Inside, coupes typically have less seating area and smaller carpet footprints. Our [Basic Coupe Detail](/services/basic-coupe-detail) starts at $105 and takes about 90 minutes. That 90 minutes reflects the actual scope of a properly executed detail on a two-door vehicle.
+Inside, coupes typically have less seating area and smaller carpet footprints. Our [Bronze Coupe Detail](/services/bronze-coupe-detail) starts at $105 and takes about 90 minutes. That 90 minutes reflects the actual scope of a properly executed detail on a two-door vehicle.
 
 ## Why Sedans Cost More
 
 Standard four-door sedans are the most common vehicle we detail across Greater LA. More surface area than a coupe, more interior space — but not dramatically larger. The pricing difference between coupe and sedan (roughly $20–$30 per tier) reflects the additional time required, not a different quality of work.
 
-Our [Basic Sedan Detail](/services/basic-sedan-detail) starts at $125 and takes about 2 hours.
+Our [Bronze Sedan Detail](/services/bronze-sedan-detail) starts at $125 and takes about 2 hours.
 
 ## Why SUVs and Trucks Cost Most
 
@@ -347,7 +347,7 @@ Here's our complete pricing at a glance:
 
 | Package | Coupe | Sedan | SUV/Truck |
 |---------|-------|-------|-----------|
-| Basic   | From $105 | From $125 | From $155 |
+| Bronze   | From $105 | From $125 | From $155 |
 | Silver  | From $185 | From $215 | From $265 |
 | Gold    | From $425 | From $455 | From $505 |
 
@@ -380,7 +380,7 @@ This pattern costs more money and produces worse results than consistent monthly
 
 ## What the Monthly Maintenance Plan Is
 
-The maintenance plan is a recurring monthly appointment. You choose a service tier — most maintenance clients choose Basic or Silver — and we schedule a recurring appointment at your location on a consistent schedule.
+The maintenance plan is a recurring monthly appointment. You choose a service tier — most maintenance clients choose Bronze or Silver — and we schedule a recurring appointment at your location on a consistent schedule.
 
 That's it. No complicated contracts, no hidden fees. We show up monthly, you always have a professionally detailed car.
 
@@ -394,8 +394,8 @@ Let me run the numbers honestly.
 - Paint correction every 2–3 years due to swirl damage: $300–$600
 - **Annual average cost: ~$900–$1,100/year + paint degradation**
 
-**Scenario B: Monthly Basic maintenance plan**
-- Monthly Basic Sedan Detail: $125 × 12 = $1,500/year
+**Scenario B: Monthly Bronze maintenance plan**
+- Monthly Bronze Sedan Detail: $125 × 12 = $1,500/year
 - No automated washes needed
 - Gold Detail every 6 months for sealant refresh: $455 × 2 = $910
 - No paint correction needed
@@ -606,7 +606,7 @@ A ceramic coating (also called nano-ceramic coating or glass coating) is a liqui
 
 ## Our Recommendation
 
-For the majority of DG Detailing clients: start with the [Gold Detail](/services/gold-coupe-detail), maintain monthly with Basic or Silver, and evaluate ceramic coating when you're ready for a longer-term investment. The Gold sealant provides excellent protection for LA conditions, and we'll tell you honestly when your vehicle would benefit from ceramic.
+For the majority of DG Detailing clients: start with the [Gold Detail](/services/gold-coupe-detail), maintain monthly with Bronze or Silver, and evaluate ceramic coating when you're ready for a longer-term investment. The Gold sealant provides excellent protection for LA conditions, and we'll tell you honestly when your vehicle would benefit from ceramic.
 
 [Call (310) 692-4495](/contact) to discuss what's right for your vehicle.`,
   },
@@ -798,7 +798,7 @@ Let's compare annual costs fairly:
 | Approach | Monthly Cost | Annual Cost | Paint Damage? |
 |----------|-------------|-------------|---------------|
 | Automated wash 2x/month | $30 | $360 | Yes — progressive |
-| Mobile Basic detail 1x/month | $125 | $1,500 | No |
+| Mobile Bronze detail 1x/month | $125 | $1,500 | No |
 | Mobile Silver detail 1x/month | $215 | $2,580 | No |
 
 The annual gap is real. But the car wash math doesn't include the cost of paint correction when swirl marks become visible (typically $300–$800 every 2–3 years for heavy automated wash users), and it doesn't account for the absence of any protection layer.
@@ -1074,11 +1074,11 @@ We come to wherever your car is:
 
 ## The Right Package for a Culver City Commuter
 
-**Daily drivers on the 405:** Gold Detail quarterly + Basic or Silver monthly maintenance. The freeway environment builds up contamination fast enough that quarterly clay bar is worth it.
+**Daily drivers on the 405:** Gold Detail quarterly + Bronze or Silver monthly maintenance. The freeway environment builds up contamination fast enough that quarterly clay bar is worth it.
 
 **Occasional or low-mileage vehicles:** Silver Detail monthly is typically sufficient.
 
-**Studio/creative professionals on a budget:** Monthly Basic Detail to keep the surface clean and the interior presentable. A tidy, clean car makes a difference when you're driving clients or arriving at meetings.
+**Studio/creative professionals on a budget:** Monthly Bronze Detail to keep the surface clean and the interior presentable. A tidy, clean car makes a difference when you're driving clients or arriving at meetings.
 
 [Book Culver City mobile detailing](/contact) or call [(310) 692-4495](tel:+13106924495). We'll confirm your parking situation and set up accordingly.`,
   },
@@ -1120,7 +1120,7 @@ I've detailed many cars in Venice Beach over 6 years, and the pattern is consist
 
 ## Our Venice Beach Maintenance Recommendation
 
-**Tier 1 (budget-conscious):** Monthly Basic Detail + Silver every other month. Keeps paint clean and maintains some protection level even if not optimal.
+**Tier 1 (budget-conscious):** Monthly Bronze Detail + Silver every other month. Keeps paint clean and maintains some protection level even if not optimal.
 
 **Tier 2 (recommended):** Monthly Silver Detail + Gold every 4 months. Continuous wax protection with quarterly deep decontamination. This is what I recommend for any vehicle with a good paint condition that you want to maintain.
 
@@ -1297,7 +1297,7 @@ How long ago was your last professional detail, and what protection was applied?
 
 **Silver Detail (3-month wax):** The wax layer needs refreshing before 3 months to maintain continuous protection. Monthly Silver maintenance is ideal; at minimum, every 8 weeks.
 
-**Gold Detail (6-month sealant):** The sealant is designed to last 4–6 months. You can do monthly Basic or Silver maintenance in between and refresh with Gold every 5–6 months.
+**Gold Detail (6-month sealant):** The sealant is designed to last 4–6 months. You can do monthly Bronze or Silver maintenance in between and refresh with Gold every 5–6 months.
 
 ## Factor in Your Driving Conditions
 
@@ -1310,7 +1310,7 @@ How long ago was your last professional detail, and what protection was applied?
 ## The Four-Scenario Guide for LA Drivers
 
 **Scenario 1: Casual owner, garaged, moderate driving**
-- Recommended: Basic or Silver every 6–8 weeks
+- Recommended: Bronze or Silver every 6–8 weeks
 - Gold twice per year to decontaminate and reseal
 
 **Scenario 2: Daily driver, outdoor parking, inland**
@@ -1688,7 +1688,7 @@ Both can produce equivalent results. The quality differences, when they exist, a
 
 ## When Mobile Is the Better Choice
 
-- Routine maintenance detailing (Basic, Silver, Gold) for standard vehicles
+- Routine maintenance detailing (Bronze, Silver, Gold) for standard vehicles
 - Any situation where drop-off and pickup creates significant inconvenience
 - When you want to be present for or observe the work
 - When flexibility in scheduling matters
@@ -1848,7 +1848,7 @@ Vehicles with three rows of seating or captain's chairs have meaningfully more i
 
 ## Pricing: Why It's Higher Than Sedan or Coupe
 
-Our SUV/Truck tier pricing across Basic, Silver, and Gold reflects the genuine time and product difference — not a blanket upcharge. More shampoo, more clay bar lubricant, more sealant, more labor hours. We price by vehicle class specifically so you're paying for the actual work involved, not a flat "SUV surcharge."
+Our SUV/Truck tier pricing across Bronze, Silver, and Gold reflects the genuine time and product difference — not a blanket upcharge. More shampoo, more clay bar lubricant, more sealant, more labor hours. We price by vehicle class specifically so you're paying for the actual work involved, not a flat "SUV surcharge."
 
 ## What to Expect on Appointment Day
 
@@ -1885,7 +1885,7 @@ When you book more than one vehicle at the same address, we schedule them back-t
 
 ## Mixing Service Tiers Across Vehicles
 
-You don't need to book the same package for every vehicle. It's common for a family to get a Gold Detail on the primary daily driver and a Basic on a less-used second car, or for a small business to keep company vehicles on Basic monthly maintenance while an owner's personal car gets Silver or Gold. Just tell us the tier for each vehicle when you book — there's no requirement to match packages.
+You don't need to book the same package for every vehicle. It's common for a family to get a Gold Detail on the primary daily driver and a Bronze on a less-used second car, or for a small business to keep company vehicles on Bronze monthly maintenance while an owner's personal car gets Silver or Gold. Just tell us the tier for each vehicle when you book — there's no requirement to match packages.
 
 ## What Businesses Should Consider
 
@@ -1893,7 +1893,7 @@ For small businesses with a handful of vehicles — delivery vans, service truck
 
 For business bookings, a few things to plan for:
 
-- **Consistent scheduling matters more than one-off details.** A monthly Basic across the fleet keeps everything presentable; sporadic one-time details don't maintain the same standard.
+- **Consistent scheduling matters more than one-off details.** A monthly Bronze across the fleet keeps everything presentable; sporadic one-time details don't maintain the same standard.
 - **Access and parking logistics.** Let us know if vehicles are spread across a parking lot, multiple building entrances, or need to be moved between details — we'll plan the visit accordingly.
 - **Invoicing and recurring billing** can be set up for repeat business accounts — ask when you book.
 
@@ -1960,7 +1960,7 @@ LA winters are mild, but this is often when people's detailing schedules slip be
 
 ## A Practical Year-Round Framework
 
-- **Monthly Basic wash:** Year-round baseline, non-negotiable regardless of season
+- **Monthly Bronze wash:** Year-round baseline, non-negotiable regardless of season
 - **Spring:** Post-rain wash + consider a Silver/Gold refresh before summer
 - **Summer:** Prioritize protection (sealant/ceramic) and fast contamination removal
 - **Fall:** Rinse-first ash protocol during any fire activity; monitor dust buildup
@@ -2059,7 +2059,7 @@ Automotive clear coat continues curing for a period after it leaves the factory 
 
 **Park with intention where you can.** New cars are worth being slightly more thoughtful about parking near sap-heavy trees, high bird traffic areas, or gravel lots for the first stretch — not because new paint is fragile in normal use, but because early swirl marks and etching set the tone for how the surface ages.
 
-**Get a light protective layer on early — the right kind.** A basic detail spray or light sealant, applied by someone who knows what's appropriate for new paint, gives you meaningful protection without the risks of premature heavy waxing.
+**Get a light protective layer on early — the right kind.** A simple detail spray or light sealant, applied by someone who knows what's appropriate for new paint, gives you meaningful protection without the risks of premature heavy waxing.
 
 **Address your first contamination event immediately.** The first bird dropping, sap drop, or bug splatter on a new car often gets treated with more urgency than it will six months in, once "car maintenance fatigue" sets in. Keep that urgency — quick removal matters just as much on day 200 as it does on day 5.
 
@@ -2120,7 +2120,7 @@ If your car has been through a lot of automated touchless washing and you're not
 
 ## Switch to Hand-Wash-Only Care
 
-[Book a Basic, Silver, or Gold Detail](/services) and give your paint a wash method that actually protects rather than trades one risk for another. Call [(310) 692-4495](tel:+13106924495) or [book online](/contact).`,
+[Book a Bronze, Silver, or Gold Detail](/services) and give your paint a wash method that actually protects rather than trades one risk for another. Call [(310) 692-4495](tel:+13106924495) or [book online](/contact).`,
   },
 
   {

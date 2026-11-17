@@ -19,7 +19,9 @@ export function buildMetadata(opts: {
   const canonical = `${BASE_URL}${opts.canonical}`;
 
   return {
-    title: opts.title,
+    // The root layout's title template appends " | DG Detailing". Titles that
+    // already name the brand opt out of it so it doesn't appear twice.
+    title: opts.title.includes(SITE_NAME) ? { absolute: opts.title } : opts.title,
     description: opts.description,
     keywords: opts.keywords,
     alternates: { canonical },

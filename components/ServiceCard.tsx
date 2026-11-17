@@ -10,7 +10,7 @@ interface ServiceCardProps {
 }
 
 const tierColors = {
-  basic: { bg: "from-zinc-800 to-zinc-900", badge: "bg-zinc-700 text-zinc-200" },
+  bronze: { bg: "from-orange-950/70 to-stone-950", badge: "bg-orange-800/80 text-orange-100" },
   silver: { bg: "from-slate-700 to-slate-900", badge: "bg-slate-600 text-slate-100" },
   gold: { bg: "from-yellow-900/60 to-amber-950", badge: "bg-yellow-700/80 text-yellow-100" },
 };

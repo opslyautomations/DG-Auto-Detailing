@@ -66,7 +66,7 @@ export const reviews: Review[] = [
     city: "Los Angeles",
     rating: 5,
     text: "I've tried three other mobile detailers in LA and none compare. DG Detailing is the real deal — no rushing, no shortcuts, no mystery products. My car looked showroom-new when they left. Signed up for the monthly plan.",
-    service: "Basic Sedan Detail",
+    service: "Bronze Sedan Detail",
   },
   {
     id: "8",

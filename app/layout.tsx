@@ -10,17 +10,25 @@ import BookingOverlay from "@/components/BookingOverlay";
 import { organizationSchema, websiteSchema } from "@/lib/schema";
 import { services, vehicleClassLabels } from "@/lib/services";
 import { locations } from "@/lib/locations";
+import { maintenancePackages } from "@/lib/maintenance";
 
 /**
  * Nav is the only client component on the site. Projecting these down to the
  * fields it actually renders keeps lib/services.ts and lib/locations.ts (and
  * all their prose) out of the client bundle.
  */
-const navServices = services.map((s) => ({
-  slug: s.slug,
-  tier: s.tier,
-  label: `${vehicleClassLabels[s.vehicleClass]} Detail`,
-}));
+const navServices = [
+  ...services.map((s) => ({
+    slug: s.slug,
+    tier: s.tier,
+    label: `${vehicleClassLabels[s.vehicleClass]} Detail`,
+  })),
+  ...maintenancePackages.map((p) => ({
+    slug: p.slug,
+    tier: "maintenance" as const,
+    label: p.navLabel,
+  })),
+];
 const navLocations = locations.map((l) => ({ slug: l.slug, city: l.city }));
 
 const inter = Inter({

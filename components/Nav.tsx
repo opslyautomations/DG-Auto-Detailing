@@ -12,7 +12,7 @@ import { Menu, X, Phone, ChevronDown, ChevronRight, ChevronLeft } from "lucide-r
  */
 export interface NavService {
   slug: string;
-  tier: "basic" | "silver" | "gold";
+  tier: "bronze" | "silver" | "gold" | "maintenance";
   label: string;
 }
 export interface NavLocation {
@@ -25,7 +25,7 @@ interface NavProps {
   locations: NavLocation[];
 }
 
-const TIERS = ["Basic", "Silver", "Gold"] as const;
+const TIERS = ["Bronze", "Silver", "Gold", "Maintenance"] as const;
 type ServiceTierGroup = (typeof TIERS)[number];
 
 /** Shared row sizing — 48px minimum touch target (WCAG 2.2 target size). */
@@ -42,9 +42,10 @@ export default function Nav({ services, locations }: NavProps) {
   const [mobileAreasOpen, setMobileAreasOpen] = useState(false);
 
   const serviceGroups: Record<ServiceTierGroup, NavService[]> = {
-    Basic: services.filter((s) => s.tier === "basic"),
+    Bronze: services.filter((s) => s.tier === "bronze"),
     Silver: services.filter((s) => s.tier === "silver"),
     Gold: services.filter((s) => s.tier === "gold"),
+    Maintenance: services.filter((s) => s.tier === "maintenance"),
   };
 
   const closeServices = () => {

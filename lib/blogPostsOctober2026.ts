@@ -657,24 +657,24 @@ A proper deep clean takes most people a full day. Our [Gold Detail](/services/go
     readTime: 3,
     body: `## The Short Answer
 
-Mobile car detailing in Los Angeles means a detailer comes to your home or office and cleans your car on-site, usually inside and out. A basic mobile detail typically includes an **exterior hand wash, interior vacuum and wipe-down, and tire shine**. Higher packages add **wax, leather conditioning, and trim protection**, and the top tier adds **clay bar decontamination, sealant, carpet and seat shampoo, and steam cleaning**. The detailer brings the equipment, products, and usually water and power.
+Mobile car detailing in Los Angeles means a detailer comes to your home or office and cleans your car on-site, usually inside and out. An entry-level mobile detail typically includes an **exterior hand wash, interior vacuum and wipe-down, and tire shine**. Higher packages add **wax, leather conditioning, and trim protection**, and the top tier adds **clay bar decontamination, sealant, carpet and seat shampoo, and steam cleaning**. The detailer brings the equipment, products, and usually water and power.
 
 Here's exactly what's included at DG Detailing, so you know what you're paying for.
 
 ## What's Included in Each Package
 
-### Basic Detail: regular upkeep
+### Bronze Detail: regular upkeep
 
 - Exterior hand wash with pH-balanced shampoo and microfiber
 - Interior vacuuming and surface wipe-down
 - High-gloss detail spray
 - Tire shine
 
-Best for cars that are already in good shape and need a regular clean. More on what happens in each step in [what's included in a basic car detail](/blog/what-is-included-in-a-basic-car-detail).
+Best for cars that are already in good shape and need a regular clean. More on what happens in each step in [what's included in a Bronze car detail](/blog/what-is-included-in-a-basic-car-detail).
 
 ### Silver Detail: clean plus protection
 
-- Everything in the Basic Detail
+- Everything in the Bronze Detail
 - Leather conditioning
 - Wax for about 3 months of protection
 - Plastic protectant on interior and exterior trim
@@ -696,7 +696,7 @@ Best for cars that haven't been detailed in a while, have stains or odors, or ar
 
 | Package | Coupe | Sedan | SUV / Truck | Time on-site |
 |---|---|---|---|---|
-| Basic | from $105 | from $125 | from $155 | 1.5–2 hrs |
+| Bronze | from $105 | from $125 | from $155 | 1.5–2 hrs |
 | Silver | from $185 | from $215 | from $265 | 2.5–3.5 hrs |
 | Gold | from $425 | from $455 | from $505 | 5–6 hrs |
 
@@ -726,7 +726,7 @@ DG Detailing serves [Los Angeles](/locations/los-angeles), [Marina Del Rey](/loc
 
 ## Which Package Should You Choose?
 
-- **Car is fairly clean and you detail regularly:** Basic
+- **Car is fairly clean and you detail regularly:** Bronze
 - **Car sits outside, or the leather and trim look dry:** Silver
 - **Stains, odors, rough-feeling paint, or it's been 6+ months:** Gold
 

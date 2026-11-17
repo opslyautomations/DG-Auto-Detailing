@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { DollarSign, Clock, ArrowRight } from "lucide-react";
+import { DollarSign, Clock, Repeat, ArrowRight } from "lucide-react";
 import ServiceCard from "@/components/ServiceCard";
 import CTASection from "@/components/CTASection";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -8,15 +8,16 @@ import SchemaJsonLd from "@/components/SchemaJsonLd";
 import { services, tierLabels, tierDescriptions } from "@/lib/services";
 import type { ServiceTier } from "@/lib/services";
 import { buildMetadata } from "@/lib/seo";
+import { maintenancePackages } from "@/lib/maintenance";
 
 export const metadata: Metadata = buildMetadata({
   title: "Mobile Auto Detailing Services Los Angeles | DG Detailing",
   description:
-    "View all DG Detailing service packages — Basic, Silver, and Gold — for coupes, sedans, SUVs & trucks. Starting from $105. Mobile, we come to you across Greater LA.",
+    "View all DG Detailing service packages — Bronze, Silver, Gold, and recurring Maintenance — for coupes, sedans, SUVs & trucks. Starting from $105. Mobile, we come to you across Greater LA.",
   canonical: "/services",
 });
 
-const tiers: ServiceTier[] = ["basic", "silver", "gold"];
+const tiers: ServiceTier[] = ["bronze", "silver", "gold"];
 
 export default function ServicesPage() {
   return (
@@ -35,9 +36,15 @@ export default function ServicesPage() {
               url: `https://www.dgautodetailing.com/services/${s.slug}`,
               name: s.name,
             })),
+            ...maintenancePackages.map((p, i) => ({
+              "@type": "ListItem",
+              position: services.length + i + 1,
+              url: `https://www.dgautodetailing.com/services/${p.slug}`,
+              name: p.name,
+            })),
             {
               "@type": "ListItem",
-              position: services.length + 1,
+              position: services.length + maintenancePackages.length + 1,
               url: "https://www.dgautodetailing.com/services/ceramic-coating",
               name: "Ceramic Coating",
             },
@@ -56,7 +63,7 @@ export default function ServicesPage() {
               <span style={{ color: "#00B8E6" }}>in Los Angeles</span>
             </h1>
             <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-              Choose from three professional tiers — Basic, Silver, or Gold — for coupes, sedans, SUVs & trucks.
+              Choose from three professional tiers — Bronze, Silver, or Gold — for coupes, sedans, SUVs & trucks.
               Every detail is hand-done at your location across Greater LA.
             </p>
           </div>
@@ -87,6 +94,53 @@ export default function ServicesPage() {
             </section>
           );
         })}
+
+        {/* Maintenance Packages */}
+        <section id="maintenance" className="scroll-mt-20 lg:scroll-mt-24 py-10 sm:py-16 bg-[#161616]" aria-label="Recurring maintenance packages">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="mb-10">
+              <h2 className="text-2xl sm:text-3xl font-black text-white mb-2">Maintenance Packages</h2>
+              <p className="text-gray-400">
+                Recurring weekly, bi-weekly, or monthly cleans that keep your vehicle clean after a Silver or Gold
+                reset.
+              </p>
+            </div>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {maintenancePackages.map((p) => (
+                <article
+                  key={p.slug}
+                  className="group relative rounded-2xl overflow-hidden border border-white/10 hover:border-[#00B8E6]/40 transition-all duration-300 hover:shadow-xl hover:shadow-[#00B8E6]/5"
+                >
+                  <div className="bg-gradient-to-br from-cyan-950/60 to-zinc-950 p-6 h-full flex flex-col">
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider bg-cyan-800/70 text-cyan-100">
+                        <Repeat size={11} aria-hidden /> maintenance
+                      </span>
+                      <span className="flex items-center gap-1 text-gray-400 text-xs">
+                        <DollarSign size={11} />
+                        {p.pricePerVisit} per visit
+                      </span>
+                    </div>
+                    <h3 className="text-lg font-bold text-white mb-2 leading-tight">{p.name}</h3>
+                    <p className="text-sm text-gray-400 leading-relaxed mb-4 flex-1">
+                      Weekly, bi-weekly, or monthly hand wash and interior refresh for {p.vehiclePlural}, at your
+                      home or office.
+                    </p>
+                    <Link
+                      href={`/services/${p.slug}`}
+                      className="inline-flex items-center gap-2 text-sm font-semibold transition-colors group-hover:gap-3 mt-auto"
+                      style={{ color: "#00B8E6" }}
+                      aria-label={`View ${p.name} details and pricing`}
+                    >
+                      View Details
+                      <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+                    </Link>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
 
         {/* Ceramic Coating */}
         <section className="py-10 sm:py-16 bg-[#0A0A0A]" aria-label="Paint protection services">
@@ -143,7 +197,11 @@ export default function ServicesPage() {
                 (310) 692-4495
               </a>{" "}
               and we&apos;ll help you choose based on your vehicle&apos;s condition and your goals. Most first-time clients
-              start with Silver or Gold to reset their vehicle, then switch to Basic for monthly maintenance.
+              start with Silver or Gold to reset their vehicle, then schedule a recurring{" "}
+              <a href="#maintenance" className="font-semibold" style={{ color: "#00B8E6" }}>
+                Maintenance Package
+              </a>{" "}
+              to keep it clean.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
