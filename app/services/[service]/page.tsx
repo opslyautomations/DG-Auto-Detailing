@@ -149,6 +149,21 @@ export default async function ServicePage({ params }: PageProps) {
           </div>
         </section>
 
+        {/* At a glance: a self-contained answer that search and AI tools can quote */}
+        <section className="py-8 sm:py-10 bg-[#0A0A0A] border-b border-white/10" aria-label={`${service.name} at a glance`}>
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#00B8E6" }}>
+              At a Glance
+            </h2>
+            <p className="text-gray-300 leading-relaxed">
+              The <strong className="text-white">{service.name}</strong> from DG Detailing starts at $
+              {service.priceFrom} and takes about {service.duration}. It includes{" "}
+              {service.inclusions.join(", ").toLowerCase()}. It&apos;s fully mobile: we come to your home or
+              office in {locations.map((l) => l.city).join(", ")}.
+            </p>
+          </div>
+        </section>
+
         {/* What's Included */}
         <section className="py-10 sm:py-16 bg-[#161616]" aria-label="Service inclusions">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

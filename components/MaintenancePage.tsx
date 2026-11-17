@@ -24,7 +24,7 @@ import {
   type MaintenancePackage,
 } from "@/lib/maintenance";
 import { serviceImages } from "@/lib/siteImages";
-import { breadcrumbSchema, faqSchema, imageObjectSchema } from "@/lib/schema";
+import { areaServedSchema, breadcrumbSchema, faqSchema, imageObjectSchema } from "@/lib/schema";
 import { buildMetadata } from "@/lib/seo";
 
 const BASE_URL = "https://www.dgautodetailing.com";
@@ -67,7 +67,7 @@ export default function MaintenancePage({ pkg }: { pkg: MaintenancePackage }) {
           url: pageUrl,
           image: `${BASE_URL}${image.src}`,
           provider: { "@id": `${BASE_URL}/#organization` },
-          areaServed: maintenanceCities.map((c) => ({ "@type": "City", name: `${c.city}, CA` })),
+          areaServed: areaServedSchema,
           offers: ["Weekly", "Bi-weekly", "Monthly"].map((frequency) => ({
             "@type": "Offer",
             name: `${frequency} ${pkg.name}`,
@@ -168,6 +168,22 @@ export default function MaintenancePage({ pkg }: { pkg: MaintenancePackage }) {
                 />
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* At a glance: a self-contained answer that search and AI tools can quote */}
+        <section className="py-8 sm:py-10 bg-[#0A0A0A] border-b border-white/10" aria-label={`${pkg.name} at a glance`}>
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: BLUE }}>
+              At a Glance
+            </h2>
+            <p className="text-gray-300 leading-relaxed">
+              The <strong className="text-white">{pkg.name}</strong> from DG Detailing is a recurring mobile
+              cleaning service for {pkg.vehiclePlural}, booked weekly, bi-weekly, or monthly at ${pkg.pricePerVisit}{" "}
+              per visit. Each visit includes {maintenanceInclusions.join(", ").toLowerCase()}. Most clients start
+              with a Silver or Gold detail, then schedule maintenance to keep the vehicle clean. Available in{" "}
+              {maintenanceCities.map((c) => c.city).join(", ")}.
+            </p>
           </div>
         </section>
 

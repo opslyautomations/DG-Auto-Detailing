@@ -63,6 +63,7 @@ export default async function BlogPostPage({ params }: PageProps) {
           date: post.publishedAt,
           modified: post.updatedAt,
           image: image?.src,
+          author: post.author,
         })}
       />
       {image && <SchemaJsonLd schema={imageObjectSchema(image, pageUrl)} />}

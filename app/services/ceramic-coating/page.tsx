@@ -9,6 +9,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import { serviceImages } from "@/lib/siteImages";
 import { breadcrumbSchema, faqSchema, imageObjectSchema } from "@/lib/schema";
 import { buildMetadata } from "@/lib/seo";
+import { ceramicPricing } from "@/lib/ceramic";
 
 const image = serviceImages["ceramic-coating"];
 const pageUrl = "https://www.dgautodetailing.com/services/ceramic-coating";
@@ -155,12 +156,7 @@ const faqs = [
   },
 ];
 
-const vehiclePricing = [
-  { vehicle: "Coupe", five: 750, seven: 895 },
-  { vehicle: "Sedan", five: 875, seven: 1120 },
-  { vehicle: "Midsized SUV", five: 1075, seven: 1420 },
-  { vehicle: "Truck / Large SUV", five: 1265, seven: 1710 },
-];
+const vehiclePricing = ceramicPricing;
 
 const serviceJsonLd = {
   "@context": "https://schema.org",
@@ -170,22 +166,7 @@ const serviceJsonLd = {
   image: `https://www.dgautodetailing.com${image.src}`,
   description:
     "Professional mobile ceramic coating in Los Angeles — decontamination wash, machine polish, and multi-year ceramic paint protection applied at your location.",
-  provider: {
-    "@type": "AutoDetailing",
-    name: "DG Detailing",
-    telephone: "+13106924495",
-    email: "diego@dgautodetailing.com",
-    url: "https://www.dgautodetailing.com/",
-    areaServed: [
-      "Los Angeles",
-      "Marina Del Rey",
-      "Santa Monica",
-      "Culver City",
-      "Venice Beach",
-      "Playa Vista",
-      "Brentwood",
-    ],
-  },
+  provider: { "@id": "https://www.dgautodetailing.com/#organization" },
   areaServed: [
     "Los Angeles",
     "Marina Del Rey",
@@ -196,14 +177,10 @@ const serviceJsonLd = {
     "Brentwood",
   ],
   offers: [
-    { "@type": "Offer", name: "5-Year Ceramic Coating — Coupe", price: "750", priceCurrency: "USD" },
-    { "@type": "Offer", name: "5-Year Ceramic Coating — Sedan", price: "875", priceCurrency: "USD" },
-    { "@type": "Offer", name: "5-Year Ceramic Coating — Midsized SUV", price: "1075", priceCurrency: "USD" },
-    { "@type": "Offer", name: "5-Year Ceramic Coating — Truck / Large SUV", price: "1265", priceCurrency: "USD" },
-    { "@type": "Offer", name: "7-Year Ceramic Coating — Coupe", price: "895", priceCurrency: "USD" },
-    { "@type": "Offer", name: "7-Year Ceramic Coating — Sedan", price: "1120", priceCurrency: "USD" },
-    { "@type": "Offer", name: "7-Year Ceramic Coating — Midsized SUV", price: "1420", priceCurrency: "USD" },
-    { "@type": "Offer", name: "7-Year Ceramic Coating — Truck / Large SUV", price: "1710", priceCurrency: "USD" },
+    ...ceramicPricing.flatMap((p) => [
+      { "@type": "Offer", name: `5-Year Ceramic Coating — ${p.vehicle}`, price: String(p.five), priceCurrency: "USD" },
+      { "@type": "Offer", name: `7-Year Ceramic Coating — ${p.vehicle}`, price: String(p.seven), priceCurrency: "USD" },
+    ]),
   ],
   url: "https://www.dgautodetailing.com/services/ceramic-coating",
 };

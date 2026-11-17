@@ -1,27 +1,64 @@
 import type { SiteImage } from "@/lib/siteImages";
+import { services } from "@/lib/services";
+import { maintenancePackages } from "@/lib/maintenance";
+import { ceramicPricing } from "@/lib/ceramic";
+
+const BASE_URL = "https://www.dgautodetailing.com";
+const ORG_ID = `${BASE_URL}/#organization`;
+
+/**
+ * Service areas, each linked to its Wikipedia entry so search engines and AI
+ * models resolve the right place (e.g. "Brentwood" the LA neighborhood, not
+ * one of the other Brentwoods).
+ */
+const SERVICE_AREAS = [
+  { name: "Los Angeles", sameAs: "https://en.wikipedia.org/wiki/Los_Angeles" },
+  { name: "Marina Del Rey", sameAs: "https://en.wikipedia.org/wiki/Marina_del_Rey,_California" },
+  { name: "Santa Monica", sameAs: "https://en.wikipedia.org/wiki/Santa_Monica,_California" },
+  { name: "Culver City", sameAs: "https://en.wikipedia.org/wiki/Culver_City,_California" },
+  { name: "Venice Beach", sameAs: "https://en.wikipedia.org/wiki/Venice,_Los_Angeles" },
+  { name: "Playa Vista", sameAs: "https://en.wikipedia.org/wiki/Playa_Vista,_Los_Angeles" },
+  { name: "Brentwood", sameAs: "https://en.wikipedia.org/wiki/Brentwood,_Los_Angeles" },
+];
+
+export const areaServedSchema = SERVICE_AREAS.map((a) => ({ "@type": "City", name: a.name, sameAs: a.sameAs }));
+
+function cityArea(city: string) {
+  const area = SERVICE_AREAS.find((a) => a.name === city);
+  return { "@type": "City", name: city, ...(area && { sameAs: area.sameAs }) };
+}
+
+const offer = (name: string, url: string, price: number, unitText?: string) => ({
+  "@type": "Offer",
+  itemOffered: { "@type": "Service", name, url },
+  price: String(price),
+  priceCurrency: "USD",
+  ...(unitText && {
+    priceSpecification: { "@type": "UnitPriceSpecification", price: String(price), priceCurrency: "USD", unitText },
+  }),
+});
 
 export const organizationSchema = {
   "@context": "https://schema.org",
-  "@type": ["LocalBusiness", "AutoRepair"],
-  "@id": "https://www.dgautodetailing.com/#organization",
+  // AutoWash is schema.org's type for car washing/detailing businesses
+  // (LocalBusiness > AutomotiveBusiness > AutoWash).
+  "@type": ["LocalBusiness", "AutoWash"],
+  "@id": ORG_ID,
   name: "DG Detailing",
-  url: "https://www.dgautodetailing.com",
-  logo: "https://www.dgautodetailing.com/logo.svg",
-  image: "https://www.dgautodetailing.com/og-default.jpg",
+  alternateName: "DG Auto Detailing",
+  description:
+    "DG Detailing is a mobile auto detailing company in Los Angeles. A professional detailer comes to your home or office and hand-washes and details your car on-site: Bronze, Silver, and Gold detail packages, recurring weekly, bi-weekly, or monthly maintenance cleans, and 5- or 7-year ceramic coating. Serving Los Angeles, Santa Monica, Marina Del Rey, Venice Beach, Culver City, Playa Vista, and Brentwood.",
+  slogan: "Premium mobile detailing that comes to you.",
+  url: BASE_URL,
+  logo: `${BASE_URL}/logo.svg`,
+  image: `${BASE_URL}/og-default.jpg`,
   telephone: "+13106924495",
   email: "diego@dgautodetailing.com",
   priceRange: "$$-$$$",
-  founder: { "@type": "Person", name: "Diego" },
+  currenciesAccepted: "USD",
+  founder: { "@type": "Person", name: "Diego", jobTitle: "Founder" },
   foundingDate: "2019",
-  areaServed: [
-    { "@type": "City", name: "Los Angeles" },
-    { "@type": "City", name: "Marina Del Rey" },
-    { "@type": "City", name: "Santa Monica" },
-    { "@type": "City", name: "Culver City" },
-    { "@type": "City", name: "Venice Beach" },
-    { "@type": "City", name: "Playa Vista" },
-    { "@type": "City", name: "Brentwood" },
-  ],
+  areaServed: areaServedSchema,
   address: {
     "@type": "PostalAddress",
     addressLocality: "Los Angeles",
@@ -47,23 +84,48 @@ export const organizationSchema = {
       closes: "17:00",
     },
   ],
+  knowsAbout: [
+    "Mobile auto detailing",
+    "Car hand washing",
+    "Interior car detailing",
+    "Recurring car cleaning",
+    "Paint sealant",
+    "Car wax",
+    "Clay bar treatment",
+    "Carpet and upholstery shampoo extraction",
+    "Ceramic coating",
+    "Paint correction",
+  ],
   sameAs: ["https://share.google/FpW0qKoCtS0gZTKRu"],
+  potentialAction: {
+    "@type": "ReserveAction",
+    name: "Book a mobile detail",
+    target: { "@type": "EntryPoint", urlTemplate: `${BASE_URL}/contact` },
+  },
   hasOfferCatalog: {
     "@type": "OfferCatalog",
-    name: "Detailing Services",
+    name: "Mobile Detailing Services",
     itemListElement: [
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Bronze Coupe Detail" }, price: "105", priceCurrency: "USD" },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Bronze Sedan Detail" }, price: "125", priceCurrency: "USD" },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Bronze SUV/Truck Detail" }, price: "155", priceCurrency: "USD" },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Silver Coupe Detail" }, price: "185", priceCurrency: "USD" },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Silver Sedan Detail" }, price: "215", priceCurrency: "USD" },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Silver SUV/Truck Detail" }, price: "265", priceCurrency: "USD" },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Gold Coupe Detail" }, price: "425", priceCurrency: "USD" },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Gold Sedan Detail" }, price: "455", priceCurrency: "USD" },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Gold SUV/Truck Detail" }, price: "505", priceCurrency: "USD" },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Coupe Maintenance Package" }, price: "105", priceCurrency: "USD" },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Sedan Maintenance Package" }, price: "115", priceCurrency: "USD" },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "SUV/Truck Maintenance Package" }, price: "135", priceCurrency: "USD" },
+      {
+        "@type": "OfferCatalog",
+        name: "Detail Packages",
+        itemListElement: services.map((s) => offer(s.name, `${BASE_URL}/services/${s.slug}`, s.priceFrom)),
+      },
+      {
+        "@type": "OfferCatalog",
+        name: "Recurring Maintenance Packages (weekly, bi-weekly, or monthly)",
+        itemListElement: maintenancePackages.map((p) =>
+          offer(p.name, `${BASE_URL}/services/${p.slug}`, p.pricePerVisit, "per visit"),
+        ),
+      },
+      {
+        "@type": "OfferCatalog",
+        name: "Ceramic Coating",
+        itemListElement: ceramicPricing.flatMap((c) => [
+          offer(`5-Year Ceramic Coating — ${c.vehicle}`, `${BASE_URL}/services/ceramic-coating`, c.five),
+          offer(`7-Year Ceramic Coating — ${c.vehicle}`, `${BASE_URL}/services/ceramic-coating`, c.seven),
+        ]),
+      },
     ],
   },
 };
@@ -71,18 +133,11 @@ export const organizationSchema = {
 export const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "@id": "https://www.dgautodetailing.com/#website",
+  "@id": `${BASE_URL}/#website`,
   name: "DG Detailing",
-  url: "https://www.dgautodetailing.com",
-  publisher: { "@id": "https://www.dgautodetailing.com/#organization" },
-  potentialAction: {
-    "@type": "SearchAction",
-    target: {
-      "@type": "EntryPoint",
-      urlTemplate: "https://www.dgautodetailing.com/blog?q={search_term_string}",
-    },
-    "query-input": "required name=search_term_string",
-  },
+  url: BASE_URL,
+  inLanguage: "en-US",
+  publisher: { "@id": ORG_ID },
 };
 
 export function breadcrumbSchema(items: { name: string; url: string }[]) {
@@ -109,29 +164,27 @@ export function serviceSchema(opts: {
   return {
     "@context": "https://schema.org",
     "@type": "Service",
+    "@id": `${opts.url}#service`,
     name: opts.name,
-    description: opts.description,
+    serviceType: "Mobile auto detailing",
+    description: `${opts.description} Takes about ${opts.duration}, done on-site at your home or office.`,
     url: opts.url,
-    ...(opts.image && { image: `https://www.dgautodetailing.com${opts.image.src}` }),
-    provider: { "@id": "https://www.dgautodetailing.com/#organization" },
-    areaServed: { "@type": "State", name: "California" },
-    hasOfferCatalog: {
-      "@type": "OfferCatalog",
-      name: opts.name,
-      itemListElement: [
-        {
-          "@type": "Offer",
-          price: opts.price,
-          priceCurrency: "USD",
-          availability: "https://schema.org/InStock",
-          priceSpecification: {
-            "@type": "PriceSpecification",
-            price: opts.price,
-            priceCurrency: "USD",
-            valueAddedTaxIncluded: false,
-          },
-        },
-      ],
+    ...(opts.image && { image: `${BASE_URL}${opts.image.src}` }),
+    provider: { "@id": ORG_ID },
+    areaServed: areaServedSchema,
+    offers: {
+      "@type": "Offer",
+      price: opts.price,
+      priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
+      url: opts.url,
+      priceSpecification: {
+        "@type": "PriceSpecification",
+        minPrice: opts.price,
+        price: opts.price,
+        priceCurrency: "USD",
+        valueAddedTaxIncluded: false,
+      },
     },
   };
 }
@@ -159,7 +212,7 @@ export function reviewsPageSchema(reviews: { author: string; rating: number; tex
     name: "DG Detailing",
     aggregateRating: {
       "@type": "AggregateRating",
-      ratingValue: "5.0",
+      ratingValue: (reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length).toFixed(1),
       reviewCount: reviews.length,
       bestRating: "5",
       worstRating: "1",
@@ -184,7 +237,7 @@ export function locationSchema(city: string, description: string, image?: SiteIm
     url: `https://www.dgautodetailing.com/locations/${city.toLowerCase().replace(/\s+/g, "-")}`,
     telephone: "+13106924495",
     email: "diego@dgautodetailing.com",
-    areaServed: { "@type": "City", name: city },
+    areaServed: cityArea(city),
     address: {
       "@type": "PostalAddress",
       addressLocality: city,
@@ -241,6 +294,7 @@ export function blogPostSchema(opts: {
   date: string;
   modified?: string;
   image?: string;
+  author?: "Diego" | "DG Detailing Team";
 }) {
   return {
     "@context": "https://schema.org",
@@ -250,11 +304,11 @@ export function blogPostSchema(opts: {
     url: `https://www.dgautodetailing.com/blog/${opts.slug}`,
     datePublished: opts.date,
     dateModified: opts.modified ?? opts.date,
-    author: {
-      "@type": "Organization",
-      name: "DG Detailing",
-      url: "https://www.dgautodetailing.com",
-    },
+    author:
+      opts.author === "Diego"
+        ? { "@type": "Person", name: "Diego", jobTitle: "Founder, DG Detailing", worksFor: { "@id": ORG_ID } }
+        : { "@type": "Organization", name: "DG Detailing", url: BASE_URL },
+    inLanguage: "en-US",
     publisher: { "@id": "https://www.dgautodetailing.com/#organization" },
     image: opts.image
       ? `https://www.dgautodetailing.com${opts.image}`
